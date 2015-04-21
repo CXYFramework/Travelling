@@ -1,0 +1,3519 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TravelDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ACC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastModiyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HotelID" Type="varchar" MaxLength="100" />
+          <Property Name="AddressLine" Type="nvarchar" MaxLength="200" />
+          <Property Name="CityName" Type="nvarchar" MaxLength="50" />
+          <Property Name="PostalCode" Type="varchar" MaxLength="20" />
+          <Property Name="LastModifyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="AddressExtension">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AddressID" Type="int" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" />
+          <Property Name="LastModifyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ADT">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastModiyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="AIC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastModiyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="AMC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastModiyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ARC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastModiyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="AwardType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastMofifyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="BaseByGuestAmt">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RateId" Type="int" />
+          <Property Name="AmountBeforeTax" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="CurrencyCode" Type="nvarchar" MaxLength="10" />
+          <Property Name="NumberOfGuests" Type="int" />
+          <Property Name="ListPrice" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="OtherCurrency" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="OtherCurrencyCode" Type="nvarchar" MaxLength="10" />
+          <Property Name="LastModifyTime" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="BED">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastModiyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="BookRule">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="BUS">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastModiyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CancelPenalty">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RateId" Type="int" />
+          <Property Name="Start" Type="datetime" />
+          <Property Name="End" Type="datetime" />
+          <Property Name="AmountPercent" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="CurrencyCode" Type="nvarchar" MaxLength="10" />
+          <Property Name="OtherCurrencyAmount" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="OtherCurrencyCode" Type="nvarchar" MaxLength="10" />
+          <Property Name="LastModifyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CategoryCodeHotelMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HotelId" Type="varchar" MaxLength="100" />
+          <Property Name="SEGID" Type="int" />
+          <Property Name="LastMofifyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CCT">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastModiyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CDT">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastModiyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CFC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastModiyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CHG">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastModiyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CXR">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastModiyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="DEC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastModiyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="DNA">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastModiyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="DSP">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastModiyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="DTB">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastModiyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="EAT">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastModiyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="EWT">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastModiyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="EXH">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastModiyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Fee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RateId" Type="int" Nullable="false" />
+          <Property Name="Code" Type="int" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="CurrencyCode" Type="nvarchar" MaxLength="10" />
+          <Property Name="ChargeUnit" Type="int" />
+          <Property Name="DescriptionText" Type="nvarchar" MaxLength="100" />
+          <Property Name="LastModifyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="FMT">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastModiyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="FQC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastModiyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="FTT">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastModiyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="GRI">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastModiyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="GuaranteePolicy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RateId" Type="int" />
+          <Property Name="GuaranteeCode" Type="int" />
+          <Property Name="HoldTime" Type="datetime" />
+          <Property Name="LastModifyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="GuestRoom">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="HotelID" Type="varchar" MaxLength="100" />
+          <Property Name="StandardOccupancy" Type="int" />
+          <Property Name="Size" Type="nvarchar" MaxLength="100" />
+          <Property Name="RoomTypeCode" Type="int" />
+          <Property Name="Floor" Type="nvarchar" MaxLength="100" />
+          <Property Name="BedTypeCode" Type="int" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="FeatureDescription" Type="nvarchar" MaxLength="200" />
+          <Property Name="InvBlockCode" Type="int" />
+          <Property Name="NonSmoking" Type="int" />
+          <Property Name="RoomSize" Type="nvarchar" MaxLength="100" />
+          <Property Name="HasWindow" Type="int" />
+          <Property Name="LastMofifyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="HAC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastModiyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="HACHATMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HACID" Type="int" />
+          <Property Name="HATID" Type="int" />
+          <Property Name="HotelID" Type="varchar" MaxLength="100" />
+          <Property Name="LastModifyTine" Type="datetime" />
+        </EntityType>
+        <EntityType Name="HAT">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastModiyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="HOC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastModiyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Hotel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="HotelCode" Type="int" />
+          <Property Name="BrandCode" Type="int" />
+          <Property Name="HotelCityCode" Type="int" />
+          <Property Name="HotelName" Type="nvarchar" MaxLength="50" />
+          <Property Name="AreaID" Type="int" />
+          <Property Name="WhenBuilt" Type="datetime" />
+          <Property Name="LastUpdated" Type="datetime" />
+          <Property Name="LastMofifyTime" Type="datetime" />
+          <Property Name="Timestamp" Type="timestamp" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="HotelAwardMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AwardID" Type="int" />
+          <Property Name="HotelID" Type="varchar" MaxLength="100" />
+          <Property Name="LastMofifyTime" Type="datetime" />
+          <Property Name="Rating" Type="decimal" Precision="10" Scale="4" />
+        </EntityType>
+        <EntityType Name="HST">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastModiyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ImageItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HotelId" Type="varchar" MaxLength="100" />
+          <Property Name="Category" Type="int" />
+          <Property Name="URL" Type="varchar" MaxLength="200" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" />
+          <Property Name="InvBlockCode" Type="int" />
+          <Property Name="LastMofifyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="INF">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastModiyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LOC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastModiyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="MCC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastModiyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="OTC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastModiyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PAC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastModiyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PCT">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastModiyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PIC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastModiyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PMT">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastModiyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Policy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HotelID" Type="varchar" MaxLength="100" />
+          <Property Name="Key" Type="varchar" MaxLength="50" />
+          <Property Name="Value" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastMofifyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PolicyInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HotelId" Type="varchar" MaxLength="100" />
+          <Property Name="CheckIn" Type="nvarchar" MaxLength="200" />
+          <Property Name="CheckOut" Type="nvarchar" MaxLength="200" />
+          <Property Name="LastModifyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HotelID" Type="varchar" MaxLength="100" />
+          <Property Name="Latitude" Type="decimal" Precision="10" Scale="5" />
+          <Property Name="Longitude" Type="decimal" Precision="10" Scale="5" />
+          <Property Name="PositionTypeCode" Type="int" />
+          <Property Name="LastMofifyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PRT">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastModiyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PRX">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastModiyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PST">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastModiyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PTT">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastModiyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="QCC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastModiyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="QST">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastModiyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Rate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RatePlanId" Type="int" />
+          <Property Name="NumberOfUnits" Type="int" />
+          <Property Name="Start" Type="datetime" />
+          <Property Name="End" Type="datetime" />
+          <Property Name="IsInstantConfirm" Type="bit" />
+          <Property Name="Status" Type="varchar" MaxLength="50" />
+          <Property Name="IsBreakfast" Type="bit" />
+          <Property Name="BreakfastNumber" Type="int" />
+          <Property Name="LastModifyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="RateExtensions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RateId" Type="int" />
+          <Property Name="StartPeriod" Type="datetime" />
+          <Property Name="EndPeriod" Type="datetime" />
+          <Property Name="ProgramName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="CurrencyCode" Type="nvarchar" MaxLength="10" />
+          <Property Name="Code" Type="int" />
+          <Property Name="DescriptionText" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastModifyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="RatePlan">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RatePlanCode" Type="int" />
+          <Property Name="RatePlanCategory" Type="nchar" MaxLength="10" />
+          <Property Name="IsCommissionable" Type="bit" />
+          <Property Name="RateReturn" Type="bit" />
+          <Property Name="MarketCode" Type="nchar" MaxLength="10" />
+          <Property Name="LastModifyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="RBP">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastModiyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="REF">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastModiyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="RefPoint">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HotelID" Type="varchar" MaxLength="100" />
+          <Property Name="Distance" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="UOMID" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="REFINT" Type="int" />
+          <Property Name="LastMofifyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="RGC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastModiyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="RMA">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastModiyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="RMARoomMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoomID" Type="int" />
+          <Property Name="RMAID" Type="int" />
+          <Property Name="LastMofifyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="RoomExtension">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoomID" Type="int" />
+          <Property Name="FacilityName" Type="nvarchar" MaxLength="200" />
+          <Property Name="FaciliTypeName" Type="nvarchar" MaxLength="200" />
+          <Property Name="IsAllAvailable" Type="int" />
+          <Property Name="LastMofifyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="RoomPlanBookRuleMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BookRuleId" Type="int" />
+          <Property Name="RatePlanId" Type="int" />
+          <Property Name="Parameters" Type="nvarchar" MaxLength="200" />
+          <Property Name="LastModifyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="RTC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastModiyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SEG">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastModiyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TextItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HotelId" Type="varchar" MaxLength="100" />
+          <Property Name="Category" Type="int" />
+          <Property Name="DescriptionText" Type="nvarchar" MaxLength="1000" />
+          <Property Name="LastModityTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="UIT">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastModiyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="UOM">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastModiyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Zone">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastMofifyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ZoneHotelMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ZoneID" Type="int" />
+          <Property Name="HotelID" Type="varchar" MaxLength="100" />
+          <Property Name="LastMofifyTime" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_AddressExtensionTo_Address">
+          <End Role="Address" Type="Self.Address" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AddressExtension" Type="Self.AddressExtension" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AddressExtension">
+              <PropertyRef Name="AddressID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AddressTo_Hotel">
+          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Address" Type="Self.Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Address">
+              <PropertyRef Name="HotelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BaseByGuestAmtTo_Rate">
+          <End Role="Rate" Type="Self.Rate" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="BaseByGuestAmt" Type="Self.BaseByGuestAmt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BaseByGuestAmt">
+              <PropertyRef Name="RateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CancelPenaltyTo_Rate">
+          <End Role="Rate" Type="Self.Rate" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CancelPenalty" Type="Self.CancelPenalty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CancelPenalty">
+              <PropertyRef Name="RateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CategoryCodeHotelMappingTo_Hotel">
+          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CategoryCodeHotelMapping" Type="Self.CategoryCodeHotelMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CategoryCodeHotelMapping">
+              <PropertyRef Name="HotelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CategoryCodeHotelMappingTo_SEG">
+          <End Role="SEG" Type="Self.SEG" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CategoryCodeHotelMapping" Type="Self.CategoryCodeHotelMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SEG">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CategoryCodeHotelMapping">
+              <PropertyRef Name="SEGID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fee_ToTable">
+          <End Role="Rate" Type="Self.Rate" Multiplicity="1" />
+          <End Role="Fee" Type="Self.Fee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Fee">
+              <PropertyRef Name="RateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FeeTo_Rate">
+          <End Role="Rate" Type="Self.Rate" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Fee" Type="Self.Fee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Fee">
+              <PropertyRef Name="RateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GuaranteePolicyTo_Rate">
+          <End Role="Rate" Type="Self.Rate" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="GuaranteePolicy" Type="Self.GuaranteePolicy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GuaranteePolicy">
+              <PropertyRef Name="RateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GuestRoomTo_Hotel">
+          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="GuestRoom" Type="Self.GuestRoom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GuestRoom">
+              <PropertyRef Name="HotelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HACHATMappingTo_HAC">
+          <End Role="HAC" Type="Self.HAC" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="HACHATMapping" Type="Self.HACHATMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HAC">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HACHATMapping">
+              <PropertyRef Name="HACID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HACHATMappingTo_HAT">
+          <End Role="HAT" Type="Self.HAT" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="HACHATMapping" Type="Self.HACHATMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HAT">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HACHATMapping">
+              <PropertyRef Name="HATID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HACHATMappingTo_Hotel">
+          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="HACHATMapping" Type="Self.HACHATMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HACHATMapping">
+              <PropertyRef Name="HotelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HotelAwardMappingTo_Hotel">
+          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="HotelAwardMapping" Type="Self.HotelAwardMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HotelAwardMapping">
+              <PropertyRef Name="HotelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ImageItemTo_Hotel">
+          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ImageItem" Type="Self.ImageItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ImageItem">
+              <PropertyRef Name="HotelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PolicyInfoTo_Hotel">
+          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PolicyInfo" Type="Self.PolicyInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PolicyInfo">
+              <PropertyRef Name="HotelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PolicyTo_Hotel">
+          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Policy" Type="Self.Policy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Policy">
+              <PropertyRef Name="HotelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PositionTo_Hotel">
+          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Position" Type="Self.Position" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Position">
+              <PropertyRef Name="HotelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RateExtensionsTo_Rate">
+          <End Role="Rate" Type="Self.Rate" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RateExtensions" Type="Self.RateExtensions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RateExtensions">
+              <PropertyRef Name="RateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RateTo_RatePlan">
+          <End Role="RatePlan" Type="Self.RatePlan" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Rate" Type="Self.Rate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RatePlan">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Rate">
+              <PropertyRef Name="RatePlanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RefPointTo_Hotel">
+          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RefPoint" Type="Self.RefPoint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RefPoint">
+              <PropertyRef Name="HotelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RefPointTo_UOM">
+          <End Role="UOM" Type="Self.UOM" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RefPoint" Type="Self.RefPoint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UOM">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RefPoint">
+              <PropertyRef Name="UOMID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RMARoomMappingTo_GuestRoom">
+          <End Role="GuestRoom" Type="Self.GuestRoom" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RMARoomMapping" Type="Self.RMARoomMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GuestRoom">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RMARoomMapping">
+              <PropertyRef Name="RoomID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RMARoomMappingTo_RMA">
+          <End Role="RMA" Type="Self.RMA" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RMARoomMapping" Type="Self.RMARoomMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RMA">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RMARoomMapping">
+              <PropertyRef Name="RMAID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoomExtensionTo_GuestRoom">
+          <End Role="GuestRoom" Type="Self.GuestRoom" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RoomExtension" Type="Self.RoomExtension" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GuestRoom">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RoomExtension">
+              <PropertyRef Name="RoomID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoomPlanBookRuleMappingTo_BookRule">
+          <End Role="BookRule" Type="Self.BookRule" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RoomPlanBookRuleMapping" Type="Self.RoomPlanBookRuleMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BookRule">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RoomPlanBookRuleMapping">
+              <PropertyRef Name="BookRuleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoomPlanBookRuleMappingTo_RatePlan">
+          <End Role="RatePlan" Type="Self.RatePlan" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RoomPlanBookRuleMapping" Type="Self.RoomPlanBookRuleMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RatePlan">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RoomPlanBookRuleMapping">
+              <PropertyRef Name="RatePlanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TextItemTo_Hotel">
+          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TextItem" Type="Self.TextItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TextItem">
+              <PropertyRef Name="HotelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZoneHotelMappingTo_Hotel">
+          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ZoneHotelMapping" Type="Self.ZoneHotelMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ZoneHotelMapping">
+              <PropertyRef Name="HotelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZoneHotelMappingTo_Zone">
+          <End Role="Zone" Type="Self.Zone" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ZoneHotelMapping" Type="Self.ZoneHotelMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zone">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ZoneHotelMapping">
+              <PropertyRef Name="ZoneID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TravelDBModelStoreContainer">
+          <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ACC" EntityType="Self.ACC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AddressExtension" EntityType="Self.AddressExtension" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ADT" EntityType="Self.ADT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AIC" EntityType="Self.AIC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AMC" EntityType="Self.AMC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ARC" EntityType="Self.ARC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AwardType" EntityType="Self.AwardType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BaseByGuestAmt" EntityType="Self.BaseByGuestAmt" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BED" EntityType="Self.BED" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BookRule" EntityType="Self.BookRule" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BUS" EntityType="Self.BUS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CancelPenalty" EntityType="Self.CancelPenalty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CategoryCodeHotelMapping" EntityType="Self.CategoryCodeHotelMapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CCT" EntityType="Self.CCT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CDT" EntityType="Self.CDT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CFC" EntityType="Self.CFC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CHG" EntityType="Self.CHG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CXR" EntityType="Self.CXR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DEC" EntityType="Self.DEC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DNA" EntityType="Self.DNA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DSP" EntityType="Self.DSP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DTB" EntityType="Self.DTB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EAT" EntityType="Self.EAT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EWT" EntityType="Self.EWT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EXH" EntityType="Self.EXH" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Fee" EntityType="Self.Fee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FMT" EntityType="Self.FMT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FQC" EntityType="Self.FQC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FTT" EntityType="Self.FTT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GRI" EntityType="Self.GRI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GuaranteePolicy" EntityType="Self.GuaranteePolicy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GuestRoom" EntityType="Self.GuestRoom" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HAC" EntityType="Self.HAC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HACHATMapping" EntityType="Self.HACHATMapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HAT" EntityType="Self.HAT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HOC" EntityType="Self.HOC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hotel" EntityType="Self.Hotel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HotelAwardMapping" EntityType="Self.HotelAwardMapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HST" EntityType="Self.HST" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ImageItem" EntityType="Self.ImageItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INF" EntityType="Self.INF" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LOC" EntityType="Self.LOC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MCC" EntityType="Self.MCC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OTC" EntityType="Self.OTC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PAC" EntityType="Self.PAC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PCT" EntityType="Self.PCT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PIC" EntityType="Self.PIC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PMT" EntityType="Self.PMT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Policy" EntityType="Self.Policy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PolicyInfo" EntityType="Self.PolicyInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Position" EntityType="Self.Position" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRT" EntityType="Self.PRT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRX" EntityType="Self.PRX" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PST" EntityType="Self.PST" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PTT" EntityType="Self.PTT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QCC" EntityType="Self.QCC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QST" EntityType="Self.QST" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rate" EntityType="Self.Rate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RateExtensions" EntityType="Self.RateExtensions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RatePlan" EntityType="Self.RatePlan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RBP" EntityType="Self.RBP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="REF" EntityType="Self.REF" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RefPoint" EntityType="Self.RefPoint" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RGC" EntityType="Self.RGC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RMA" EntityType="Self.RMA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RMARoomMapping" EntityType="Self.RMARoomMapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RoomExtension" EntityType="Self.RoomExtension" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RoomPlanBookRuleMapping" EntityType="Self.RoomPlanBookRuleMapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RTC" EntityType="Self.RTC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SEG" EntityType="Self.SEG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TextItem" EntityType="Self.TextItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UIT" EntityType="Self.UIT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UOM" EntityType="Self.UOM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zone" EntityType="Self.Zone" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZoneHotelMapping" EntityType="Self.ZoneHotelMapping" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AddressExtensionTo_Address" Association="Self.FK_AddressExtensionTo_Address">
+            <End Role="Address" EntitySet="Address" />
+            <End Role="AddressExtension" EntitySet="AddressExtension" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AddressTo_Hotel" Association="Self.FK_AddressTo_Hotel">
+            <End Role="Hotel" EntitySet="Hotel" />
+            <End Role="Address" EntitySet="Address" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BaseByGuestAmtTo_Rate" Association="Self.FK_BaseByGuestAmtTo_Rate">
+            <End Role="Rate" EntitySet="Rate" />
+            <End Role="BaseByGuestAmt" EntitySet="BaseByGuestAmt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CancelPenaltyTo_Rate" Association="Self.FK_CancelPenaltyTo_Rate">
+            <End Role="Rate" EntitySet="Rate" />
+            <End Role="CancelPenalty" EntitySet="CancelPenalty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CategoryCodeHotelMappingTo_Hotel" Association="Self.FK_CategoryCodeHotelMappingTo_Hotel">
+            <End Role="Hotel" EntitySet="Hotel" />
+            <End Role="CategoryCodeHotelMapping" EntitySet="CategoryCodeHotelMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CategoryCodeHotelMappingTo_SEG" Association="Self.FK_CategoryCodeHotelMappingTo_SEG">
+            <End Role="SEG" EntitySet="SEG" />
+            <End Role="CategoryCodeHotelMapping" EntitySet="CategoryCodeHotelMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fee_ToTable" Association="Self.FK_Fee_ToTable">
+            <End Role="Rate" EntitySet="Rate" />
+            <End Role="Fee" EntitySet="Fee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FeeTo_Rate" Association="Self.FK_FeeTo_Rate">
+            <End Role="Rate" EntitySet="Rate" />
+            <End Role="Fee" EntitySet="Fee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GuaranteePolicyTo_Rate" Association="Self.FK_GuaranteePolicyTo_Rate">
+            <End Role="Rate" EntitySet="Rate" />
+            <End Role="GuaranteePolicy" EntitySet="GuaranteePolicy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GuestRoomTo_Hotel" Association="Self.FK_GuestRoomTo_Hotel">
+            <End Role="Hotel" EntitySet="Hotel" />
+            <End Role="GuestRoom" EntitySet="GuestRoom" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HACHATMappingTo_HAC" Association="Self.FK_HACHATMappingTo_HAC">
+            <End Role="HAC" EntitySet="HAC" />
+            <End Role="HACHATMapping" EntitySet="HACHATMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HACHATMappingTo_HAT" Association="Self.FK_HACHATMappingTo_HAT">
+            <End Role="HAT" EntitySet="HAT" />
+            <End Role="HACHATMapping" EntitySet="HACHATMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HACHATMappingTo_Hotel" Association="Self.FK_HACHATMappingTo_Hotel">
+            <End Role="Hotel" EntitySet="Hotel" />
+            <End Role="HACHATMapping" EntitySet="HACHATMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HotelAwardMappingTo_Hotel" Association="Self.FK_HotelAwardMappingTo_Hotel">
+            <End Role="Hotel" EntitySet="Hotel" />
+            <End Role="HotelAwardMapping" EntitySet="HotelAwardMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImageItemTo_Hotel" Association="Self.FK_ImageItemTo_Hotel">
+            <End Role="Hotel" EntitySet="Hotel" />
+            <End Role="ImageItem" EntitySet="ImageItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PolicyInfoTo_Hotel" Association="Self.FK_PolicyInfoTo_Hotel">
+            <End Role="Hotel" EntitySet="Hotel" />
+            <End Role="PolicyInfo" EntitySet="PolicyInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PolicyTo_Hotel" Association="Self.FK_PolicyTo_Hotel">
+            <End Role="Hotel" EntitySet="Hotel" />
+            <End Role="Policy" EntitySet="Policy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PositionTo_Hotel" Association="Self.FK_PositionTo_Hotel">
+            <End Role="Hotel" EntitySet="Hotel" />
+            <End Role="Position" EntitySet="Position" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RateExtensionsTo_Rate" Association="Self.FK_RateExtensionsTo_Rate">
+            <End Role="Rate" EntitySet="Rate" />
+            <End Role="RateExtensions" EntitySet="RateExtensions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RateTo_RatePlan" Association="Self.FK_RateTo_RatePlan">
+            <End Role="RatePlan" EntitySet="RatePlan" />
+            <End Role="Rate" EntitySet="Rate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RefPointTo_Hotel" Association="Self.FK_RefPointTo_Hotel">
+            <End Role="Hotel" EntitySet="Hotel" />
+            <End Role="RefPoint" EntitySet="RefPoint" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RefPointTo_UOM" Association="Self.FK_RefPointTo_UOM">
+            <End Role="UOM" EntitySet="UOM" />
+            <End Role="RefPoint" EntitySet="RefPoint" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RMARoomMappingTo_GuestRoom" Association="Self.FK_RMARoomMappingTo_GuestRoom">
+            <End Role="GuestRoom" EntitySet="GuestRoom" />
+            <End Role="RMARoomMapping" EntitySet="RMARoomMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RMARoomMappingTo_RMA" Association="Self.FK_RMARoomMappingTo_RMA">
+            <End Role="RMA" EntitySet="RMA" />
+            <End Role="RMARoomMapping" EntitySet="RMARoomMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoomExtensionTo_GuestRoom" Association="Self.FK_RoomExtensionTo_GuestRoom">
+            <End Role="GuestRoom" EntitySet="GuestRoom" />
+            <End Role="RoomExtension" EntitySet="RoomExtension" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoomPlanBookRuleMappingTo_BookRule" Association="Self.FK_RoomPlanBookRuleMappingTo_BookRule">
+            <End Role="BookRule" EntitySet="BookRule" />
+            <End Role="RoomPlanBookRuleMapping" EntitySet="RoomPlanBookRuleMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoomPlanBookRuleMappingTo_RatePlan" Association="Self.FK_RoomPlanBookRuleMappingTo_RatePlan">
+            <End Role="RatePlan" EntitySet="RatePlan" />
+            <End Role="RoomPlanBookRuleMapping" EntitySet="RoomPlanBookRuleMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TextItemTo_Hotel" Association="Self.FK_TextItemTo_Hotel">
+            <End Role="Hotel" EntitySet="Hotel" />
+            <End Role="TextItem" EntitySet="TextItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZoneHotelMappingTo_Hotel" Association="Self.FK_ZoneHotelMappingTo_Hotel">
+            <End Role="Hotel" EntitySet="Hotel" />
+            <End Role="ZoneHotelMapping" EntitySet="ZoneHotelMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZoneHotelMappingTo_Zone" Association="Self.FK_ZoneHotelMappingTo_Zone">
+            <End Role="Zone" EntitySet="Zone" />
+            <End Role="ZoneHotelMapping" EntitySet="ZoneHotelMapping" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TravelDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ACC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastModiyTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HotelID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AddressLine" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PostalCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LastModifyTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AddressExtensions" Relationship="Self.FK_AddressExtensionTo_Address" FromRole="Address" ToRole="AddressExtension" />
+          <NavigationProperty Name="Hotel" Relationship="Self.FK_AddressTo_Hotel" FromRole="Address" ToRole="Hotel" />
+        </EntityType>
+        <EntityType Name="AddressExtension">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AddressID" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="LastModifyTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Address" Relationship="Self.FK_AddressExtensionTo_Address" FromRole="AddressExtension" ToRole="Address" />
+        </EntityType>
+        <EntityType Name="ADT">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastModiyTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="AIC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastModiyTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="AMC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastModiyTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ARC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastModiyTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="AwardType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastMofifyTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="BaseByGuestAmt">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RateId" Type="Int32" />
+          <Property Name="AmountBeforeTax" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="CurrencyCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="NumberOfGuests" Type="Int32" />
+          <Property Name="ListPrice" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="OtherCurrency" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="OtherCurrencyCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="LastModifyTime" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Rate" Relationship="Self.FK_BaseByGuestAmtTo_Rate" FromRole="BaseByGuestAmt" ToRole="Rate" />
+        </EntityType>
+        <EntityType Name="BED">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastModiyTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="BookRule">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="RoomPlanBookRuleMappings" Relationship="Self.FK_RoomPlanBookRuleMappingTo_BookRule" FromRole="BookRule" ToRole="RoomPlanBookRuleMapping" />
+        </EntityType>
+        <EntityType Name="BUS">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastModiyTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="CancelPenalty">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RateId" Type="Int32" />
+          <Property Name="Start" Type="DateTime" Precision="3" />
+          <Property Name="End" Type="DateTime" Precision="3" />
+          <Property Name="AmountPercent" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="CurrencyCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="OtherCurrencyAmount" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="OtherCurrencyCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="LastModifyTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Rate" Relationship="Self.FK_CancelPenaltyTo_Rate" FromRole="CancelPenalty" ToRole="Rate" />
+        </EntityType>
+        <EntityType Name="CategoryCodeHotelMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HotelId" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SEGID" Type="Int32" />
+          <Property Name="LastMofifyTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Hotel" Relationship="Self.FK_CategoryCodeHotelMappingTo_Hotel" FromRole="CategoryCodeHotelMapping" ToRole="Hotel" />
+          <NavigationProperty Name="SEG" Relationship="Self.FK_CategoryCodeHotelMappingTo_SEG" FromRole="CategoryCodeHotelMapping" ToRole="SEG" />
+        </EntityType>
+        <EntityType Name="CCT">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastModiyTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="CDT">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastModiyTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="CFC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastModiyTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="CHG">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastModiyTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="CXR">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastModiyTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="DEC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastModiyTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="DNA">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastModiyTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="DSP">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastModiyTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="DTB">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastModiyTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="EAT">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastModiyTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="EWT">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastModiyTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="EXH">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastModiyTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Fee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RateId" Type="Int32" Nullable="false" />
+          <Property Name="Code" Type="Int32" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="CurrencyCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ChargeUnit" Type="Int32" />
+          <Property Name="DescriptionText" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LastModifyTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Rate" Relationship="Self.FK_Fee_ToTable" FromRole="Fee" ToRole="Rate" />
+          <NavigationProperty Name="Rate1" Relationship="Self.FK_FeeTo_Rate" FromRole="Fee" ToRole="Rate" />
+        </EntityType>
+        <EntityType Name="FMT">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastModiyTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="FQC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastModiyTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="FTT">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastModiyTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="GRI">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastModiyTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="GuaranteePolicy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RateId" Type="Int32" />
+          <Property Name="GuaranteeCode" Type="Int32" />
+          <Property Name="HoldTime" Type="DateTime" Precision="3" />
+          <Property Name="LastModifyTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Rate" Relationship="Self.FK_GuaranteePolicyTo_Rate" FromRole="GuaranteePolicy" ToRole="Rate" />
+        </EntityType>
+        <EntityType Name="GuestRoom">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="HotelID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="StandardOccupancy" Type="Int32" />
+          <Property Name="Size" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RoomTypeCode" Type="Int32" />
+          <Property Name="Floor" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BedTypeCode" Type="Int32" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="FeatureDescription" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="InvBlockCode" Type="Int32" />
+          <Property Name="NonSmoking" Type="Int32" />
+          <Property Name="RoomSize" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="HasWindow" Type="Int32" />
+          <Property Name="LastMofifyTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Hotel" Relationship="Self.FK_GuestRoomTo_Hotel" FromRole="GuestRoom" ToRole="Hotel" />
+          <NavigationProperty Name="RMARoomMappings" Relationship="Self.FK_RMARoomMappingTo_GuestRoom" FromRole="GuestRoom" ToRole="RMARoomMapping" />
+          <NavigationProperty Name="RoomExtensions" Relationship="Self.FK_RoomExtensionTo_GuestRoom" FromRole="GuestRoom" ToRole="RoomExtension" />
+        </EntityType>
+        <EntityType Name="HAC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastModiyTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="HACHATMappings" Relationship="Self.FK_HACHATMappingTo_HAC" FromRole="HAC" ToRole="HACHATMapping" />
+        </EntityType>
+        <EntityType Name="HACHATMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HACID" Type="Int32" />
+          <Property Name="HATID" Type="Int32" />
+          <Property Name="HotelID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LastModifyTine" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="HAC" Relationship="Self.FK_HACHATMappingTo_HAC" FromRole="HACHATMapping" ToRole="HAC" />
+          <NavigationProperty Name="HAT" Relationship="Self.FK_HACHATMappingTo_HAT" FromRole="HACHATMapping" ToRole="HAT" />
+          <NavigationProperty Name="Hotel" Relationship="Self.FK_HACHATMappingTo_Hotel" FromRole="HACHATMapping" ToRole="Hotel" />
+        </EntityType>
+        <EntityType Name="HAT">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastModiyTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="HACHATMappings" Relationship="Self.FK_HACHATMappingTo_HAT" FromRole="HAT" ToRole="HACHATMapping" />
+        </EntityType>
+        <EntityType Name="HOC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastModiyTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Hotel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="HotelCode" Type="Int32" />
+          <Property Name="BrandCode" Type="Int32" />
+          <Property Name="HotelCityCode" Type="Int32" />
+          <Property Name="HotelName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AreaID" Type="Int32" />
+          <Property Name="WhenBuilt" Type="DateTime" Precision="3" />
+          <Property Name="LastUpdated" Type="DateTime" Precision="3" />
+          <Property Name="LastMofifyTime" Type="DateTime" Precision="3" />
+          <Property Name="Timestamp" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Addresses" Relationship="Self.FK_AddressTo_Hotel" FromRole="Hotel" ToRole="Address" />
+          <NavigationProperty Name="CategoryCodeHotelMappings" Relationship="Self.FK_CategoryCodeHotelMappingTo_Hotel" FromRole="Hotel" ToRole="CategoryCodeHotelMapping" />
+          <NavigationProperty Name="GuestRooms" Relationship="Self.FK_GuestRoomTo_Hotel" FromRole="Hotel" ToRole="GuestRoom" />
+          <NavigationProperty Name="HACHATMappings" Relationship="Self.FK_HACHATMappingTo_Hotel" FromRole="Hotel" ToRole="HACHATMapping" />
+          <NavigationProperty Name="HotelAwardMappings" Relationship="Self.FK_HotelAwardMappingTo_Hotel" FromRole="Hotel" ToRole="HotelAwardMapping" />
+          <NavigationProperty Name="ImageItems" Relationship="Self.FK_ImageItemTo_Hotel" FromRole="Hotel" ToRole="ImageItem" />
+          <NavigationProperty Name="PolicyInfoes" Relationship="Self.FK_PolicyInfoTo_Hotel" FromRole="Hotel" ToRole="PolicyInfo" />
+          <NavigationProperty Name="Policies" Relationship="Self.FK_PolicyTo_Hotel" FromRole="Hotel" ToRole="Policy" />
+          <NavigationProperty Name="Positions" Relationship="Self.FK_PositionTo_Hotel" FromRole="Hotel" ToRole="Position" />
+          <NavigationProperty Name="RefPoints" Relationship="Self.FK_RefPointTo_Hotel" FromRole="Hotel" ToRole="RefPoint" />
+          <NavigationProperty Name="TextItems" Relationship="Self.FK_TextItemTo_Hotel" FromRole="Hotel" ToRole="TextItem" />
+          <NavigationProperty Name="ZoneHotelMappings" Relationship="Self.FK_ZoneHotelMappingTo_Hotel" FromRole="Hotel" ToRole="ZoneHotelMapping" />
+        </EntityType>
+        <EntityType Name="HotelAwardMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AwardID" Type="Int32" />
+          <Property Name="HotelID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LastMofifyTime" Type="DateTime" Precision="3" />
+          <Property Name="Rating" Type="Decimal" Precision="10" Scale="4" />
+          <NavigationProperty Name="Hotel" Relationship="Self.FK_HotelAwardMappingTo_Hotel" FromRole="HotelAwardMapping" ToRole="Hotel" />
+        </EntityType>
+        <EntityType Name="HST">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastModiyTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ImageItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HotelId" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Category" Type="Int32" />
+          <Property Name="URL" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InvBlockCode" Type="Int32" />
+          <Property Name="LastMofifyTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Hotel" Relationship="Self.FK_ImageItemTo_Hotel" FromRole="ImageItem" ToRole="Hotel" />
+        </EntityType>
+        <EntityType Name="INF">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastModiyTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="LOC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastModiyTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="MCC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastModiyTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="OTC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastModiyTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="PAC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastModiyTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="PCT">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastModiyTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="PIC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastModiyTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="PMT">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastModiyTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Policy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HotelID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Key" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Value" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastMofifyTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Hotel" Relationship="Self.FK_PolicyTo_Hotel" FromRole="Policy" ToRole="Hotel" />
+        </EntityType>
+        <EntityType Name="PolicyInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HotelId" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CheckIn" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CheckOut" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="LastModifyTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Hotel" Relationship="Self.FK_PolicyInfoTo_Hotel" FromRole="PolicyInfo" ToRole="Hotel" />
+        </EntityType>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HotelID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Latitude" Type="Decimal" Precision="10" Scale="5" />
+          <Property Name="Longitude" Type="Decimal" Precision="10" Scale="5" />
+          <Property Name="PositionTypeCode" Type="Int32" />
+          <Property Name="LastMofifyTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Hotel" Relationship="Self.FK_PositionTo_Hotel" FromRole="Position" ToRole="Hotel" />
+        </EntityType>
+        <EntityType Name="PRT">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastModiyTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="PRX">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastModiyTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="PST">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastModiyTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="PTT">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastModiyTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="QCC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastModiyTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="QST">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastModiyTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Rate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RatePlanId" Type="Int32" />
+          <Property Name="NumberOfUnits" Type="Int32" />
+          <Property Name="Start" Type="DateTime" Precision="3" />
+          <Property Name="End" Type="DateTime" Precision="3" />
+          <Property Name="IsInstantConfirm" Type="Boolean" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsBreakfast" Type="Boolean" />
+          <Property Name="BreakfastNumber" Type="Int32" />
+          <Property Name="LastModifyTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="BaseByGuestAmts" Relationship="Self.FK_BaseByGuestAmtTo_Rate" FromRole="Rate" ToRole="BaseByGuestAmt" />
+          <NavigationProperty Name="CancelPenalties" Relationship="Self.FK_CancelPenaltyTo_Rate" FromRole="Rate" ToRole="CancelPenalty" />
+          <NavigationProperty Name="Fees" Relationship="Self.FK_Fee_ToTable" FromRole="Rate" ToRole="Fee" />
+          <NavigationProperty Name="Fees1" Relationship="Self.FK_FeeTo_Rate" FromRole="Rate" ToRole="Fee" />
+          <NavigationProperty Name="GuaranteePolicies" Relationship="Self.FK_GuaranteePolicyTo_Rate" FromRole="Rate" ToRole="GuaranteePolicy" />
+          <NavigationProperty Name="RateExtensions" Relationship="Self.FK_RateExtensionsTo_Rate" FromRole="Rate" ToRole="RateExtensions" />
+          <NavigationProperty Name="RatePlan" Relationship="Self.FK_RateTo_RatePlan" FromRole="Rate" ToRole="RatePlan" />
+        </EntityType>
+        <EntityType Name="RateExtension">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RateId" Type="Int32" />
+          <Property Name="StartPeriod" Type="DateTime" Precision="3" />
+          <Property Name="EndPeriod" Type="DateTime" Precision="3" />
+          <Property Name="ProgramName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="CurrencyCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="Int32" />
+          <Property Name="DescriptionText" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastModifyTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Rate" Relationship="Self.FK_RateExtensionsTo_Rate" FromRole="RateExtensions" ToRole="Rate" />
+        </EntityType>
+        <EntityType Name="RatePlan">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RatePlanCode" Type="Int32" />
+          <Property Name="RatePlanCategory" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="IsCommissionable" Type="Boolean" />
+          <Property Name="RateReturn" Type="Boolean" />
+          <Property Name="MarketCode" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="LastModifyTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Rates" Relationship="Self.FK_RateTo_RatePlan" FromRole="RatePlan" ToRole="Rate" />
+          <NavigationProperty Name="RoomPlanBookRuleMappings" Relationship="Self.FK_RoomPlanBookRuleMappingTo_RatePlan" FromRole="RatePlan" ToRole="RoomPlanBookRuleMapping" />
+        </EntityType>
+        <EntityType Name="RBP">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastModiyTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="REF">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastModiyTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="RefPoint">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HotelID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Distance" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="UOMID" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="REFINT" Type="Int32" />
+          <Property Name="LastMofifyTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Hotel" Relationship="Self.FK_RefPointTo_Hotel" FromRole="RefPoint" ToRole="Hotel" />
+          <NavigationProperty Name="UOM" Relationship="Self.FK_RefPointTo_UOM" FromRole="RefPoint" ToRole="UOM" />
+        </EntityType>
+        <EntityType Name="RGC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastModiyTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="RMA">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastModiyTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="RMARoomMappings" Relationship="Self.FK_RMARoomMappingTo_RMA" FromRole="RMA" ToRole="RMARoomMapping" />
+        </EntityType>
+        <EntityType Name="RMARoomMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoomID" Type="Int32" />
+          <Property Name="RMAID" Type="Int32" />
+          <Property Name="LastMofifyTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="GuestRoom" Relationship="Self.FK_RMARoomMappingTo_GuestRoom" FromRole="RMARoomMapping" ToRole="GuestRoom" />
+          <NavigationProperty Name="RMA" Relationship="Self.FK_RMARoomMappingTo_RMA" FromRole="RMARoomMapping" ToRole="RMA" />
+        </EntityType>
+        <EntityType Name="RoomExtension">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoomID" Type="Int32" />
+          <Property Name="FacilityName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="FaciliTypeName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IsAllAvailable" Type="Int32" />
+          <Property Name="LastMofifyTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="GuestRoom" Relationship="Self.FK_RoomExtensionTo_GuestRoom" FromRole="RoomExtension" ToRole="GuestRoom" />
+        </EntityType>
+        <EntityType Name="RoomPlanBookRuleMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BookRuleId" Type="Int32" />
+          <Property Name="RatePlanId" Type="Int32" />
+          <Property Name="Parameters" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="LastModifyTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="BookRule" Relationship="Self.FK_RoomPlanBookRuleMappingTo_BookRule" FromRole="RoomPlanBookRuleMapping" ToRole="BookRule" />
+          <NavigationProperty Name="RatePlan" Relationship="Self.FK_RoomPlanBookRuleMappingTo_RatePlan" FromRole="RoomPlanBookRuleMapping" ToRole="RatePlan" />
+        </EntityType>
+        <EntityType Name="RTC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastModiyTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="SEG">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastModiyTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CategoryCodeHotelMappings" Relationship="Self.FK_CategoryCodeHotelMappingTo_SEG" FromRole="SEG" ToRole="CategoryCodeHotelMapping" />
+        </EntityType>
+        <EntityType Name="TextItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HotelId" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Category" Type="Int32" />
+          <Property Name="DescriptionText" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="LastModityTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Hotel" Relationship="Self.FK_TextItemTo_Hotel" FromRole="TextItem" ToRole="Hotel" />
+        </EntityType>
+        <EntityType Name="UIT">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastModiyTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="UOM">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastModiyTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="RefPoints" Relationship="Self.FK_RefPointTo_UOM" FromRole="UOM" ToRole="RefPoint" />
+        </EntityType>
+        <EntityType Name="Zone">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastMofifyTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ZoneHotelMappings" Relationship="Self.FK_ZoneHotelMappingTo_Zone" FromRole="Zone" ToRole="ZoneHotelMapping" />
+        </EntityType>
+        <EntityType Name="ZoneHotelMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ZoneID" Type="Int32" />
+          <Property Name="HotelID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LastMofifyTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Hotel" Relationship="Self.FK_ZoneHotelMappingTo_Hotel" FromRole="ZoneHotelMapping" ToRole="Hotel" />
+          <NavigationProperty Name="Zone" Relationship="Self.FK_ZoneHotelMappingTo_Zone" FromRole="ZoneHotelMapping" ToRole="Zone" />
+        </EntityType>
+        <Association Name="FK_AddressExtensionTo_Address">
+          <End Role="Address" Type="Self.Address" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AddressExtension" Type="Self.AddressExtension" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AddressExtension">
+              <PropertyRef Name="AddressID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AddressTo_Hotel">
+          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Address" Type="Self.Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Address">
+              <PropertyRef Name="HotelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BaseByGuestAmtTo_Rate">
+          <End Role="Rate" Type="Self.Rate" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="BaseByGuestAmt" Type="Self.BaseByGuestAmt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BaseByGuestAmt">
+              <PropertyRef Name="RateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoomPlanBookRuleMappingTo_BookRule">
+          <End Role="BookRule" Type="Self.BookRule" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RoomPlanBookRuleMapping" Type="Self.RoomPlanBookRuleMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BookRule">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RoomPlanBookRuleMapping">
+              <PropertyRef Name="BookRuleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CancelPenaltyTo_Rate">
+          <End Role="Rate" Type="Self.Rate" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CancelPenalty" Type="Self.CancelPenalty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CancelPenalty">
+              <PropertyRef Name="RateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CategoryCodeHotelMappingTo_Hotel">
+          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CategoryCodeHotelMapping" Type="Self.CategoryCodeHotelMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CategoryCodeHotelMapping">
+              <PropertyRef Name="HotelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CategoryCodeHotelMappingTo_SEG">
+          <End Role="SEG" Type="Self.SEG" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CategoryCodeHotelMapping" Type="Self.CategoryCodeHotelMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SEG">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CategoryCodeHotelMapping">
+              <PropertyRef Name="SEGID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fee_ToTable">
+          <End Role="Rate" Type="Self.Rate" Multiplicity="1" />
+          <End Role="Fee" Type="Self.Fee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Fee">
+              <PropertyRef Name="RateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FeeTo_Rate">
+          <End Role="Rate" Type="Self.Rate" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Fee" Type="Self.Fee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Fee">
+              <PropertyRef Name="RateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GuaranteePolicyTo_Rate">
+          <End Role="Rate" Type="Self.Rate" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="GuaranteePolicy" Type="Self.GuaranteePolicy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GuaranteePolicy">
+              <PropertyRef Name="RateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GuestRoomTo_Hotel">
+          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="GuestRoom" Type="Self.GuestRoom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GuestRoom">
+              <PropertyRef Name="HotelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RMARoomMappingTo_GuestRoom">
+          <End Role="GuestRoom" Type="Self.GuestRoom" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RMARoomMapping" Type="Self.RMARoomMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GuestRoom">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RMARoomMapping">
+              <PropertyRef Name="RoomID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoomExtensionTo_GuestRoom">
+          <End Role="GuestRoom" Type="Self.GuestRoom" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RoomExtension" Type="Self.RoomExtension" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GuestRoom">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RoomExtension">
+              <PropertyRef Name="RoomID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HACHATMappingTo_HAC">
+          <End Role="HAC" Type="Self.HAC" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="HACHATMapping" Type="Self.HACHATMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HAC">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HACHATMapping">
+              <PropertyRef Name="HACID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HACHATMappingTo_HAT">
+          <End Role="HAT" Type="Self.HAT" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="HACHATMapping" Type="Self.HACHATMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HAT">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HACHATMapping">
+              <PropertyRef Name="HATID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HACHATMappingTo_Hotel">
+          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="HACHATMapping" Type="Self.HACHATMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HACHATMapping">
+              <PropertyRef Name="HotelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HotelAwardMappingTo_Hotel">
+          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="HotelAwardMapping" Type="Self.HotelAwardMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HotelAwardMapping">
+              <PropertyRef Name="HotelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ImageItemTo_Hotel">
+          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ImageItem" Type="Self.ImageItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ImageItem">
+              <PropertyRef Name="HotelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PolicyInfoTo_Hotel">
+          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PolicyInfo" Type="Self.PolicyInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PolicyInfo">
+              <PropertyRef Name="HotelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PolicyTo_Hotel">
+          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Policy" Type="Self.Policy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Policy">
+              <PropertyRef Name="HotelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PositionTo_Hotel">
+          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Position" Type="Self.Position" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Position">
+              <PropertyRef Name="HotelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RefPointTo_Hotel">
+          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RefPoint" Type="Self.RefPoint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RefPoint">
+              <PropertyRef Name="HotelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TextItemTo_Hotel">
+          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TextItem" Type="Self.TextItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TextItem">
+              <PropertyRef Name="HotelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZoneHotelMappingTo_Hotel">
+          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ZoneHotelMapping" Type="Self.ZoneHotelMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ZoneHotelMapping">
+              <PropertyRef Name="HotelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RateExtensionsTo_Rate">
+          <End Role="Rate" Type="Self.Rate" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RateExtensions" Type="Self.RateExtension" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RateExtensions">
+              <PropertyRef Name="RateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RateTo_RatePlan">
+          <End Role="RatePlan" Type="Self.RatePlan" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Rate" Type="Self.Rate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RatePlan">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Rate">
+              <PropertyRef Name="RatePlanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoomPlanBookRuleMappingTo_RatePlan">
+          <End Role="RatePlan" Type="Self.RatePlan" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RoomPlanBookRuleMapping" Type="Self.RoomPlanBookRuleMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RatePlan">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RoomPlanBookRuleMapping">
+              <PropertyRef Name="RatePlanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RefPointTo_UOM">
+          <End Role="UOM" Type="Self.UOM" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RefPoint" Type="Self.RefPoint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UOM">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RefPoint">
+              <PropertyRef Name="UOMID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RMARoomMappingTo_RMA">
+          <End Role="RMA" Type="Self.RMA" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RMARoomMapping" Type="Self.RMARoomMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RMA">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RMARoomMapping">
+              <PropertyRef Name="RMAID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZoneHotelMappingTo_Zone">
+          <End Role="Zone" Type="Self.Zone" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ZoneHotelMapping" Type="Self.ZoneHotelMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zone">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ZoneHotelMapping">
+              <PropertyRef Name="ZoneID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TravelDBContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__RefactorLog" EntityType="Self.C__RefactorLog" />
+          <EntitySet Name="ACCs" EntityType="Self.ACC" />
+          <EntitySet Name="Addresses" EntityType="Self.Address" />
+          <EntitySet Name="AddressExtensions" EntityType="Self.AddressExtension" />
+          <EntitySet Name="ADTs" EntityType="Self.ADT" />
+          <EntitySet Name="AICs" EntityType="Self.AIC" />
+          <EntitySet Name="AMCs" EntityType="Self.AMC" />
+          <EntitySet Name="ARCs" EntityType="Self.ARC" />
+          <EntitySet Name="AwardTypes" EntityType="Self.AwardType" />
+          <EntitySet Name="BaseByGuestAmts" EntityType="Self.BaseByGuestAmt" />
+          <EntitySet Name="BEDs" EntityType="Self.BED" />
+          <EntitySet Name="BookRules" EntityType="Self.BookRule" />
+          <EntitySet Name="Buses" EntityType="Self.BUS" />
+          <EntitySet Name="CancelPenalties" EntityType="Self.CancelPenalty" />
+          <EntitySet Name="CategoryCodeHotelMappings" EntityType="Self.CategoryCodeHotelMapping" />
+          <EntitySet Name="CCTs" EntityType="Self.CCT" />
+          <EntitySet Name="CDTs" EntityType="Self.CDT" />
+          <EntitySet Name="CFCs" EntityType="Self.CFC" />
+          <EntitySet Name="CHGs" EntityType="Self.CHG" />
+          <EntitySet Name="CXRs" EntityType="Self.CXR" />
+          <EntitySet Name="DECs" EntityType="Self.DEC" />
+          <EntitySet Name="DNAs" EntityType="Self.DNA" />
+          <EntitySet Name="DSPs" EntityType="Self.DSP" />
+          <EntitySet Name="DTBs" EntityType="Self.DTB" />
+          <EntitySet Name="EATs" EntityType="Self.EAT" />
+          <EntitySet Name="EWTs" EntityType="Self.EWT" />
+          <EntitySet Name="EXHs" EntityType="Self.EXH" />
+          <EntitySet Name="Fees" EntityType="Self.Fee" />
+          <EntitySet Name="FMTs" EntityType="Self.FMT" />
+          <EntitySet Name="FQCs" EntityType="Self.FQC" />
+          <EntitySet Name="FTTs" EntityType="Self.FTT" />
+          <EntitySet Name="GRIs" EntityType="Self.GRI" />
+          <EntitySet Name="GuaranteePolicies" EntityType="Self.GuaranteePolicy" />
+          <EntitySet Name="GuestRooms" EntityType="Self.GuestRoom" />
+          <EntitySet Name="HACs" EntityType="Self.HAC" />
+          <EntitySet Name="HACHATMappings" EntityType="Self.HACHATMapping" />
+          <EntitySet Name="HATs" EntityType="Self.HAT" />
+          <EntitySet Name="HOCs" EntityType="Self.HOC" />
+          <EntitySet Name="Hotels" EntityType="Self.Hotel" />
+          <EntitySet Name="HotelAwardMappings" EntityType="Self.HotelAwardMapping" />
+          <EntitySet Name="HSTs" EntityType="Self.HST" />
+          <EntitySet Name="ImageItems" EntityType="Self.ImageItem" />
+          <EntitySet Name="INFs" EntityType="Self.INF" />
+          <EntitySet Name="LOCs" EntityType="Self.LOC" />
+          <EntitySet Name="MCCs" EntityType="Self.MCC" />
+          <EntitySet Name="OTCs" EntityType="Self.OTC" />
+          <EntitySet Name="PACs" EntityType="Self.PAC" />
+          <EntitySet Name="PCTs" EntityType="Self.PCT" />
+          <EntitySet Name="PICs" EntityType="Self.PIC" />
+          <EntitySet Name="PMTs" EntityType="Self.PMT" />
+          <EntitySet Name="Policies" EntityType="Self.Policy" />
+          <EntitySet Name="PolicyInfoes" EntityType="Self.PolicyInfo" />
+          <EntitySet Name="Positions" EntityType="Self.Position" />
+          <EntitySet Name="PRTs" EntityType="Self.PRT" />
+          <EntitySet Name="PRXes" EntityType="Self.PRX" />
+          <EntitySet Name="PSTs" EntityType="Self.PST" />
+          <EntitySet Name="PTTs" EntityType="Self.PTT" />
+          <EntitySet Name="QCCs" EntityType="Self.QCC" />
+          <EntitySet Name="QSTs" EntityType="Self.QST" />
+          <EntitySet Name="Rates" EntityType="Self.Rate" />
+          <EntitySet Name="RateExtensions" EntityType="Self.RateExtension" />
+          <EntitySet Name="RatePlans" EntityType="Self.RatePlan" />
+          <EntitySet Name="RBPs" EntityType="Self.RBP" />
+          <EntitySet Name="REFs" EntityType="Self.REF" />
+          <EntitySet Name="RefPoints" EntityType="Self.RefPoint" />
+          <EntitySet Name="RGCs" EntityType="Self.RGC" />
+          <EntitySet Name="RMAs" EntityType="Self.RMA" />
+          <EntitySet Name="RMARoomMappings" EntityType="Self.RMARoomMapping" />
+          <EntitySet Name="RoomExtensions" EntityType="Self.RoomExtension" />
+          <EntitySet Name="RoomPlanBookRuleMappings" EntityType="Self.RoomPlanBookRuleMapping" />
+          <EntitySet Name="RTCs" EntityType="Self.RTC" />
+          <EntitySet Name="SEGs" EntityType="Self.SEG" />
+          <EntitySet Name="TextItems" EntityType="Self.TextItem" />
+          <EntitySet Name="UITs" EntityType="Self.UIT" />
+          <EntitySet Name="UOMs" EntityType="Self.UOM" />
+          <EntitySet Name="Zones" EntityType="Self.Zone" />
+          <EntitySet Name="ZoneHotelMappings" EntityType="Self.ZoneHotelMapping" />
+          <AssociationSet Name="FK_AddressExtensionTo_Address" Association="Self.FK_AddressExtensionTo_Address">
+            <End Role="Address" EntitySet="Addresses" />
+            <End Role="AddressExtension" EntitySet="AddressExtensions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AddressTo_Hotel" Association="Self.FK_AddressTo_Hotel">
+            <End Role="Hotel" EntitySet="Hotels" />
+            <End Role="Address" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BaseByGuestAmtTo_Rate" Association="Self.FK_BaseByGuestAmtTo_Rate">
+            <End Role="Rate" EntitySet="Rates" />
+            <End Role="BaseByGuestAmt" EntitySet="BaseByGuestAmts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoomPlanBookRuleMappingTo_BookRule" Association="Self.FK_RoomPlanBookRuleMappingTo_BookRule">
+            <End Role="BookRule" EntitySet="BookRules" />
+            <End Role="RoomPlanBookRuleMapping" EntitySet="RoomPlanBookRuleMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CancelPenaltyTo_Rate" Association="Self.FK_CancelPenaltyTo_Rate">
+            <End Role="Rate" EntitySet="Rates" />
+            <End Role="CancelPenalty" EntitySet="CancelPenalties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CategoryCodeHotelMappingTo_Hotel" Association="Self.FK_CategoryCodeHotelMappingTo_Hotel">
+            <End Role="Hotel" EntitySet="Hotels" />
+            <End Role="CategoryCodeHotelMapping" EntitySet="CategoryCodeHotelMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CategoryCodeHotelMappingTo_SEG" Association="Self.FK_CategoryCodeHotelMappingTo_SEG">
+            <End Role="SEG" EntitySet="SEGs" />
+            <End Role="CategoryCodeHotelMapping" EntitySet="CategoryCodeHotelMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fee_ToTable" Association="Self.FK_Fee_ToTable">
+            <End Role="Rate" EntitySet="Rates" />
+            <End Role="Fee" EntitySet="Fees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FeeTo_Rate" Association="Self.FK_FeeTo_Rate">
+            <End Role="Rate" EntitySet="Rates" />
+            <End Role="Fee" EntitySet="Fees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GuaranteePolicyTo_Rate" Association="Self.FK_GuaranteePolicyTo_Rate">
+            <End Role="Rate" EntitySet="Rates" />
+            <End Role="GuaranteePolicy" EntitySet="GuaranteePolicies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GuestRoomTo_Hotel" Association="Self.FK_GuestRoomTo_Hotel">
+            <End Role="Hotel" EntitySet="Hotels" />
+            <End Role="GuestRoom" EntitySet="GuestRooms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RMARoomMappingTo_GuestRoom" Association="Self.FK_RMARoomMappingTo_GuestRoom">
+            <End Role="GuestRoom" EntitySet="GuestRooms" />
+            <End Role="RMARoomMapping" EntitySet="RMARoomMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoomExtensionTo_GuestRoom" Association="Self.FK_RoomExtensionTo_GuestRoom">
+            <End Role="GuestRoom" EntitySet="GuestRooms" />
+            <End Role="RoomExtension" EntitySet="RoomExtensions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HACHATMappingTo_HAC" Association="Self.FK_HACHATMappingTo_HAC">
+            <End Role="HAC" EntitySet="HACs" />
+            <End Role="HACHATMapping" EntitySet="HACHATMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HACHATMappingTo_HAT" Association="Self.FK_HACHATMappingTo_HAT">
+            <End Role="HAT" EntitySet="HATs" />
+            <End Role="HACHATMapping" EntitySet="HACHATMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HACHATMappingTo_Hotel" Association="Self.FK_HACHATMappingTo_Hotel">
+            <End Role="Hotel" EntitySet="Hotels" />
+            <End Role="HACHATMapping" EntitySet="HACHATMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HotelAwardMappingTo_Hotel" Association="Self.FK_HotelAwardMappingTo_Hotel">
+            <End Role="Hotel" EntitySet="Hotels" />
+            <End Role="HotelAwardMapping" EntitySet="HotelAwardMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImageItemTo_Hotel" Association="Self.FK_ImageItemTo_Hotel">
+            <End Role="Hotel" EntitySet="Hotels" />
+            <End Role="ImageItem" EntitySet="ImageItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PolicyInfoTo_Hotel" Association="Self.FK_PolicyInfoTo_Hotel">
+            <End Role="Hotel" EntitySet="Hotels" />
+            <End Role="PolicyInfo" EntitySet="PolicyInfoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PolicyTo_Hotel" Association="Self.FK_PolicyTo_Hotel">
+            <End Role="Hotel" EntitySet="Hotels" />
+            <End Role="Policy" EntitySet="Policies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PositionTo_Hotel" Association="Self.FK_PositionTo_Hotel">
+            <End Role="Hotel" EntitySet="Hotels" />
+            <End Role="Position" EntitySet="Positions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RefPointTo_Hotel" Association="Self.FK_RefPointTo_Hotel">
+            <End Role="Hotel" EntitySet="Hotels" />
+            <End Role="RefPoint" EntitySet="RefPoints" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TextItemTo_Hotel" Association="Self.FK_TextItemTo_Hotel">
+            <End Role="Hotel" EntitySet="Hotels" />
+            <End Role="TextItem" EntitySet="TextItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZoneHotelMappingTo_Hotel" Association="Self.FK_ZoneHotelMappingTo_Hotel">
+            <End Role="Hotel" EntitySet="Hotels" />
+            <End Role="ZoneHotelMapping" EntitySet="ZoneHotelMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RateExtensionsTo_Rate" Association="Self.FK_RateExtensionsTo_Rate">
+            <End Role="Rate" EntitySet="Rates" />
+            <End Role="RateExtensions" EntitySet="RateExtensions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RateTo_RatePlan" Association="Self.FK_RateTo_RatePlan">
+            <End Role="RatePlan" EntitySet="RatePlans" />
+            <End Role="Rate" EntitySet="Rates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoomPlanBookRuleMappingTo_RatePlan" Association="Self.FK_RoomPlanBookRuleMappingTo_RatePlan">
+            <End Role="RatePlan" EntitySet="RatePlans" />
+            <End Role="RoomPlanBookRuleMapping" EntitySet="RoomPlanBookRuleMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RefPointTo_UOM" Association="Self.FK_RefPointTo_UOM">
+            <End Role="UOM" EntitySet="UOMs" />
+            <End Role="RefPoint" EntitySet="RefPoints" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RMARoomMappingTo_RMA" Association="Self.FK_RMARoomMappingTo_RMA">
+            <End Role="RMA" EntitySet="RMAs" />
+            <End Role="RMARoomMapping" EntitySet="RMARoomMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZoneHotelMappingTo_Zone" Association="Self.FK_ZoneHotelMappingTo_Zone">
+            <End Role="Zone" EntitySet="Zones" />
+            <End Role="ZoneHotelMapping" EntitySet="ZoneHotelMappings" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TravelDBModelStoreContainer" CdmEntityContainer="TravelDBContext">
+          <EntitySetMapping Name="C__RefactorLog">
+            <EntityTypeMapping TypeName="TravelDBModel.C__RefactorLog">
+              <MappingFragment StoreEntitySet="__RefactorLog">
+                <ScalarProperty Name="OperationKey" ColumnName="OperationKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ACCs">
+            <EntityTypeMapping TypeName="TravelDBModel.ACC">
+              <MappingFragment StoreEntitySet="ACC">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastModiyTime" ColumnName="LastModiyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Addresses">
+            <EntityTypeMapping TypeName="TravelDBModel.Address">
+              <MappingFragment StoreEntitySet="Address">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="HotelID" ColumnName="HotelID" />
+                <ScalarProperty Name="AddressLine" ColumnName="AddressLine" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="LastModifyTime" ColumnName="LastModifyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AddressExtensions">
+            <EntityTypeMapping TypeName="TravelDBModel.AddressExtension">
+              <MappingFragment StoreEntitySet="AddressExtension">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AddressID" ColumnName="AddressID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="LastModifyTime" ColumnName="LastModifyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ADTs">
+            <EntityTypeMapping TypeName="TravelDBModel.ADT">
+              <MappingFragment StoreEntitySet="ADT">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastModiyTime" ColumnName="LastModiyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AICs">
+            <EntityTypeMapping TypeName="TravelDBModel.AIC">
+              <MappingFragment StoreEntitySet="AIC">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastModiyTime" ColumnName="LastModiyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AMCs">
+            <EntityTypeMapping TypeName="TravelDBModel.AMC">
+              <MappingFragment StoreEntitySet="AMC">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastModiyTime" ColumnName="LastModiyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ARCs">
+            <EntityTypeMapping TypeName="TravelDBModel.ARC">
+              <MappingFragment StoreEntitySet="ARC">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastModiyTime" ColumnName="LastModiyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AwardTypes">
+            <EntityTypeMapping TypeName="TravelDBModel.AwardType">
+              <MappingFragment StoreEntitySet="AwardType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastMofifyTime" ColumnName="LastMofifyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BaseByGuestAmts">
+            <EntityTypeMapping TypeName="TravelDBModel.BaseByGuestAmt">
+              <MappingFragment StoreEntitySet="BaseByGuestAmt">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RateId" ColumnName="RateId" />
+                <ScalarProperty Name="AmountBeforeTax" ColumnName="AmountBeforeTax" />
+                <ScalarProperty Name="CurrencyCode" ColumnName="CurrencyCode" />
+                <ScalarProperty Name="NumberOfGuests" ColumnName="NumberOfGuests" />
+                <ScalarProperty Name="ListPrice" ColumnName="ListPrice" />
+                <ScalarProperty Name="OtherCurrency" ColumnName="OtherCurrency" />
+                <ScalarProperty Name="OtherCurrencyCode" ColumnName="OtherCurrencyCode" />
+                <ScalarProperty Name="LastModifyTime" ColumnName="LastModifyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BEDs">
+            <EntityTypeMapping TypeName="TravelDBModel.BED">
+              <MappingFragment StoreEntitySet="BED">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastModiyTime" ColumnName="LastModiyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BookRules">
+            <EntityTypeMapping TypeName="TravelDBModel.BookRule">
+              <MappingFragment StoreEntitySet="BookRule">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Buses">
+            <EntityTypeMapping TypeName="TravelDBModel.BUS">
+              <MappingFragment StoreEntitySet="BUS">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastModiyTime" ColumnName="LastModiyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CancelPenalties">
+            <EntityTypeMapping TypeName="TravelDBModel.CancelPenalty">
+              <MappingFragment StoreEntitySet="CancelPenalty">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RateId" ColumnName="RateId" />
+                <ScalarProperty Name="Start" ColumnName="Start" />
+                <ScalarProperty Name="End" ColumnName="End" />
+                <ScalarProperty Name="AmountPercent" ColumnName="AmountPercent" />
+                <ScalarProperty Name="CurrencyCode" ColumnName="CurrencyCode" />
+                <ScalarProperty Name="OtherCurrencyAmount" ColumnName="OtherCurrencyAmount" />
+                <ScalarProperty Name="OtherCurrencyCode" ColumnName="OtherCurrencyCode" />
+                <ScalarProperty Name="LastModifyTime" ColumnName="LastModifyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CategoryCodeHotelMappings">
+            <EntityTypeMapping TypeName="TravelDBModel.CategoryCodeHotelMapping">
+              <MappingFragment StoreEntitySet="CategoryCodeHotelMapping">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="HotelId" ColumnName="HotelId" />
+                <ScalarProperty Name="SEGID" ColumnName="SEGID" />
+                <ScalarProperty Name="LastMofifyTime" ColumnName="LastMofifyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CCTs">
+            <EntityTypeMapping TypeName="TravelDBModel.CCT">
+              <MappingFragment StoreEntitySet="CCT">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastModiyTime" ColumnName="LastModiyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CDTs">
+            <EntityTypeMapping TypeName="TravelDBModel.CDT">
+              <MappingFragment StoreEntitySet="CDT">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastModiyTime" ColumnName="LastModiyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CFCs">
+            <EntityTypeMapping TypeName="TravelDBModel.CFC">
+              <MappingFragment StoreEntitySet="CFC">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastModiyTime" ColumnName="LastModiyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CHGs">
+            <EntityTypeMapping TypeName="TravelDBModel.CHG">
+              <MappingFragment StoreEntitySet="CHG">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastModiyTime" ColumnName="LastModiyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CXRs">
+            <EntityTypeMapping TypeName="TravelDBModel.CXR">
+              <MappingFragment StoreEntitySet="CXR">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastModiyTime" ColumnName="LastModiyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DECs">
+            <EntityTypeMapping TypeName="TravelDBModel.DEC">
+              <MappingFragment StoreEntitySet="DEC">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastModiyTime" ColumnName="LastModiyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DNAs">
+            <EntityTypeMapping TypeName="TravelDBModel.DNA">
+              <MappingFragment StoreEntitySet="DNA">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastModiyTime" ColumnName="LastModiyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DSPs">
+            <EntityTypeMapping TypeName="TravelDBModel.DSP">
+              <MappingFragment StoreEntitySet="DSP">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastModiyTime" ColumnName="LastModiyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DTBs">
+            <EntityTypeMapping TypeName="TravelDBModel.DTB">
+              <MappingFragment StoreEntitySet="DTB">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastModiyTime" ColumnName="LastModiyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EATs">
+            <EntityTypeMapping TypeName="TravelDBModel.EAT">
+              <MappingFragment StoreEntitySet="EAT">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastModiyTime" ColumnName="LastModiyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EWTs">
+            <EntityTypeMapping TypeName="TravelDBModel.EWT">
+              <MappingFragment StoreEntitySet="EWT">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastModiyTime" ColumnName="LastModiyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EXHs">
+            <EntityTypeMapping TypeName="TravelDBModel.EXH">
+              <MappingFragment StoreEntitySet="EXH">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastModiyTime" ColumnName="LastModiyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fees">
+            <EntityTypeMapping TypeName="TravelDBModel.Fee">
+              <MappingFragment StoreEntitySet="Fee">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RateId" ColumnName="RateId" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="CurrencyCode" ColumnName="CurrencyCode" />
+                <ScalarProperty Name="ChargeUnit" ColumnName="ChargeUnit" />
+                <ScalarProperty Name="DescriptionText" ColumnName="DescriptionText" />
+                <ScalarProperty Name="LastModifyTime" ColumnName="LastModifyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FMTs">
+            <EntityTypeMapping TypeName="TravelDBModel.FMT">
+              <MappingFragment StoreEntitySet="FMT">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastModiyTime" ColumnName="LastModiyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FQCs">
+            <EntityTypeMapping TypeName="TravelDBModel.FQC">
+              <MappingFragment StoreEntitySet="FQC">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastModiyTime" ColumnName="LastModiyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FTTs">
+            <EntityTypeMapping TypeName="TravelDBModel.FTT">
+              <MappingFragment StoreEntitySet="FTT">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastModiyTime" ColumnName="LastModiyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GRIs">
+            <EntityTypeMapping TypeName="TravelDBModel.GRI">
+              <MappingFragment StoreEntitySet="GRI">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastModiyTime" ColumnName="LastModiyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GuaranteePolicies">
+            <EntityTypeMapping TypeName="TravelDBModel.GuaranteePolicy">
+              <MappingFragment StoreEntitySet="GuaranteePolicy">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RateId" ColumnName="RateId" />
+                <ScalarProperty Name="GuaranteeCode" ColumnName="GuaranteeCode" />
+                <ScalarProperty Name="HoldTime" ColumnName="HoldTime" />
+                <ScalarProperty Name="LastModifyTime" ColumnName="LastModifyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GuestRooms">
+            <EntityTypeMapping TypeName="TravelDBModel.GuestRoom">
+              <MappingFragment StoreEntitySet="GuestRoom">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="HotelID" ColumnName="HotelID" />
+                <ScalarProperty Name="StandardOccupancy" ColumnName="StandardOccupancy" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="RoomTypeCode" ColumnName="RoomTypeCode" />
+                <ScalarProperty Name="Floor" ColumnName="Floor" />
+                <ScalarProperty Name="BedTypeCode" ColumnName="BedTypeCode" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="FeatureDescription" ColumnName="FeatureDescription" />
+                <ScalarProperty Name="InvBlockCode" ColumnName="InvBlockCode" />
+                <ScalarProperty Name="NonSmoking" ColumnName="NonSmoking" />
+                <ScalarProperty Name="RoomSize" ColumnName="RoomSize" />
+                <ScalarProperty Name="HasWindow" ColumnName="HasWindow" />
+                <ScalarProperty Name="LastMofifyTime" ColumnName="LastMofifyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HACs">
+            <EntityTypeMapping TypeName="TravelDBModel.HAC">
+              <MappingFragment StoreEntitySet="HAC">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastModiyTime" ColumnName="LastModiyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HACHATMappings">
+            <EntityTypeMapping TypeName="TravelDBModel.HACHATMapping">
+              <MappingFragment StoreEntitySet="HACHATMapping">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="HACID" ColumnName="HACID" />
+                <ScalarProperty Name="HATID" ColumnName="HATID" />
+                <ScalarProperty Name="HotelID" ColumnName="HotelID" />
+                <ScalarProperty Name="LastModifyTine" ColumnName="LastModifyTine" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HATs">
+            <EntityTypeMapping TypeName="TravelDBModel.HAT">
+              <MappingFragment StoreEntitySet="HAT">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastModiyTime" ColumnName="LastModiyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HOCs">
+            <EntityTypeMapping TypeName="TravelDBModel.HOC">
+              <MappingFragment StoreEntitySet="HOC">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastModiyTime" ColumnName="LastModiyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hotels">
+            <EntityTypeMapping TypeName="TravelDBModel.Hotel">
+              <MappingFragment StoreEntitySet="Hotel">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="HotelCode" ColumnName="HotelCode" />
+                <ScalarProperty Name="BrandCode" ColumnName="BrandCode" />
+                <ScalarProperty Name="HotelCityCode" ColumnName="HotelCityCode" />
+                <ScalarProperty Name="HotelName" ColumnName="HotelName" />
+                <ScalarProperty Name="AreaID" ColumnName="AreaID" />
+                <ScalarProperty Name="WhenBuilt" ColumnName="WhenBuilt" />
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="LastMofifyTime" ColumnName="LastMofifyTime" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HotelAwardMappings">
+            <EntityTypeMapping TypeName="TravelDBModel.HotelAwardMapping">
+              <MappingFragment StoreEntitySet="HotelAwardMapping">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AwardID" ColumnName="AwardID" />
+                <ScalarProperty Name="HotelID" ColumnName="HotelID" />
+                <ScalarProperty Name="LastMofifyTime" ColumnName="LastMofifyTime" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HSTs">
+            <EntityTypeMapping TypeName="TravelDBModel.HST">
+              <MappingFragment StoreEntitySet="HST">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastModiyTime" ColumnName="LastModiyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ImageItems">
+            <EntityTypeMapping TypeName="TravelDBModel.ImageItem">
+              <MappingFragment StoreEntitySet="ImageItem">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="HotelId" ColumnName="HotelId" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="InvBlockCode" ColumnName="InvBlockCode" />
+                <ScalarProperty Name="LastMofifyTime" ColumnName="LastMofifyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INFs">
+            <EntityTypeMapping TypeName="TravelDBModel.INF">
+              <MappingFragment StoreEntitySet="INF">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastModiyTime" ColumnName="LastModiyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOCs">
+            <EntityTypeMapping TypeName="TravelDBModel.LOC">
+              <MappingFragment StoreEntitySet="LOC">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastModiyTime" ColumnName="LastModiyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MCCs">
+            <EntityTypeMapping TypeName="TravelDBModel.MCC">
+              <MappingFragment StoreEntitySet="MCC">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastModiyTime" ColumnName="LastModiyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OTCs">
+            <EntityTypeMapping TypeName="TravelDBModel.OTC">
+              <MappingFragment StoreEntitySet="OTC">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastModiyTime" ColumnName="LastModiyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PACs">
+            <EntityTypeMapping TypeName="TravelDBModel.PAC">
+              <MappingFragment StoreEntitySet="PAC">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastModiyTime" ColumnName="LastModiyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PCTs">
+            <EntityTypeMapping TypeName="TravelDBModel.PCT">
+              <MappingFragment StoreEntitySet="PCT">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastModiyTime" ColumnName="LastModiyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PICs">
+            <EntityTypeMapping TypeName="TravelDBModel.PIC">
+              <MappingFragment StoreEntitySet="PIC">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastModiyTime" ColumnName="LastModiyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PMTs">
+            <EntityTypeMapping TypeName="TravelDBModel.PMT">
+              <MappingFragment StoreEntitySet="PMT">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastModiyTime" ColumnName="LastModiyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Policies">
+            <EntityTypeMapping TypeName="TravelDBModel.Policy">
+              <MappingFragment StoreEntitySet="Policy">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="HotelID" ColumnName="HotelID" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="LastMofifyTime" ColumnName="LastMofifyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PolicyInfoes">
+            <EntityTypeMapping TypeName="TravelDBModel.PolicyInfo">
+              <MappingFragment StoreEntitySet="PolicyInfo">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="HotelId" ColumnName="HotelId" />
+                <ScalarProperty Name="CheckIn" ColumnName="CheckIn" />
+                <ScalarProperty Name="CheckOut" ColumnName="CheckOut" />
+                <ScalarProperty Name="LastModifyTime" ColumnName="LastModifyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Positions">
+            <EntityTypeMapping TypeName="TravelDBModel.Position">
+              <MappingFragment StoreEntitySet="Position">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="HotelID" ColumnName="HotelID" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="PositionTypeCode" ColumnName="PositionTypeCode" />
+                <ScalarProperty Name="LastMofifyTime" ColumnName="LastMofifyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRTs">
+            <EntityTypeMapping TypeName="TravelDBModel.PRT">
+              <MappingFragment StoreEntitySet="PRT">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastModiyTime" ColumnName="LastModiyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRXes">
+            <EntityTypeMapping TypeName="TravelDBModel.PRX">
+              <MappingFragment StoreEntitySet="PRX">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastModiyTime" ColumnName="LastModiyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PSTs">
+            <EntityTypeMapping TypeName="TravelDBModel.PST">
+              <MappingFragment StoreEntitySet="PST">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastModiyTime" ColumnName="LastModiyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PTTs">
+            <EntityTypeMapping TypeName="TravelDBModel.PTT">
+              <MappingFragment StoreEntitySet="PTT">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastModiyTime" ColumnName="LastModiyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QCCs">
+            <EntityTypeMapping TypeName="TravelDBModel.QCC">
+              <MappingFragment StoreEntitySet="QCC">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastModiyTime" ColumnName="LastModiyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QSTs">
+            <EntityTypeMapping TypeName="TravelDBModel.QST">
+              <MappingFragment StoreEntitySet="QST">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastModiyTime" ColumnName="LastModiyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rates">
+            <EntityTypeMapping TypeName="TravelDBModel.Rate">
+              <MappingFragment StoreEntitySet="Rate">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RatePlanId" ColumnName="RatePlanId" />
+                <ScalarProperty Name="NumberOfUnits" ColumnName="NumberOfUnits" />
+                <ScalarProperty Name="Start" ColumnName="Start" />
+                <ScalarProperty Name="End" ColumnName="End" />
+                <ScalarProperty Name="IsInstantConfirm" ColumnName="IsInstantConfirm" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="IsBreakfast" ColumnName="IsBreakfast" />
+                <ScalarProperty Name="BreakfastNumber" ColumnName="BreakfastNumber" />
+                <ScalarProperty Name="LastModifyTime" ColumnName="LastModifyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RateExtensions">
+            <EntityTypeMapping TypeName="TravelDBModel.RateExtension">
+              <MappingFragment StoreEntitySet="RateExtensions">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RateId" ColumnName="RateId" />
+                <ScalarProperty Name="StartPeriod" ColumnName="StartPeriod" />
+                <ScalarProperty Name="EndPeriod" ColumnName="EndPeriod" />
+                <ScalarProperty Name="ProgramName" ColumnName="ProgramName" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="CurrencyCode" ColumnName="CurrencyCode" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="DescriptionText" ColumnName="DescriptionText" />
+                <ScalarProperty Name="LastModifyTime" ColumnName="LastModifyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RatePlans">
+            <EntityTypeMapping TypeName="TravelDBModel.RatePlan">
+              <MappingFragment StoreEntitySet="RatePlan">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RatePlanCode" ColumnName="RatePlanCode" />
+                <ScalarProperty Name="RatePlanCategory" ColumnName="RatePlanCategory" />
+                <ScalarProperty Name="IsCommissionable" ColumnName="IsCommissionable" />
+                <ScalarProperty Name="RateReturn" ColumnName="RateReturn" />
+                <ScalarProperty Name="MarketCode" ColumnName="MarketCode" />
+                <ScalarProperty Name="LastModifyTime" ColumnName="LastModifyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RBPs">
+            <EntityTypeMapping TypeName="TravelDBModel.RBP">
+              <MappingFragment StoreEntitySet="RBP">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastModiyTime" ColumnName="LastModiyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="REFs">
+            <EntityTypeMapping TypeName="TravelDBModel.REF">
+              <MappingFragment StoreEntitySet="REF">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastModiyTime" ColumnName="LastModiyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RefPoints">
+            <EntityTypeMapping TypeName="TravelDBModel.RefPoint">
+              <MappingFragment StoreEntitySet="RefPoint">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="HotelID" ColumnName="HotelID" />
+                <ScalarProperty Name="Distance" ColumnName="Distance" />
+                <ScalarProperty Name="UOMID" ColumnName="UOMID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="REFINT" ColumnName="REFINT" />
+                <ScalarProperty Name="LastMofifyTime" ColumnName="LastMofifyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RGCs">
+            <EntityTypeMapping TypeName="TravelDBModel.RGC">
+              <MappingFragment StoreEntitySet="RGC">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastModiyTime" ColumnName="LastModiyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RMAs">
+            <EntityTypeMapping TypeName="TravelDBModel.RMA">
+              <MappingFragment StoreEntitySet="RMA">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastModiyTime" ColumnName="LastModiyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RMARoomMappings">
+            <EntityTypeMapping TypeName="TravelDBModel.RMARoomMapping">
+              <MappingFragment StoreEntitySet="RMARoomMapping">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RoomID" ColumnName="RoomID" />
+                <ScalarProperty Name="RMAID" ColumnName="RMAID" />
+                <ScalarProperty Name="LastMofifyTime" ColumnName="LastMofifyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoomExtensions">
+            <EntityTypeMapping TypeName="TravelDBModel.RoomExtension">
+              <MappingFragment StoreEntitySet="RoomExtension">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RoomID" ColumnName="RoomID" />
+                <ScalarProperty Name="FacilityName" ColumnName="FacilityName" />
+                <ScalarProperty Name="FaciliTypeName" ColumnName="FaciliTypeName" />
+                <ScalarProperty Name="IsAllAvailable" ColumnName="IsAllAvailable" />
+                <ScalarProperty Name="LastMofifyTime" ColumnName="LastMofifyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoomPlanBookRuleMappings">
+            <EntityTypeMapping TypeName="TravelDBModel.RoomPlanBookRuleMapping">
+              <MappingFragment StoreEntitySet="RoomPlanBookRuleMapping">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="BookRuleId" ColumnName="BookRuleId" />
+                <ScalarProperty Name="RatePlanId" ColumnName="RatePlanId" />
+                <ScalarProperty Name="Parameters" ColumnName="Parameters" />
+                <ScalarProperty Name="LastModifyTime" ColumnName="LastModifyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RTCs">
+            <EntityTypeMapping TypeName="TravelDBModel.RTC">
+              <MappingFragment StoreEntitySet="RTC">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastModiyTime" ColumnName="LastModiyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SEGs">
+            <EntityTypeMapping TypeName="TravelDBModel.SEG">
+              <MappingFragment StoreEntitySet="SEG">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastModiyTime" ColumnName="LastModiyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TextItems">
+            <EntityTypeMapping TypeName="TravelDBModel.TextItem">
+              <MappingFragment StoreEntitySet="TextItem">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="HotelId" ColumnName="HotelId" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="DescriptionText" ColumnName="DescriptionText" />
+                <ScalarProperty Name="LastModityTime" ColumnName="LastModityTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UITs">
+            <EntityTypeMapping TypeName="TravelDBModel.UIT">
+              <MappingFragment StoreEntitySet="UIT">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastModiyTime" ColumnName="LastModiyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UOMs">
+            <EntityTypeMapping TypeName="TravelDBModel.UOM">
+              <MappingFragment StoreEntitySet="UOM">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastModiyTime" ColumnName="LastModiyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zones">
+            <EntityTypeMapping TypeName="TravelDBModel.Zone">
+              <MappingFragment StoreEntitySet="Zone">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastMofifyTime" ColumnName="LastMofifyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZoneHotelMappings">
+            <EntityTypeMapping TypeName="TravelDBModel.ZoneHotelMapping">
+              <MappingFragment StoreEntitySet="ZoneHotelMapping">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ZoneID" ColumnName="ZoneID" />
+                <ScalarProperty Name="HotelID" ColumnName="HotelID" />
+                <ScalarProperty Name="LastMofifyTime" ColumnName="LastMofifyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

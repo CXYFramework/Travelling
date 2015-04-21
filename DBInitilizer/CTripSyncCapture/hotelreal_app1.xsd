@@ -1,0 +1,323 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema targetNamespace="http://www.opentravel.org/OTA/2003/05" xmlns:mstns="http://www.opentravel.org/OTA/2003/05" xmlns="http://www.opentravel.org/OTA/2003/05" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified" xmlns:app1="http://www.opentravel.org/OTA/2003/05">
+  <xs:element name="TPA_Extensions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="InvBlockCode" type="xs:string" minOccurs="0" />
+        <xs:element name="Roomquantity" type="xs:string" minOccurs="0" />
+        <xs:element name="RoadCross" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:attribute name="DescriptionText" form="unqualified" type="xs:string" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TPA_Extension" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="FacilityName" type="xs:string" minOccurs="0" />
+              <xs:element name="FTypeName" type="xs:string" minOccurs="0" />
+              <xs:element name="FacilityValue" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CityImportantMessage" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CityImportantMessageType" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="MessageContent" type="xs:string" minOccurs="0" msdata:Ordinal="0" />
+                  </xs:sequence>
+                  <xs:attribute name="StartDate" form="unqualified" type="xs:string" />
+                  <xs:attribute name="EndDate" form="unqualified" type="xs:string" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Description">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Text" type="xs:string" minOccurs="0" msdata:Ordinal="0" />
+      </xs:sequence>
+      <xs:attribute name="Name" form="unqualified" type="xs:string" />
+      <xs:attribute name="Caption" form="unqualified" type="xs:string" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OTA_HotelDescriptiveInfoRS">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Success" type="xs:string" minOccurs="0" msdata:Ordinal="1" />
+        <xs:element name="HotelDescriptiveContents" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="HotelDescriptiveContent" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="HotelInfo" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="CategoryCodes" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="SegmentCategory" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:attribute name="Code" form="unqualified" type="xs:string" />
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="Position" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:attribute name="Latitude" form="unqualified" type="xs:string" />
+                              <xs:attribute name="Longitude" form="unqualified" type="xs:string" />
+                              <xs:attribute name="PositionTypeCode" form="unqualified" type="xs:string" />
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="Address" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="AddressLine" type="xs:string" minOccurs="0" />
+                                <xs:element name="CityName" type="xs:string" minOccurs="0" />
+                                <xs:element name="PostalCode" type="xs:string" minOccurs="0" />
+                                <xs:element name="Zone" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="ZoneCode" type="xs:string" minOccurs="0" />
+                                      <xs:element name="ZoneName" type="xs:string" minOccurs="0" />
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element ref="TPA_Extensions" minOccurs="0" maxOccurs="unbounded" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="Services" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="Service" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="DescriptiveText" type="xs:string" minOccurs="0" msdata:Ordinal="0" />
+                                    </xs:sequence>
+                                    <xs:attribute name="Code" form="unqualified" type="xs:string" />
+                                    <xs:attribute name="ID" form="unqualified" type="xs:string" />
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="WhenBuilt" form="unqualified" type="xs:string" />
+                        <xs:attribute name="LastUpdated" form="unqualified" type="xs:string" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="FacilityInfo" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="GuestRooms" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="GuestRoom" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="TypeRoom" minOccurs="0" maxOccurs="unbounded">
+                                        <xs:complexType>
+                                          <xs:attribute name="StandardOccupancy" form="unqualified" type="xs:string" />
+                                          <xs:attribute name="Size" form="unqualified" type="xs:string" />
+                                          <xs:attribute name="Name" form="unqualified" type="xs:string" />
+                                          <xs:attribute name="RoomTypeCode" form="unqualified" type="xs:string" />
+                                          <xs:attribute name="Floor" form="unqualified" type="xs:string" />
+                                          <xs:attribute name="InvBlockCode" form="unqualified" type="xs:string" />
+                                          <xs:attribute name="BedTypeCode" form="unqualified" type="xs:string" />
+                                          <xs:attribute name="NonSmoking" form="unqualified" type="xs:string" />
+                                          <xs:attribute name="HasWindow" form="unqualified" type="xs:string" />
+                                          <xs:attribute name="Quantity" form="unqualified" type="xs:string" />
+                                          <xs:attribute name="RoomSize" form="unqualified" type="xs:string" />
+                                        </xs:complexType>
+                                      </xs:element>
+                                      <xs:element name="Amenities" minOccurs="0" maxOccurs="unbounded">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element name="Amenity" minOccurs="0" maxOccurs="unbounded">
+                                              <xs:complexType>
+                                                <xs:sequence>
+                                                  <xs:element name="DescriptiveText" type="xs:string" minOccurs="0" msdata:Ordinal="0" />
+                                                </xs:sequence>
+                                                <xs:attribute name="RoomAmenityCode" form="unqualified" type="xs:string" />
+                                              </xs:complexType>
+                                            </xs:element>
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                      <xs:element ref="TPA_Extensions" minOccurs="0" maxOccurs="unbounded" />
+                                      <xs:element name="Features" minOccurs="0" maxOccurs="unbounded">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element name="Feature" minOccurs="0" maxOccurs="unbounded">
+                                              <xs:complexType>
+                                                <xs:sequence>
+                                                  <xs:element name="DescriptiveText" type="xs:string" minOccurs="0" />
+                                                </xs:sequence>
+                                              </xs:complexType>
+                                            </xs:element>
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="RoomTypeName" form="unqualified" type="xs:string" />
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Policies" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Policy" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="PolicyInfoCodes" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="PolicyInfoCode" minOccurs="0" maxOccurs="unbounded">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element ref="Description" minOccurs="0" maxOccurs="unbounded" />
+                                          </xs:sequence>
+                                          <xs:attribute name="Code" form="unqualified" type="xs:string" />
+                                        </xs:complexType>
+                                      </xs:element>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="PolicyInfo" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:attribute name="CheckInTime" form="unqualified" type="xs:string" />
+                                    <xs:attribute name="CheckOutTime" form="unqualified" type="xs:string" />
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="AreaInfo" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="RefPoints" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="RefPoint" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="DescriptiveText" type="xs:string" minOccurs="0" msdata:Ordinal="0" />
+                                    </xs:sequence>
+                                    <xs:attribute name="Distance" form="unqualified" type="xs:string" />
+                                    <xs:attribute name="UnitOfMeasureCode" form="unqualified" type="xs:string" />
+                                    <xs:attribute name="Name" form="unqualified" type="xs:string" />
+                                    <xs:attribute name="Latitude" form="unqualified" type="xs:string" />
+                                    <xs:attribute name="Longitude" form="unqualified" type="xs:string" />
+                                    <xs:attribute name="RefPointCategoryCode" form="unqualified" type="xs:string" />
+                                    <xs:attribute name="RefPointName" form="unqualified" type="xs:string" />
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="AffiliationInfo" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Awards" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="Award" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:attribute name="Provider" form="unqualified" type="xs:string" />
+                                    <xs:attribute name="Rating" form="unqualified" type="xs:string" />
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="MultimediaDescriptions" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="MultimediaDescription" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="TextItems" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="TextItem" minOccurs="0" maxOccurs="unbounded">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element name="URL" type="xs:string" minOccurs="0" msdata:Ordinal="0" />
+                                            <xs:element name="Description" type="xs:string" minOccurs="0" msdata:Ordinal="1" />
+                                          </xs:sequence>
+                                          <xs:attribute name="Category" form="unqualified" type="xs:string" />
+                                        </xs:complexType>
+                                      </xs:element>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="ImageItems" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="ImageItem" minOccurs="0" maxOccurs="unbounded">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element name="ImageFormat" minOccurs="0" maxOccurs="unbounded">
+                                              <xs:complexType>
+                                                <xs:sequence>
+                                                  <xs:element name="URL" type="xs:string" minOccurs="0" />
+                                                </xs:sequence>
+                                              </xs:complexType>
+                                            </xs:element>
+                                            <xs:element ref="Description" minOccurs="0" maxOccurs="unbounded" />
+                                            <xs:element ref="TPA_Extensions" minOccurs="0" maxOccurs="unbounded" />
+                                          </xs:sequence>
+                                          <xs:attribute name="Category" form="unqualified" type="xs:string" />
+                                        </xs:complexType>
+                                      </xs:element>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element ref="TPA_Extensions" minOccurs="0" maxOccurs="unbounded" />
+                  </xs:sequence>
+                  <xs:attribute name="BrandCode" form="unqualified" type="xs:string" />
+                  <xs:attribute name="HotelCode" form="unqualified" type="xs:string" />
+                  <xs:attribute name="HotelCityCode" form="unqualified" type="xs:string" />
+                  <xs:attribute name="HotelName" form="unqualified" type="xs:string" />
+                  <xs:attribute name="AreaID" form="unqualified" type="xs:string" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="TimeStamp" form="unqualified" type="xs:string" />
+      <xs:attribute name="Version" form="unqualified" type="xs:string" />
+      <xs:attribute name="PrimaryLangID" form="unqualified" type="xs:string" />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

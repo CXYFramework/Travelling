@@ -1,0 +1,230 @@
+﻿<?xml version="1.0"?>
+<Response>
+  <Header ShouldRecordPerformanceTime="False" Timestamp="2013-06-25 19:14:32:80089" ReferenceID="d49d6f12-4684-45fc-b3ea-a5a5b19f4269" RecentlyTime="2013-06-25 19:13:48" AccessCount="3000" CurrentCount="25" ResetTime="2013-06-25 19:14:48" ResultCode="Success" />
+  <HotelResponse>
+    <OTA_HotelDescriptiveInfoRS TimeStamp="2013-06-25T18:45:54.9756613+08:00" Version="2.0" PrimaryLangID="zh" xmlns="http://www.opentravel.org/OTA/2003/05">
+      <!--酒店详细描述类信息内容列表-->
+      <HotelDescriptiveContents>
+        <!--酒店详细信息内容：BrandCode属性：酒店品牌代码；HotelCode属性：酒店代码；HotelCityCode属性：酒店所在城市代码；HotelName属性：酒店名称；AreaID属性：行政区代码；HotelId属性：酒店ID；-->
+        <HotelDescriptiveContent BrandCode="138" HotelCode="625" HotelCityCode="2" HotelName="上海华亭宾馆" AreaID="113" HotelId="625">
+          <!--酒店类信息-->
+          <!-- WhenBuilt属性：何时建造；LastUpdated属性：酒店信息上次更新时间-->
+          <HotelInfo WhenBuilt="1986-1-1 0:00:00" LastUpdated="2008-01-01T00:00:00">
+            <!-- 一些常用的酒店标签和分类-->
+            <CategoryCodes>
+              <!--定义酒店等级特点，比如 豪华型，经济型等-->
+              <!-- Code属性：段分类ID，参考CodeList (SEG)-->
+							<SegmentCategory Code="4" />
+						</CategoryCodes>
+<!--地理位置经纬度-->
+              <!-- Longitude属性：经度；Latitude属性：纬度；PositionTypeCode ：坐标类型，ListCode(PTC)-->
+              <Position Latitude="31.17992" Longitude="121.44077" />
+              <!--酒店服务和设备列表-->
+              <Services>
+                <!--酒店服务和设备-->
+                <!-- Code属性：设施设备代码, 参考CodeList (HAC)；ID属性：设施设备类别，例如：客房设施和服务、宾馆餐饮设施等。-->
+                <Service Code="6" ID="1001">
+                  <!--设施或服务文字描述-->
+                  <DescriptiveText>会议厅</DescriptiveText>
+                </Service>
+                <Service Code="8" ID="1001">
+                  <DescriptiveText>商务中心</DescriptiveText>
+                </Service>
+                <Service Code="11" ID="1001">
+                  <DescriptiveText>外币兑换服务</DescriptiveText>
+                </Service>
+                <Service Code="12" ID="1001">
+                  <DescriptiveText>旅游票务服务</DescriptiveText>
+                </Service>
+                <Service Code="1" ID="1002">
+                  <DescriptiveText>中餐厅</DescriptiveText>
+                </Service>
+                <Service Code="2" ID="1002">
+                  <DescriptiveText>西餐厅</DescriptiveText>
+                </Service>
+                <Service Code="3" ID="1002">
+                  <DescriptiveText>咖啡厅</DescriptiveText>
+                </Service>
+                <Service Code="5" ID="1002">
+                  <DescriptiveText>酒吧</DescriptiveText>
+                </Service>
+                <Service Code="9" ID="1002">
+                  <DescriptiveText>停车场</DescriptiveText>
+                </Service>
+                <Service Code="24" ID="1003">
+                  <DescriptiveText>棋牌室</DescriptiveText>
+                </Service>
+                <Service Code="26" ID="1003">
+                  <DescriptiveText>桌球室</DescriptiveText>
+                </Service>
+                <Service Code="27" ID="1003">
+                  <DescriptiveText>乒乓球室</DescriptiveText>
+                </Service>
+                <Service Code="29" ID="1003">
+                  <DescriptiveText>室内游泳池</DescriptiveText>
+                </Service>
+                <Service Code="42" ID="1003">
+                  <DescriptiveText>健身室</DescriptiveText>
+                </Service>
+                <Service Code="13" ID="1004">
+                  <DescriptiveText>国内长途电话</DescriptiveText>
+                </Service>
+              </Services>
+            </HotelInfo>
+          <!--设施信息-->
+          <FacilityInfo>
+            <!--房型信息列表-->
+            <GuestRooms>
+              <!--房型信息-->
+              <!-- RoomTypeName属性：房型名称 -->
+              <GuestRoom RoomTypeName="行政楼高级豪华房">
+                <!--客房属性-->
+                <!-- StandardOccupancy属性：标准入住人数；Size属性：床的尺寸；RoomTypeCode属性：房型代码，对应Ctrip基础房型；Floor属性：客房在建筑的第几层；BedTypeCode属性：床型代码，参考CodeList(BED)；Quantity属性：房间数量-->
+                <TypeRoom StandardOccupancy="2" Size="1.80" RoomTypeCode="8671" Floor="23" BedTypeCode="3" Quantity="0" />
+                <!--设施设备列表-->
+                <Amenities>
+                  <!--房间设施，是否可加床、免费宽带、付费宽带。-->
+                  <!-- RoomAmenityCode：房间设施代码，参考CodeList (RMA)-->
+                  <Amenity RoomAmenityCode="4">
+                    <!--设施类型描述性文字-->
+                    <DescriptiveText>有线宽带</DescriptiveText>
+                  </Amenity>
+                  <Amenity RoomAmenityCode="6">
+                    <DescriptiveText>无线宽带</DescriptiveText>
+                  </Amenity>
+                  <Amenity RoomAmenityCode="7">
+                    <DescriptiveText>可加床</DescriptiveText>
+                  </Amenity>
+                  <Amenity RoomAmenityCode="12">
+                    <DescriptiveText>收费加床</DescriptiveText>
+                  </Amenity>
+                </Amenities>
+                <!--客房特点列表-->
+                <Features>
+                  <!--客房特点等信息：外宾专用等-->
+                  <Feature>
+                    <!--特点描述性文字-->
+                    <DescriptiveText>享受行政楼层待遇</DescriptiveText>
+                  </Feature>
+                </Features>
+              </GuestRoom>
+              <GuestRoom RoomTypeName="标准套房">
+                <TypeRoom StandardOccupancy="2" Size="1.80" RoomTypeCode="24270" Floor="6" BedTypeCode="3" Quantity="0" />
+                <Amenities>
+                  <Amenity RoomAmenityCode="4">
+                    <DescriptiveText>有线宽带</DescriptiveText>
+                  </Amenity>
+                  <Amenity RoomAmenityCode="6">
+                    <DescriptiveText>无线宽带</DescriptiveText>
+                  </Amenity>
+                  <Amenity RoomAmenityCode="7">
+                    <DescriptiveText>可加床</DescriptiveText>
+                  </Amenity>
+                  <Amenity RoomAmenityCode="12">
+                    <DescriptiveText>收费加床</DescriptiveText>
+                  </Amenity>
+                </Amenities>
+                <Features>
+                  <Feature>
+                    <DescriptiveText>一房一厅，50平米</DescriptiveText>
+                  </Feature>
+                </Features>
+              </GuestRoom>
+            </GuestRooms>
+          </FacilityInfo>
+          <!--行政区信息-->
+          <AreaInfo>
+            <!--地标类区域和建筑列表-->
+            <RefPoints>
+              <!--区标-->
+              <!-- Distance属性：距离数；UnitOfMeasureCode属性：距离单位代码；Name属性：地标名称；RefPointCategoryCode属性：地标类别代码，参考CodeList (REF)；RefPointName属性：参考点名称 -->
+              <RefPoint Distance="0.8" UnitOfMeasureCode="2" Name="徐家汇商业圈" RefPointCategoryCode="10" RefPointName="商业中心/知名餐饮">
+                <!--文字描述-->
+                <DescriptiveText>步行约15分钟可到酒店。</DescriptiveText>
+              </RefPoint>
+              <RefPoint Distance="3.83" UnitOfMeasureCode="2" Name="上海火车南站" RefPointCategoryCode="2" RefPointName="火车站">
+                <DescriptiveText>乘坐地铁1号线(富锦路方向)，在上海体育馆站下车(7号口出)，步行约250米。乘坐出租车约16元。</DescriptiveText>
+              </RefPoint>
+            </RefPoints>
+          </AreaInfo>
+          <!--酒店星级、携程星级、推荐级别-->
+          <AffiliationInfo>
+            <!--酒店等级、评分列表-->
+            <Awards>
+              <!--酒店等级、评分-->
+              <!-- Provider属性：评分者，参见ListCode(APC)；Rating属性：分数或级别-->
+              <Award Provider="HotelStarRate" Rating="5" />
+              <Award Provider="CtripStarRate" Rating="5" />
+              <Award Provider="CtripUserRate" Rating="5.0" />
+              <Award Provider="CtripCommRate" Rating="4.3" />
+              <Award Provider="CommSurroundingRate" Rating="4.5" />
+              <Award Provider="CommFacilityRate" Rating="4.1" />
+              <Award Provider="CommCleanRate" Rating="4.4" />
+              <Award Provider="CommServiceRate" Rating="4.3" />
+            </Awards>
+          </AffiliationInfo>
+          <!--多媒体类信息列表-->
+          <MultimediaDescriptions>
+            <MultimediaDescription>
+              <!--图片信息列表-->
+              <ImageItems>
+                <!--图片信息-->
+                <!-- Category属性：图片类别，参考ListCode (PIC)-->
+                <ImageItem Category="1">
+                  <!--图片格式和信息-->
+									<ImageFormat>
+										<URL>http://Images4.c-ctrip.com/target/hotel/1000/625/f63e93576bf943abba7f424e09b09fde_550_412.jpg</URL>
+									</ImageFormat>
+<!--图片描述-->
+                  <Description Caption="外观" />
+                </ImageItem>
+                <ImageItem Category="4">
+                  <ImageFormat>
+                    <URL>http://Images4.c-ctrip.com/target/hotel/1000/625/396475c9e43d405793c8b8cb22cddc38_550_412.jpg</URL>
+                  </ImageFormat>
+                  <Description Caption="宴会厅" />
+                </ImageItem>
+                <ImageItem Category="5">
+                  <ImageFormat>
+                    <URL>http://Images4.c-ctrip.com/target/hotel/1000/625/2ca485b53b27436493e74bc9f4276ec7_550_412.jpg</URL>
+                  </ImageFormat>
+                  <Description Caption="游泳池" />
+                </ImageItem>
+                <ImageItem Category="6">
+                  <ImageFormat>
+                    <URL>http://Images4.c-ctrip.com/target/hotel/1000/625/bf13b9d421744900befb6d7a7f6e0467_550_412.jpg</URL>
+                  </ImageFormat>
+                  <Description Caption="豪华大床房" />
+                </ImageItem>
+              </ImageItems>
+            </MultimediaDescription>
+            <MultimediaDescription>
+              <!--描述信息列表-->
+              <TextItems>
+                <!--描述信息-->
+                <!-- Category属性：描述类别，参考ListCode(CTT)-->
+                <TextItem Category="5">
+                  <!--文字描述-->
+                  <Description>上海华亭宾馆是中国旅游业标志性饭店之一，坐拥了便捷的交通，毗邻地铁站，地铁1，3，4号线均可到达，漫步即可抵达徐家汇商业中心，与上海八万人体育馆咫尺之遥</Description>
+                </TextItem>
+                <TextItem Category="11">
+                  <Description>上海华亭宾馆位于繁华的徐家汇商业中心，毗邻上海大舞台、旅游集散中心。出门即是地铁1、4号线，地理位置优越，既适合商务会议也方便休闲旅游购物。</Description>
+                </TextItem>
+                <TextItem Category="501">
+                  <URL>http://u.ctrip.com/union/CtripRedirect.aspx</URL>
+                </TextItem>
+                <TextItem Category="8">
+                  <Description>
+                    1.华亭宾馆是徐家汇的标志性建筑之一，知名度很高，来往便利。<br/>
+                    2.交通方便，设施完善，服务热情，周到
+                  </Description>
+                </TextItem>
+              </TextItems>
+            </MultimediaDescription>
+          </MultimediaDescriptions>
+        </HotelDescriptiveContent>
+      </HotelDescriptiveContents>
+      <Success />
+    </OTA_HotelDescriptiveInfoRS>
+  </HotelResponse>
+</Response>

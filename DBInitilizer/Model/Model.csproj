@@ -1,0 +1,297 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D862C242-01BD-4210-83C4-80A0C3344A57}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Model</RootNamespace>
+    <AssemblyName>Model</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ACC.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Address.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AddressExtension.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ADT.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AIC.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AMC.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ARC.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AwardType.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseByGuestAmt.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BED.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BookRule.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BUS.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CancelPenalty.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CategoryCodeHotelMapping.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CCT.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CDT.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CFC.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CHG.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CXR.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C__RefactorLog.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DEC.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DNA.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DSP.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DTB.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EAT.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EWT.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EXH.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Fee.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FMT.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FQC.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FTT.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GRI.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GuaranteePolicy.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GuestRoom.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HAC.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HACHATMapping.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HAT.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HOC.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Hotel.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HotelAwardMapping.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HST.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ImageItem.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="INF.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LOC.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MCC.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OTC.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PAC.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PCT.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PIC.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PMT.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Policy.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PolicyInfo.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Position.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PRT.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PRX.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PST.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PTT.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QCC.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QST.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Rate.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RateExtension.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RatePlan.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RBP.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="REF.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RefPoint.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RGC.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RMA.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RMARoomMapping.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RoomExtension.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RoomPlanBookRuleMapping.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RTC.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SEG.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TextItem.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TravelModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UIT.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UOM.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Zone.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ZoneHotelMapping.cs">
+      <DependentUpon>TravelModel.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="TravelModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>TravelModel.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

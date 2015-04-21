@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Response>
+  <Header ShouldRecordPerformanceTime="False" Timestamp="2013-06-25 14:49:04:54424" ReferenceID="bbfc4ced-446d-4374-a852-2e53511b8d72" RecentlyTime="2013-06-25 14:48:31" AccessCount="30000" CurrentCount="622" ResetTime="2013-06-25 14:49:31" ResultCode="Success" />
+  <HotelResponse>
+    <OTA_HotelSearchRS TimeStamp="2013-06-25T14:49:04.4377228+08:00" Version="1.0" PrimaryLangID="zh" xmlns="http://www.opentravel.org/OTA/2003/05">
+      <!--酒店列表-->
+      <Properties>
+        <!-- ChainCode 属性：连锁集团ID，可空；BrandCode属性：品牌ID，可空；HotelCode属性：酒店ID；HotelCityCode属性：酒店所在城市ID；HotelName属性：酒店名称；AreaID属性：行政区ID；HotelId属性：品牌ID，一般和HotelCode属性相同，可空； -->
+        <Property HotelCode="90360" HotelCityCode="2" HotelName="上海世纪时空酒店公寓" AreaID="112" HotelId="90360">
+          <!--酒店描述等供应商信息列表-->
+          <VendorMessages>
+            <!--Infotype属性：信息类别-->
+            <VendorMessage InfoType="23">
+              <!--属性-->
+              <SubSection>
+                <!--属性值-->
+                <Paragraph>
+                  <Text>http://Images4.c-ctrip.com/target/hotel/91000/90360/25901111-19C2-4D2D-9FAA-62A154FE9A75_100_75.jpg</Text>
+                </Paragraph>
+              </SubSection>
+            </VendorMessage>
+          </VendorMessages>
+          <!--地理位置信息(酒店GPS坐标) -->
+          <!-- Latitude属性：坐标纬度；Longitude属性：坐标经度；PositionTypeCode ：坐标类型，ListCode(PTC)-->
+          <Position Latitude="31.22102" Longitude="121.44741" />
+          <!--地址信息-->
+          <Address>
+            <!--酒店地址-->
+            <AddressLine>乌鲁木齐北路199号13楼1312室</AddressLine>
+            <!--城市名称-->
+            <CityName>上海</CityName>
+            <!--邮编-->
+            <PostalCode>200040</PostalCode>
+          </Address>
+          <!--酒店星级、Ctrip星级、用户评级等-->
+          <!-- Provider 属性：分数种类-->
+          <!-- Rating 属性：分数-->
+          <Award Provider="HotelStarRate" Rating="3" />
+          <Award Provider="CtripStarRate" Rating="2" />
+          <Award Provider="CtripRecommendRate" Rating="2.5" />
+          <Award Provider="CtripCommRate" Rating="4" />
+          <Award Provider="CommSurroundingRate" Rating="4.5" />
+          <Award Provider="CommFacilityRate" Rating="3.8" />
+          <Award Provider="CommCleanRate" Rating="4" />
+          <Award Provider="CommServiceRate" Rating="3.9" />
+          <!-- RateRange：海外酒店查询特有字段，今住明离价格-->
+          <!-- MinRate 属性：最低价格-->
+          <!-- CurrencyCode 属性：币种-->
+          <RateRange MinRate="376.188000000" CurrencyCode="SGD" />
+          <!--周边热门地标地理信息-->
+          <!--Distance属性：和酒店的距离；UnitOfMeasureCode属性：距离单位；Name属性：热点，地标名称-->
+          <RelativePosition Distance="8.7" UnitOfMeasureCode="2" Name="上海火车南站" />
+          <RelativePosition Distance="42.16" UnitOfMeasureCode="2" Name="上海浦东国际机场" />
+          <RelativePosition Distance="15.04" UnitOfMeasureCode="2" Name="虹桥火车站" />
+          <RelativePosition Distance="10.99" UnitOfMeasureCode="2" Name="上海虹桥机场（一号航站楼）" />
+          <RelativePosition Distance="19.1" UnitOfMeasureCode="2" Name="上海虹桥机场（二号航站楼）" />
+          <RelativePosition Distance="3.53" UnitOfMeasureCode="2" Name="人民广场" />
+          <RelativePosition Distance="4.56" UnitOfMeasureCode="2" Name="上海火车站" />
+        </Property>
+        <Property HotelCode="76363" HotelCityCode="2" HotelName="上海爱泊满服务公寓•静安紫苑" AreaID="112" HotelId="76363">
+          <VendorMessages>
+            <VendorMessage InfoType="23">
+              <SubSection>
+                <Paragraph>
+                  <Text>http://Images4.c-ctrip.com/target/hotel/77000/76363/4974375C-8EDF-40BA-A00E-4778A06AFB8E_100_75.jpg</Text>
+                </Paragraph>
+              </SubSection>
+            </VendorMessage>
+          </VendorMessages>
+          <Position Latitude="31.23255" Longitude="121.45847" />
+          <Address>
+            <AddressLine>江宁路356弄5号</AddressLine>
+            <CityName>上海</CityName>
+            <PostalCode>200041</PostalCode>
+          </Address>
+          <Award Provider="HotelStarRate" Rating="3" />
+          <Award Provider="CtripStarRate" Rating="2" />
+          <Award Provider="CtripRecommendRate" Rating="3.0" />
+          <Award Provider="CtripCommRate" Rating="4.1" />
+          <Award Provider="CommSurroundingRate" Rating="4.3" />
+          <Award Provider="CommFacilityRate" Rating="3.7" />
+          <Award Provider="CommCleanRate" Rating="4.3" />
+          <Award Provider="CommServiceRate" Rating="4" />
+          <RelativePosition Distance="10.74" UnitOfMeasureCode="2" Name="上海火车南站" />
+          <RelativePosition Distance="41.77" UnitOfMeasureCode="2" Name="上海浦东国际机场" />
+          <RelativePosition Distance="13.04" UnitOfMeasureCode="2" Name="上海虹桥机场（一号航站楼）" />
+          <RelativePosition Distance="2" UnitOfMeasureCode="2" Name="人民广场" />
+          <RelativePosition Distance="2.61" UnitOfMeasureCode="2" Name="上海火车站" />
+        </Property>
+      </Properties>
+      <Success />
+    </OTA_HotelSearchRS>
+  </HotelResponse>
+</Response>

@@ -1,0 +1,1 @@
+create table PRT (Id int primary key ,Name nvarchar(500) , LastModiyTime datetime) 

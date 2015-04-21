@@ -1,0 +1,1 @@
+create table CXR (Id int primary key ,Name nvarchar(500) , LastModiyTime datetime) 

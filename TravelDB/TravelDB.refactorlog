@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="b8941749-984c-4a04-b4a7-01ec4dce6fb4" ChangeDateTime="03/21/2015 09:14:27">
+    <Property Name="ElementName" Value="[dbo].[AmenityRoomMapping].[AmenityId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[AmenityRoomMapping]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="AmenityID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ab13c144-b05f-4952-ac8a-5b7dd7ceee66" ChangeDateTime="03/22/2015 06:17:40">
+    <Property Name="ElementName" Value="[dbo].[HotelPostionMapping].[TimeVersion]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[HotelPostionMapping]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Timestamp" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="81799712-e056-4ed1-b22e-aaf598e99cee" ChangeDateTime="03/22/2015 06:51:30">
+    <Property Name="ElementName" Value="[dbo].[Rating].[s]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Rating]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Timestamp" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="dea3df90-d025-491c-997a-9b5df4a4f8a2" ChangeDateTime="03/22/2015 07:11:23">
+    <Property Name="ElementName" Value="[dbo].[HotePics].[Timestrap]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[HotePics]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Timestamp" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="51c69c16-1a82-41e7-a2f6-1f7752d29390" ChangeDateTime="03/22/2015 07:48:31">
+    <Property Name="ElementName" Value="[dbo].[HoteDescription].[CTTDI]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[HoteDescription]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CTTID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c919bc95-1bbb-46b7-b284-5f5703af2368" ChangeDateTime="03/22/2015 08:41:32">
+    <Property Name="ElementName" Value="[dbo].[CodeHACMapping].[CodeId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[CodeHACMapping]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CodeID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ab5ea377-871a-44d8-9817-c7c326ad84f7" ChangeDateTime="03/22/2015 08:42:42">
+    <Property Name="ElementName" Value="[dbo].[CodeHotelMapping].[CodeId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[CodeHotelMapping]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CodeID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="4b4723ff-4d3b-47bb-b7a2-244ca7cc62b4" ChangeDateTime="03/22/2015 08:49:09">
+    <Property Name="ElementName" Value="[dbo].[HotelPostionMapping].[UnitOfMeasureCode]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[HotelPostionMapping]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="UnitOfMeasureCodeID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="2dbb10ec-e054-498b-9be4-fd80857aa50c" ChangeDateTime="03/22/2015 08:51:52">
+    <Property Name="ElementName" Value="[dbo].[HotelPostionMapping].[PositonID]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[HotelPostionMapping]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="PositionID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="0f3bed4c-61e1-4fde-b00c-1bc728d0d7fc" ChangeDateTime="03/25/2015 12:33:54">
+    <Property Name="ElementName" Value="[dbo].[Hotel].[T]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Hotel]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Timestamp" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="13d728f9-b5d5-49d2-b71a-c5400aa3f59f" ChangeDateTime="03/26/2015 11:59:43">
+    <Property Name="ElementName" Value="[dbo].[HACHotelMapping].[HAC]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[HACHotelMapping]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="HACID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="5f9db678-92e0-445b-9235-ce7dee20536f" ChangeDateTime="03/26/2015 12:26:14">
+    <Property Name="ElementName" Value="[dbo].[Facility].[Ftype]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Facility]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FTypeID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="d3351dfb-90f8-4ed4-9ae3-12c18e4a2cd1" ChangeDateTime="03/28/2015 09:56:38">
+    <Property Name="ElementName" Value="[dbo].[Hotel].[AddTimr]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Hotel]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="AddTime" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="aa1ba3de-9e45-402d-9971-1245d0721136" ChangeDateTime="04/02/2015 13:18:34">
+    <Property Name="ElementName" Value="[dbo].[CategoryCodeHotelMapping].[UpdateTime]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[CategoryCodeHotelMapping]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LastMofifyTime" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="0b2161d8-e110-4771-94c6-54f64bf85696" ChangeDateTime="04/02/2015 13:19:25">
+    <Property Name="ElementName" Value="[dbo].[Hotel].[AddTime]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Hotel]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LastMofifyTime" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ca67b7cf-5d7a-43ed-8d72-7d0ba44ec491" ChangeDateTime="04/12/2015 03:12:55">
+    <Property Name="ElementName" Value="[dbo].[ImageItem].[HoteId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ImageItem]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="HotelId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="d2ef803d-d6c1-4f21-84a8-32a9aa61f49a" ChangeDateTime="04/12/2015 07:32:52">
+    <Property Name="ElementName" Value="[dbo].[RoomExtension].[FacilityID]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[RoomExtension]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FacilityName" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="0979336a-2aa4-4b0b-bf02-7b3a47db436a" ChangeDateTime="04/12/2015 07:33:38">
+    <Property Name="ElementName" Value="[dbo].[RoomExtension].[FaciliType]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[RoomExtension]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FaciliTypeName" />
+  </Operation>
+</Operations>
