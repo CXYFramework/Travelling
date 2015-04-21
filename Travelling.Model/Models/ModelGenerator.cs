@@ -602,7 +602,6 @@ namespace Travelling.Models
 		public virtual string DescriptionText { get; set; }
 		public virtual DateTime? LastModifyTime { get; set; }
 		public virtual Rate Rate { get; set; }
-
 	}
 
     /// <summary>
@@ -1057,10 +1056,9 @@ namespace Travelling.Models
 		public virtual int? BreakfastNumber { get; set; }
 		public virtual DateTime? LastModifyTime { get; set; }
 		public virtual RatePlan RatePlan { get; set; }
-		public virtual IEnumerable<Fee> Fee { get; set; }
 		public virtual IEnumerable<BaseByGuestAmt> BaseByGuestAmt { get; set; }
 		public virtual IEnumerable<CancelPenalty> CancelPenalty { get; set; }
-
+		public virtual IEnumerable<Fee> Fee { get; set; }
 		public virtual IEnumerable<GuaranteePolicy> GuaranteePolicy { get; set; }
 		public virtual IEnumerable<RateExtension> RateExtensions { get; set; }
 	}

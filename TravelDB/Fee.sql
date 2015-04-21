@@ -8,6 +8,5 @@
     [CurrencyCode] NVARCHAR(10) NULL, 
     [ChargeUnit] INT NULL, 
     [DescriptionText] NVARCHAR(100) NULL, 
-    [LastModifyTime] DATETIME NULL, 
-    CONSTRAINT [FK_Fee_ToTable] FOREIGN KEY (RateId) REFERENCES Rate(Id)
+    [LastModifyTime] DATETIME NULL
 )
