@@ -17,15 +17,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DBInitilizer", "DBInitilize
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "TravelDB", "TravelDB\TravelDB.sqlproj", "{6D3F6C46-8284-49B1-85DB-FAB1EF435E53}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CtripCodeListInitilizer", "DBInitilizer\CtripCodeListInitilizer\CtripCodeListInitilizer.csproj", "{8C4521C2-E344-4F81-97B2-4E5D50D41B2B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Travelling.CtripCodeListInitilizer", "DBInitilizer\CtripCodeListInitilizer\Travelling.CtripCodeListInitilizer.csproj", "{8C4521C2-E344-4F81-97B2-4E5D50D41B2B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CTripSyncCapture", "DBInitilizer\CTripSyncCapture\CTripSyncCapture.csproj", "{BA8721F1-A817-41D4-ABA6-01A16DDADA65}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Travelling.DBInitilizer", "DBInitilizer\CTripSyncCapture\Travelling.DBInitilizer.csproj", "{BA8721F1-A817-41D4-ABA6-01A16DDADA65}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DBInitilizer\DAL\DAL.csproj", "{3071703A-2812-45F5-91F5-DB32678E028B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "DBInitilizer\Model\Model.csproj", "{D862C242-01BD-4210-83C4-80A0C3344A57}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Travelling.Unitity", "DBInitilizer\Travelling.Unitity\Travelling.Unitity.csproj", "{E5F2A385-2EE7-473A-B257-1541B54FC23C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Travelling.OpenApiSDK", "DBInitilizer\Travelling.openApiSDK\Travelling.OpenApiSDK.csproj", "{984733A4-B554-4F5F-A1F4-36A06B3B792E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Travelling.OpenApiLogic", "DBInitilizer\Travelling.OpenApiLogic\Travelling.OpenApiLogic.csproj", "{99106F2A-3F60-49F1-B994-B7116A56CFA1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -79,6 +83,14 @@ Global
 		{E5F2A385-2EE7-473A-B257-1541B54FC23C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E5F2A385-2EE7-473A-B257-1541B54FC23C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E5F2A385-2EE7-473A-B257-1541B54FC23C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{984733A4-B554-4F5F-A1F4-36A06B3B792E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{984733A4-B554-4F5F-A1F4-36A06B3B792E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{984733A4-B554-4F5F-A1F4-36A06B3B792E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{984733A4-B554-4F5F-A1F4-36A06B3B792E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99106F2A-3F60-49F1-B994-B7116A56CFA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99106F2A-3F60-49F1-B994-B7116A56CFA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99106F2A-3F60-49F1-B994-B7116A56CFA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99106F2A-3F60-49F1-B994-B7116A56CFA1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -90,5 +102,7 @@ Global
 		{3071703A-2812-45F5-91F5-DB32678E028B} = {209309E1-B539-4463-942A-CE12BC46E728}
 		{D862C242-01BD-4210-83C4-80A0C3344A57} = {209309E1-B539-4463-942A-CE12BC46E728}
 		{E5F2A385-2EE7-473A-B257-1541B54FC23C} = {209309E1-B539-4463-942A-CE12BC46E728}
+		{984733A4-B554-4F5F-A1F4-36A06B3B792E} = {209309E1-B539-4463-942A-CE12BC46E728}
+		{99106F2A-3F60-49F1-B994-B7116A56CFA1} = {209309E1-B539-4463-942A-CE12BC46E728}
 	EndGlobalSection
 EndGlobal

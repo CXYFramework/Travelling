@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ScenicSpotSearchResponse>
+  <TabTypeSatistics>
+    <TabTypeSatisticsDTO>
+      <TabTypeShow>ScenicSpotTicket</TabTypeShow>
+      <Count>111</Count>
+    </TabTypeSatisticsDTO>
+  </TabTypeSatistics>
+  <LabelSatistics>
+    <LabelSatisticsDTO>
+      <LableType>NewDestinationNavIDs</LableType>
+      <SubLabelSatistics>
+        <SubLabelSatisticsDTO>
+          <LabelText>上海</LabelText>
+          <LabelValue>12</LabelValue>
+          <Count>103</Count>
+        </SubLabelSatisticsDTO>
+        <SubLabelSatisticsDTO>
+          <LabelText>香港</LabelText>
+          <LabelValue>132</LabelValue>
+          <Count>3</Count>
+        </SubLabelSatisticsDTO>
+      </SubLabelSatistics>
+    </LabelSatisticsDTO>
+    <LabelSatisticsDTO>
+      <LableType>ProductCategory</LableType>
+      <SubLabelSatistics>
+        <SubLabelSatisticsDTO>
+          <LabelText>门票</LabelText>
+          <LabelValue>4</LabelValue>
+          <Count>1</Count>
+        </SubLabelSatisticsDTO>
+      </SubLabelSatistics>
+    </LabelSatisticsDTO>
+  </LabelSatistics>
+  <ScenicSpotListItemList>
+    <ScenicSpotListItemDTO>
+      <!—景点 ID -- >
+      <ID>758</ID>
+      <Name>上海野生动物园</Name>
+      <Star>3</Star>
+      <Address>上海市浦东新区南六公路178号 </Address>
+      <DistrictID>2</DistrictID>
+      <DistrictName>上海</DistrictName>
+      <ProvinceID>2</ProvinceID>
+      <ProvinceName>上海</ProvinceName>
+      <CountryID>1</CountryID>
+      <CountryName>中国</CountryName>
+      <Activity />
+      <ProductManagerRecommand>★ 游上海野生动物园，与世博大熊猫亲密接触！★ 上海野生动物园多种动物表演，让您应接不暇！★ 车游野外区，步行室内区，0距离接触野生动物！</ProductManagerRecommand>
+      <CommentGrade>4.879061</CommentGrade>
+      <CommentUserCount>983</CommentUserCount>
+      <OrderCount>104</OrderCount>
+      <ProductListItemList>
+        <ProductListItemDTO>
+          <!—产品ID-->
+          <ID>66251</ID>
+          <Name>上海野生动物园门票</Name>
+          <WorkEndTime>16:00</WorkEndTime>
+          <PayMode>P</PayMode>
+          <ResourceListItemList>
+            <ResourceListItemDTO>
+              <!—资源ID -->
+              <ID>1619623</ID>
+              <Name>上海野生动物园门票（“旅游节”特惠）</Name>
+              <MarketPrice>130</MarketPrice>
+              <Price>65</Price>
+              <IsReturnCash>false</IsReturnCash>
+              <ReturnCashAmount>0</ReturnCashAmount>
+            </ResourceListItemDTO>
+            <ResourceListItemDTO>
+              <ID>227172</ID>
+              <Name>上海野生动物园门票（成人票）</Name>
+              <MarketPrice>130</MarketPrice>
+              <Price>120</Price>
+              <IsReturnCash>false</IsReturnCash>
+              <ReturnCashAmount>0</ReturnCashAmount>
+            </ResourceListItemDTO>
+          </ResourceListItemList>
+        </ProductListItemDTO>
+      </ProductListItemList>
+    </ScenicSpotListItemDTO>
+  </ScenicSpotListItemList>
+  <RowCount>111</RowCount>
+  <PagingCount>12</PagingCount>
+</ScenicSpotSearchResponse>
+</Response>

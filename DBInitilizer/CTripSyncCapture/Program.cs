@@ -9,6 +9,8 @@ using Model;
 using System.Transactions;
 using Common.Logging;
 using Travelling.Unitity;
+using Travelling.OpenApiLogic;
+using System.IO;
 namespace CTripSyncCapture
 {   
     class Program
@@ -18,7 +20,17 @@ namespace CTripSyncCapture
         static void Main(string[] args)
         {
 
-            var root = XRoot.Load("hotelreal.xml");
+            //OTAHotelServiceLogic hotelService = new OTAHotelServiceLogic();
+            //string hotelXml = hotelService.GetHotelByAreaId(1);
+
+            //File.AppendAllText("D:\\ttt.xml", hotelXml);
+            string hotelXml = System.IO.File.ReadAllText("D:\\ttt.xml");
+
+            var root = XRoot.Parse(hotelXml);
+
+
+
+
             var hotels = root.Response.HotelResponse[0].OTA_HotelDescriptiveInfoRS.HotelDescriptiveContents[0].HotelDescriptiveContent;
 
             foreach (var item in hotels)

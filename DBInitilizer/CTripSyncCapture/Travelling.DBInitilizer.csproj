@@ -112,6 +112,10 @@
       <Project>{d862c242-01bd-4210-83c4-80a0c3344a57}</Project>
       <Name>Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Travelling.OpenApiLogic\Travelling.OpenApiLogic.csproj">
+      <Project>{99106f2a-3f60-49f1-b994-b7116a56cfa1}</Project>
+      <Name>Travelling.OpenApiLogic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Travelling.Unitity\Travelling.Unitity.csproj">
       <Project>{e5f2a385-2ee7-473a-b257-1541b54fc23c}</Project>
       <Name>Travelling.Unitity</Name>
