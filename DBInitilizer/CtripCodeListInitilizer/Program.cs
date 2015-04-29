@@ -13,7 +13,7 @@ namespace CtripCodeListInitilizer
     {
         static void Main(string[] args)
         {
-            string path = AppDomain.CurrentDomain.BaseDirectory + "CodeList.xls";
+            string path = AppDomain.CurrentDomain.BaseDirectory + "Code List.xls";
             var excelFile = new ExcelQueryFactory(path);
             var artistAlbums = (from a in excelFile.WorksheetRangeNoHeader("B8", "C1257", "Codelists") select a).ToList();
             string tableName = string.Empty;

@@ -31,6 +31,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Travelling.OpenApiSDK", "DB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Travelling.OpenApiLogic", "DBInitilizer\Travelling.OpenApiLogic\Travelling.OpenApiLogic.csproj", "{99106F2A-3F60-49F1-B994-B7116A56CFA1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Travelling.DBInitilizeLogic", "Travelling.DBInitilizeLogic\Travelling.DBInitilizeLogic.csproj", "{64AA2263-1FD2-49E2-9709-66084A9E267A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Travelling.EFRepository", "Travelling.EFRepository\Travelling.EFRepository.csproj", "{60FA2FE4-BF88-417E-A8A7-CD87C7C40944}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -91,6 +95,14 @@ Global
 		{99106F2A-3F60-49F1-B994-B7116A56CFA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99106F2A-3F60-49F1-B994-B7116A56CFA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99106F2A-3F60-49F1-B994-B7116A56CFA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64AA2263-1FD2-49E2-9709-66084A9E267A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64AA2263-1FD2-49E2-9709-66084A9E267A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64AA2263-1FD2-49E2-9709-66084A9E267A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64AA2263-1FD2-49E2-9709-66084A9E267A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60FA2FE4-BF88-417E-A8A7-CD87C7C40944}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60FA2FE4-BF88-417E-A8A7-CD87C7C40944}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60FA2FE4-BF88-417E-A8A7-CD87C7C40944}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60FA2FE4-BF88-417E-A8A7-CD87C7C40944}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -104,5 +116,7 @@ Global
 		{E5F2A385-2EE7-473A-B257-1541B54FC23C} = {209309E1-B539-4463-942A-CE12BC46E728}
 		{984733A4-B554-4F5F-A1F4-36A06B3B792E} = {209309E1-B539-4463-942A-CE12BC46E728}
 		{99106F2A-3F60-49F1-B994-B7116A56CFA1} = {209309E1-B539-4463-942A-CE12BC46E728}
+		{64AA2263-1FD2-49E2-9709-66084A9E267A} = {209309E1-B539-4463-942A-CE12BC46E728}
+		{60FA2FE4-BF88-417E-A8A7-CD87C7C40944} = {209309E1-B539-4463-942A-CE12BC46E728}
 	EndGlobalSection
 EndGlobal

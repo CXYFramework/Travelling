@@ -1,0 +1,326 @@
+﻿<?xml version="1.0"?>
+<Response>
+  <Header ShouldRecordPerformanceTime="False" Timestamp="2013-06-25 19:14:32:80089" ReferenceID="d49d6f12-4684-45fc-b3ea-a5a5b19f4269" RecentlyTime="2013-06-25 19:13:48" AccessCount="3000" CurrentCount="25" ResetTime="2013-06-25 19:14:48" ResultCode="Success" />
+  <HotelResponse>
+    <OTA_HotelDescriptiveInfoRS TimeStamp="2013-06-25T18:45:54.9756613+08:00" Version="2.0" PrimaryLangID="zh" xmlns="http://www.opentravel.org/OTA/2003/05">
+      <!--酒店详细描述类信息内容列表-->
+      <HotelDescriptiveContents>
+        <!--酒店详细信息内容：BrandCode属性：酒店品牌代码；HotelCode属性：酒店代码；HotelCityCode属性：酒店所在城市代码；HotelName属性：酒店名称；AreaID属性：行政区代码；HotelId属性：酒店ID；-->
+        <HotelDescriptiveContent BrandCode="138" HotelCode="625" HotelCityCode="2" HotelName="上海华亭宾馆" AreaID="113" HotelId="625">
+          <!--酒店类信息-->
+          <!-- WhenBuilt属性：何时建造；LastUpdated属性：酒店信息上次更新时间-->
+          <HotelInfo WhenBuilt="1986-1-1 0:00:00" LastUpdated="2008-01-01T00:00:00">
+            <!-- 一些常用的酒店标签和分类-->
+            <CategoryCodes>
+              <!--定义酒店等级特点，比如 豪华型，经济型等-->
+              <!-- Code属性：段分类ID，参考CodeList (SEG)-->
+							<SegmentCategory Code="4" />
+						</CategoryCodes>
+<!--地址信息-->
+              <!-- zone属性：所在商圈-->
+              <Address>
+                <AddressLine>漕溪北路1200号</AddressLine>
+                <Zone>
+                  <ZoneCode>7</ZoneCode>
+                  <ZoneName>徐家汇地区</ZoneName>
+                </Zone>
+                <Zone>
+                  <ZoneCode>990</ZoneCode>
+                  <ZoneName>八万人体育场地区</ZoneName>
+                </Zone>
+                <CityName>上海</CityName>
+                <PostalCode>200030</PostalCode>
+                <TPA_Extensions>
+                  <RoadCross DescriptionText="近中山西路" />
+                </TPA_Extensions>[2015-01-06发布上线]
+              </Address>
+              <!--地理位置经纬度-->
+              <!-- Longitude属性：经度；Latitude属性：纬度；PositionTypeCode ：坐标类型，ListCode(PTC)-->
+              <Position Latitude="31.17992" Longitude="121.44077" />
+              <!--酒店服务和设备列表-->
+              <Services>
+                <!--酒店服务和设备-->
+                <!-- Code属性：设施设备代码, 参考CodeList (HAC)；ID属性：设施设备类别，例如：客房设施和服务、宾馆餐饮设施等。-->
+                <Service Code="6" ID="1001">
+                  <!--设施或服务文字描述-->
+                  <DescriptiveText>会议厅</DescriptiveText>
+                </Service>
+                <Service Code="8" ID="1001">
+                  <DescriptiveText>商务中心</DescriptiveText>
+                </Service>
+                <Service Code="11" ID="1001">
+                  <DescriptiveText>外币兑换服务</DescriptiveText>
+                </Service>
+                <Service Code="12" ID="1001">
+                  <DescriptiveText>旅游票务服务</DescriptiveText>
+                </Service>
+
+                <Service Code="1" ID="1002">
+                  <DescriptiveText>中餐厅</DescriptiveText>
+                </Service>
+                <Service Code="2" ID="1002">
+                  <DescriptiveText>西餐厅</DescriptiveText>
+                </Service>
+                <Service Code="3" ID="1002">
+                  <DescriptiveText>咖啡厅</DescriptiveText>
+                </Service>
+                <Service Code="5" ID="1002">
+                  <DescriptiveText>酒吧</DescriptiveText>
+                </Service>
+                <Service Code="9" ID="1002">
+                  <DescriptiveText>停车场</DescriptiveText>
+                </Service>
+                <Service Code="24" ID="1003">
+                  <DescriptiveText>棋牌室</DescriptiveText>
+                </Service>
+                <Service Code="26" ID="1003">
+                  <DescriptiveText>桌球室</DescriptiveText>
+                </Service>
+                <Service Code="27" ID="1003">
+                  <DescriptiveText>乒乓球室</DescriptiveText>
+                </Service>
+                <Service Code="29" ID="1003">
+                  <DescriptiveText>室内游泳池</DescriptiveText>
+                </Service>
+                <Service Code="42" ID="1003">
+                  <DescriptiveText>健身室</DescriptiveText>
+                </Service>
+                <Service Code="13" ID="1004">
+                  <DescriptiveText>国内长途电话</DescriptiveText>
+                </Service>
+              </Services>
+            </HotelInfo>
+          <!--设施信息-->
+          <FacilityInfo>
+            <!--房型信息列表-->
+            <GuestRooms>
+              <!--房型信息-->
+              <!-- RoomTypeName属性：房型名称 -->
+              <GuestRoom RoomTypeName="行政楼高级豪华房">
+                <!--客房属性-->
+                <!-- StandardOccupancy属性：标准入住人数；Size属性：床的尺寸；Name属性：基础房型名称；RoomTypeCode属性：子房型代码，对应Ctrip子房型；Floor属性：客房在建筑的第几层；InvBlockCode属性：基础房型；BedTypeCode属性：床型代码，参考CodeList(BED)；Quantity属性：房间数量；NonSmoking属性：true为无烟，false：不是无烟；RoomSize 房间面积; HasWindow 是否有窗0无窗，其他数字有窗（2014.9.19增）-->
+                <TypeRoom StandardOccupancy="2" Size="1.80" Name="豪华间"  RoomTypeCode="8671" Floor="23"  InvBlockCode="2050672"  BedTypeCode="3" Quantity="0" NonSmoking="false" RoomSize="24"  HasWindow="2" />
+                <!--设施设备列表-->
+                <Amenities>
+                  <!--房间设施，是否可加床、免费宽带、付费宽带。-->
+                  <!-- RoomAmenityCode：房间设施代码，参考CodeList (RMA)-->
+                  <Amenity RoomAmenityCode="4">
+                    <!--设施类型描述性文字-->
+                    <DescriptiveText>有线宽带</DescriptiveText>
+                  </Amenity>
+                  <Amenity RoomAmenityCode="6">
+                    <DescriptiveText>无线宽带</DescriptiveText>
+                  </Amenity>
+                  <Amenity RoomAmenityCode="7">
+                    <DescriptiveText>可加床</DescriptiveText>
+                  </Amenity>
+                  <Amenity RoomAmenityCode="12">
+                    <DescriptiveText>收费加床</DescriptiveText>
+                  </Amenity>
+                </Amenities>
+                <!--房间设施描述：便利设施等（2014.9.19增）。-->
+                                                  <TPA_Extensions>
+                                                                 <TPA_Extension>
+                    <!--设施名称-->
+                                                                        <FacilityName>多种规格电源插座</FacilityName>
+                    <!--设施类型-->
+                                                                        <FTypeName>便利设施</FTypeName>
+                    <!--是否通用所有的房间：1全部，2部分可能没有此设施-->
+                                                                        <FacilityValue>1</FacilityValue>
+                                                                  
+                  </TPA_Extension>
+                                                                 <TPA_Extension>
+                                                                         <FacilityName>110V电压插座</FacilityName>
+                                                                         <FTypeName>便利设施</FTypeName>
+                                                                         <FacilityValue>1</FacilityValue>
+                                              
+                  </TPA_Extension>
+                                                                  <TPA_Extension>
+                                                                          <FacilityName>房内保险箱</FacilityName>
+                                                                          <FTypeName>便利设施</FTypeName>
+                                                                          <FacilityValue>1</FacilityValue>
+                                              
+                  </TPA_Extension>
+                                                                  <TPA_Extension>
+                                                                         <FacilityName>书桌</FacilityName>
+                                                                         <FTypeName>便利设施</FTypeName>
+                                                                          <FacilityValue>1</FacilityValue>
+                                                                        
+                  </TPA_Extension>
+                  <TPA_Extensions>
+                    <!--客房特点列表-->
+                    <Features>
+                      <!--客房特点等信息：外宾专用等-->
+                      <Feature>
+                        <!--特点描述性文字-->
+                        <DescriptiveText>享受行政楼层待遇</DescriptiveText>
+                      </Feature>
+                    </Features>
+                  </GuestRoom>
+              <GuestRoom RoomTypeName="标准套房">
+                <TypeRoom StandardOccupancy="2" Size="1.80" RoomTypeCode="24270" Floor="6" BedTypeCode="3" Quantity="0" />
+                <Amenities>
+                  <Amenity RoomAmenityCode="4">
+                    <DescriptiveText>有线宽带</DescriptiveText>
+                  </Amenity>
+                  <Amenity RoomAmenityCode="6">
+                    <DescriptiveText>无线宽带</DescriptiveText>
+                  </Amenity>
+                  <Amenity RoomAmenityCode="7">
+                    <DescriptiveText>可加床</DescriptiveText>
+                  </Amenity>
+                  <Amenity RoomAmenityCode="12">
+                    <DescriptiveText>收费加床</DescriptiveText>
+                  </Amenity>
+                </Amenities>
+                <Features>
+                  <Feature>
+                    <DescriptiveText>一房一厅，50平米</DescriptiveText>
+                  </Feature>
+                </Features>
+              </GuestRoom>
+
+            </GuestRooms>
+          </FacilityInfo>
+          <!--酒店政策信息-->
+          <Policies>
+            <Policy>
+              <PolicyInfoCodes>
+                <PolicyInfoCode Code="OnlineDisplay">
+                  <Description Name="ArrivalAndDeparture">
+                    <Text>入住时间：14:00以后      离店时间：12:00以前</Text>
+                  </Description>
+                  <Description Name="Cancel">
+                    <Text>不同类型的客房附带不同的取消预订和预先付费政策 选择上述客房时，请参阅“客房政策”。</Text>
+                  </Description>
+                  <Description Name="DepositAndPrepaid">
+                    <Text>入住时需要出示政府核发的身份证件(带照片)。请携带信用卡和现金用以支付押金或额外费用。</Text>
+                  </Description>
+                  <Description Name="Pet">
+                    <Text>不可携带宠物。</Text>
+                  </Description>
+                  <Description Name="Requirements">
+                    <Text>信用卡授权解除需时1-3个月。视不同国家、城市之银行操作时间而定。</Text>
+                  </Description>
+                </PolicyInfoCode>
+              </PolicyInfoCodes>
+              <PolicyInfo CheckInTime="该酒店14:00办理入住，早到可能需要等待" CheckOutTime=""/>
+            </Policy>
+          </Policies>
+          <!--行政区信息-->
+          <AreaInfo>
+            <!--地标类区域和建筑列表-->
+            <RefPoints>
+              <!--区标，酒店周边设施（2014.9.19变更）-->
+              <!-- Distance属性：距离数；UnitOfMeasureCode属性：距离单位代码；Name属性：地标名称；RefPointCategoryCode属性：地标类别代码，参考CodeList (REF)；RefPointName属性：参考点名称 Latitude、Longitude高德经纬度 -->
+              <RefPoint Distance="0.8" UnitOfMeasureCode="2" Name="星缘咖啡厅" RefPointCategoryCode="10" RefPointName="娱乐" Latitude="31.153312" Longitude="121.429483" >
+                <!--文字描述-->
+                <DescriptiveText>星缘咖啡厅</DescriptiveText>
+              </RefPoint>
+              <RefPoint Distance="3.83" UnitOfMeasureCode="2" Name="上海火车南站" RefPointCategoryCode="2" RefPointName="火车站" Latitude="31.153312" Longitude="121.429483" />
+              <DescriptiveText>乘坐地铁1号线(富锦路方向)，在上海体育馆站下车(7号口出)，步行约250米。乘坐出租车约16元。</DescriptiveText>
+              </RefPoint>
+            </RefPoints>
+          </AreaInfo>
+          <!--酒店星级、携程星级、推荐级别-->
+          <AffiliationInfo>
+            <!--酒店等级、评分列表-->
+            <Awards>
+              <!--酒店等级、评分-->
+              <!-- Provider属性：评分者，参见ListCode(APC)；HotelStarLicence 0表示非挂牌星级，1表示挂牌星级；需要根据这个判定是否展示星级， HotelStarRate 酒店挂牌星级；CtripStarRate 携程星级代表金银铜牌；CtripUserRate 携程用户评级。Rating属性：分数或级别-->
+              <Award Provider="HotelStarLicence" Rating="1"/>
+              <Award Provider="HotelStarRate" Rating="5" />
+              <Award Provider="CtripStarRate" Rating="5" />
+              <Award Provider="CtripUserRate" Rating="5.0" />
+              <Award Provider="CtripCommRate" Rating="4.3" />
+              <Award Provider="CommSurroundingRate" Rating="4.5" />
+              <Award Provider="CommFacilityRate" Rating="4.1" />
+              <Award Provider="CommCleanRate" Rating="4.4" />
+              <Award Provider="CommServiceRate" Rating="4.3" />
+            </Awards>
+          </AffiliationInfo>
+          <!--多媒体类信息列表-->
+          <MultimediaDescriptions>
+            <MultimediaDescription>
+              <!--图片信息列表-->
+              <ImageItems>
+                <!--图片信息-->
+                <!-- Category属性：图片类别，参考ListCode (PIC)-->
+                <ImageItem Category="1">
+                  <!--图片格式和信息-->
+									<ImageFormat>
+										<URL>http://Images4.c-ctrip.com/target/hotel/1000/625/f63e93576bf943abba7f424e09b09fde_550_412.jpg</URL>
+									</ImageFormat>
+<!--图片描述-->
+                  <Description Caption="外观" />
+                  <TPA_Extensions>
+                    <!-- InvBlockCode属性：基础房型；-->
+                    <InvBlockCode>2342120</InvBlockCode>
+                  </TPA_Extensions>[图片信息新增房型代码2014-11-11上线]
+                </ImageItem>
+                <ImageItem Category="4">
+                  <ImageFormat>
+                    <URL>http://Images4.c-ctrip.com/target/hotel/1000/625/396475c9e43d405793c8b8cb22cddc38_550_412.jpg</URL>
+                  </ImageFormat>
+                  <Description Caption="宴会厅" />
+                </ImageItem>
+                <ImageItem Category="5">
+                  <ImageFormat>
+                    <URL>http://Images4.c-ctrip.com/target/hotel/1000/625/2ca485b53b27436493e74bc9f4276ec7_550_412.jpg</URL>
+                  </ImageFormat>
+                  <Description Caption="游泳池" />
+                </ImageItem>
+                <ImageItem Category="6">
+                  <ImageFormat>
+                    <URL>http://Images4.c-ctrip.com/target/hotel/1000/625/bf13b9d421744900befb6d7a7f6e0467_550_412.jpg</URL>
+                  </ImageFormat>
+                  <Description Caption="豪华大床房" />
+                </ImageItem>
+              </ImageItems>
+            </MultimediaDescription>
+            <MultimediaDescription>
+              <!--描述信息列表-->
+              <TextItems>
+                <!--描述信息-->
+                <!-- Category属性：描述类别，参考ListCode(CTT)-->
+                <TextItem Category="5">
+                  <!--文字描述-->
+                  <Description>上海华亭宾馆是中国旅游业标志性饭店之一，坐拥了便捷的交通，毗邻地铁站，地铁1，3，4号线均可到达，漫步即可抵达徐家汇商业中心，与上海八万人体育馆咫尺之遥</Description>
+                </TextItem>
+                <TextItem Category="11">
+                  <Description>上海华亭宾馆位于繁华的徐家汇商业中心，毗邻上海大舞台、旅游集散中心。出门即是地铁1、4号线，地理位置优越，既适合商务会议也方便休闲旅游购物。</Description>
+                </TextItem>
+                <TextItem Category="501">
+                  <URL>http://u.ctrip.com/union/CtripRedirect.aspx?TypeID=2&amp;Allianceid=1&amp;sid=1&amp;OUID=&amp;jumpUrl=http://hotels.ctrip.com/hotel/625.html</URL>
+                </TextItem>
+                <TextItem Category="8">
+                  <Description>1.华亭宾馆是徐家汇的标志性建筑之一，知名度很高，来往便利。&lt;br/&gt;2.交通方便，设施完善，服务热情，周到</Description>
+                </TextItem>
+              </TextItems>
+            </MultimediaDescription>
+          </MultimediaDescriptions>
+          <TPA_Extensions>
+            <!-- ThemeCategory属性：特色主题，Code参见ListCode(THC)；CityImportantMessage表示酒店特别提示-->
+
+            <ThemeCategory>
+              <ThemeCategoryType Code="20"/>
+              <ThemeCategoryType Code="38"/>
+            </ThemeCategory>
+            <CityImportantMessage>
+              <CityImportantMessageType StartDate="2014-01-17T00:00:00" EndDate="2014-02-28T00:00:00">
+                <MessageContent>此期间到三亚免税店购物的海南籍居民，凭本人身份证，可办理9折优惠购物卡；学生凭本人身份证和有效学生证可办理8.8折优惠卡。</MessageContent>
+              </CityImportantMessageType>
+              <CityImportantMessageType StartDate="2014-07-21T00:00:00" EndDate="2014-12-31T00:00:00">
+                <MessageContent>此期间预定入住，可享受三亚免税店离岛9折优惠；需提前两天下午15点前预约，提供离岛客人姓名+身份证号码+携程订单号+联系电话，第三天到免税店前台报“国旅海南及旅客姓名” 办理折扣优惠卡。预约热线 18808956503   (此联系方式仅预约免税店优惠促销活动，工作时间：09:00至18:00）。</MessageContent>
+              </CityImportantMessageType>
+              <CityImportantMessageType StartDate="2014-07-31T00:00:00" EndDate="2014-08-31T00:00:00">
+                <MessageContent>此期间通过携程预订可享受三亚免税店“暑期购物节，欢乐缤纷礼”活动：1.学生集结号；2.本岛居民优惠；3.家庭总动员；4.大牌五折购；5.携程优享-免税赠礼：进三亚免税店购物需先凭携程预订短信前往携程专区办理，方可享受购物优惠活动（此短信转发无效，入住期间有效）以上需凭携程成功预订短信确认后6小时才方可享受此优惠活动.详情请咨询免税店客服：400-699-6956 咨询时间：09:00-22：00</MessageContent>
+              </CityImportantMessageType>
+            </CityImportantMessage>
+          </TPA_Extensions>
+        </HotelDescriptiveContent>
+      </HotelDescriptiveContents>
+      <Success />
+    </OTA_HotelDescriptiveInfoRS>
+  </HotelResponse>
+</Response>
