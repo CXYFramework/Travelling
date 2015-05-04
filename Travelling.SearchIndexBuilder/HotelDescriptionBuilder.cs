@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Travelling.SearchIndexBuilder
 {
-    public class Class1
+    public class HotelDescriptionBuilder
     {
+
     }
 }
