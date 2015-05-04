@@ -27,6 +27,7 @@ namespace Model
         public Nullable<bool> RateReturn { get; set; }
         public string MarketCode { get; set; }
         public Nullable<System.DateTime> LastModifyTime { get; set; }
+        public string HoteID { get; set; }
     
         public virtual ICollection<Rate> Rates { get; set; }
         public virtual ICollection<RoomPlanBookRuleMapping> RoomPlanBookRuleMappings { get; set; }

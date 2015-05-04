@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5e0a03eaf7124e95806431aed2889527" Name="Diagram1">
+      <Diagram DiagramId="5e0a03eaf7124e95806431aed2889527" Name="Diagram1" ZoomLevel="114">
         <EntityTypeShape EntityType="TravelDBModel.C__RefactorLog" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TravelDBModel.ACC" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TravelDBModel.Address" Width="1.5" PointX="3" PointY="9.375" IsExpanded="true" />
@@ -112,6 +112,8 @@
         <AssociationConnector Association="TravelDBModel.FK_RefPointTo_UOM" ManuallyRouted="false" />
         <AssociationConnector Association="TravelDBModel.FK_RMARoomMappingTo_RMA" ManuallyRouted="false" />
         <AssociationConnector Association="TravelDBModel.FK_ZoneHotelMappingTo_Zone" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="TravelDBModel.Offer" Width="1.5" PointX="22.375" PointY="21.75" />
+        <EntityTypeShape EntityType="TravelDBModel.OfferRule" Width="1.5" PointX="23.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

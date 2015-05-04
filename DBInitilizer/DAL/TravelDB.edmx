@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TravelDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="TravelDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__RefactorLog">
           <Key>
             <PropertyRef Name="OperationKey" />
@@ -91,7 +91,7 @@
           <Property Name="ListPrice" Type="decimal" Precision="18" Scale="4" />
           <Property Name="OtherCurrency" Type="decimal" Precision="18" Scale="4" />
           <Property Name="OtherCurrencyCode" Type="nvarchar" MaxLength="10" />
-          <Property Name="LastModifyTime" Type="nchar" MaxLength="10" />
+          <Property Name="LastModifyTime" Type="datetime" />
         </EntityType>
         <EntityType Name="BED">
           <Key>
@@ -413,6 +413,31 @@
           <Property Name="Name" Type="nvarchar" MaxLength="500" />
           <Property Name="LastModiyTime" Type="datetime" />
         </EntityType>
+        <EntityType Name="Offer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ratePlanId" Type="int" />
+          <Property Name="OfferCode" Type="int" />
+          <Property Name="OfferDescription" Type="nvarchar" MaxLength="500" />
+          <Property Name="NightsRequired" Type="int" />
+          <Property Name="NightsDiscounted" Type="int" />
+          <Property Name="DiscountPattern" Type="varchar" MaxLength="20" />
+          <Property Name="LastModifyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="OfferRules">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OfferId" Type="int" />
+          <Property Name="StartTime" Type="varchar" MaxLength="50" />
+          <Property Name="EndTime" Type="varchar" MaxLength="50" />
+          <Property Name="RestrictionType" Type="varchar" MaxLength="20" />
+          <Property Name="RestrictionDateCode" Type="int" />
+          <Property Name="LastModifyTime" Type="datetime" />
+        </EntityType>
         <EntityType Name="OTC">
           <Key>
             <PropertyRef Name="Id" />
@@ -569,6 +594,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RatePlanCode" Type="int" />
           <Property Name="RatePlanCategory" Type="nchar" MaxLength="10" />
+          <Property Name="HoteID" Type="varchar" MaxLength="100" />
           <Property Name="IsCommissionable" Type="bit" />
           <Property Name="RateReturn" Type="bit" />
           <Property Name="MarketCode" Type="nchar" MaxLength="10" />
@@ -707,424 +733,6 @@
           <Property Name="HotelID" Type="varchar" MaxLength="100" />
           <Property Name="LastMofifyTime" Type="datetime" />
         </EntityType>
-        <Association Name="FK_AddressExtensionTo_Address">
-          <End Role="Address" Type="Self.Address" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="AddressExtension" Type="Self.AddressExtension" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Address">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AddressExtension">
-              <PropertyRef Name="AddressID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_AddressTo_Hotel">
-          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Address" Type="Self.Address" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Hotel">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Address">
-              <PropertyRef Name="HotelID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_BaseByGuestAmtTo_Rate">
-          <End Role="Rate" Type="Self.Rate" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="BaseByGuestAmt" Type="Self.BaseByGuestAmt" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Rate">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="BaseByGuestAmt">
-              <PropertyRef Name="RateId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CancelPenaltyTo_Rate">
-          <End Role="Rate" Type="Self.Rate" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="CancelPenalty" Type="Self.CancelPenalty" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Rate">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CancelPenalty">
-              <PropertyRef Name="RateId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CategoryCodeHotelMappingTo_Hotel">
-          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="CategoryCodeHotelMapping" Type="Self.CategoryCodeHotelMapping" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Hotel">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CategoryCodeHotelMapping">
-              <PropertyRef Name="HotelId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CategoryCodeHotelMappingTo_SEG">
-          <End Role="SEG" Type="Self.SEG" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="CategoryCodeHotelMapping" Type="Self.CategoryCodeHotelMapping" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SEG">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CategoryCodeHotelMapping">
-              <PropertyRef Name="SEGID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Fee_ToTable">
-          <End Role="Rate" Type="Self.Rate" Multiplicity="1" />
-          <End Role="Fee" Type="Self.Fee" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Rate">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Fee">
-              <PropertyRef Name="RateId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_FeeTo_Rate">
-          <End Role="Rate" Type="Self.Rate" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Fee" Type="Self.Fee" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Rate">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Fee">
-              <PropertyRef Name="RateId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_GuaranteePolicyTo_Rate">
-          <End Role="Rate" Type="Self.Rate" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="GuaranteePolicy" Type="Self.GuaranteePolicy" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Rate">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="GuaranteePolicy">
-              <PropertyRef Name="RateId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_GuestRoomTo_Hotel">
-          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="GuestRoom" Type="Self.GuestRoom" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Hotel">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="GuestRoom">
-              <PropertyRef Name="HotelID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_HACHATMappingTo_HAC">
-          <End Role="HAC" Type="Self.HAC" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="HACHATMapping" Type="Self.HACHATMapping" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HAC">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="HACHATMapping">
-              <PropertyRef Name="HACID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_HACHATMappingTo_HAT">
-          <End Role="HAT" Type="Self.HAT" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="HACHATMapping" Type="Self.HACHATMapping" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HAT">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="HACHATMapping">
-              <PropertyRef Name="HATID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_HACHATMappingTo_Hotel">
-          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="HACHATMapping" Type="Self.HACHATMapping" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Hotel">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="HACHATMapping">
-              <PropertyRef Name="HotelID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_HotelAwardMappingTo_Hotel">
-          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="HotelAwardMapping" Type="Self.HotelAwardMapping" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Hotel">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="HotelAwardMapping">
-              <PropertyRef Name="HotelID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ImageItemTo_Hotel">
-          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="ImageItem" Type="Self.ImageItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Hotel">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ImageItem">
-              <PropertyRef Name="HotelId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PolicyInfoTo_Hotel">
-          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="PolicyInfo" Type="Self.PolicyInfo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Hotel">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="PolicyInfo">
-              <PropertyRef Name="HotelId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PolicyTo_Hotel">
-          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Policy" Type="Self.Policy" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Hotel">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Policy">
-              <PropertyRef Name="HotelID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PositionTo_Hotel">
-          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Position" Type="Self.Position" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Hotel">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Position">
-              <PropertyRef Name="HotelID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_RateExtensionsTo_Rate">
-          <End Role="Rate" Type="Self.Rate" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="RateExtensions" Type="Self.RateExtensions" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Rate">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="RateExtensions">
-              <PropertyRef Name="RateId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_RateTo_RatePlan">
-          <End Role="RatePlan" Type="Self.RatePlan" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Rate" Type="Self.Rate" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="RatePlan">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Rate">
-              <PropertyRef Name="RatePlanId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_RefPointTo_Hotel">
-          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="RefPoint" Type="Self.RefPoint" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Hotel">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="RefPoint">
-              <PropertyRef Name="HotelID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_RefPointTo_UOM">
-          <End Role="UOM" Type="Self.UOM" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="RefPoint" Type="Self.RefPoint" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UOM">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="RefPoint">
-              <PropertyRef Name="UOMID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_RMARoomMappingTo_GuestRoom">
-          <End Role="GuestRoom" Type="Self.GuestRoom" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="RMARoomMapping" Type="Self.RMARoomMapping" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="GuestRoom">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="RMARoomMapping">
-              <PropertyRef Name="RoomID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_RMARoomMappingTo_RMA">
-          <End Role="RMA" Type="Self.RMA" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="RMARoomMapping" Type="Self.RMARoomMapping" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="RMA">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="RMARoomMapping">
-              <PropertyRef Name="RMAID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_RoomExtensionTo_GuestRoom">
-          <End Role="GuestRoom" Type="Self.GuestRoom" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="RoomExtension" Type="Self.RoomExtension" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="GuestRoom">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="RoomExtension">
-              <PropertyRef Name="RoomID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_RoomPlanBookRuleMappingTo_BookRule">
-          <End Role="BookRule" Type="Self.BookRule" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="RoomPlanBookRuleMapping" Type="Self.RoomPlanBookRuleMapping" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BookRule">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="RoomPlanBookRuleMapping">
-              <PropertyRef Name="BookRuleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_RoomPlanBookRuleMappingTo_RatePlan">
-          <End Role="RatePlan" Type="Self.RatePlan" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="RoomPlanBookRuleMapping" Type="Self.RoomPlanBookRuleMapping" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="RatePlan">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="RoomPlanBookRuleMapping">
-              <PropertyRef Name="RatePlanId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TextItemTo_Hotel">
-          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="TextItem" Type="Self.TextItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Hotel">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="TextItem">
-              <PropertyRef Name="HotelId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ZoneHotelMappingTo_Hotel">
-          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="ZoneHotelMapping" Type="Self.ZoneHotelMapping" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Hotel">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ZoneHotelMapping">
-              <PropertyRef Name="HotelID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ZoneHotelMappingTo_Zone">
-          <End Role="Zone" Type="Self.Zone" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="ZoneHotelMapping" Type="Self.ZoneHotelMapping" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Zone">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ZoneHotelMapping">
-              <PropertyRef Name="ZoneID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="TravelDBModelStoreContainer">
           <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ACC" EntityType="Self.ACC" Schema="dbo" store:Type="Tables" />
@@ -1171,6 +779,8 @@
           <EntitySet Name="INF" EntityType="Self.INF" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LOC" EntityType="Self.LOC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MCC" EntityType="Self.MCC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Offer" EntityType="Self.Offer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OfferRules" EntityType="Self.OfferRules" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OTC" EntityType="Self.OTC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PAC" EntityType="Self.PAC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PCT" EntityType="Self.PCT" Schema="dbo" store:Type="Tables" />
@@ -1203,129 +813,8 @@
           <EntitySet Name="UOM" EntityType="Self.UOM" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Zone" EntityType="Self.Zone" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ZoneHotelMapping" EntityType="Self.ZoneHotelMapping" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_AddressExtensionTo_Address" Association="Self.FK_AddressExtensionTo_Address">
-            <End Role="Address" EntitySet="Address" />
-            <End Role="AddressExtension" EntitySet="AddressExtension" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AddressTo_Hotel" Association="Self.FK_AddressTo_Hotel">
-            <End Role="Hotel" EntitySet="Hotel" />
-            <End Role="Address" EntitySet="Address" />
-          </AssociationSet>
-          <AssociationSet Name="FK_BaseByGuestAmtTo_Rate" Association="Self.FK_BaseByGuestAmtTo_Rate">
-            <End Role="Rate" EntitySet="Rate" />
-            <End Role="BaseByGuestAmt" EntitySet="BaseByGuestAmt" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CancelPenaltyTo_Rate" Association="Self.FK_CancelPenaltyTo_Rate">
-            <End Role="Rate" EntitySet="Rate" />
-            <End Role="CancelPenalty" EntitySet="CancelPenalty" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CategoryCodeHotelMappingTo_Hotel" Association="Self.FK_CategoryCodeHotelMappingTo_Hotel">
-            <End Role="Hotel" EntitySet="Hotel" />
-            <End Role="CategoryCodeHotelMapping" EntitySet="CategoryCodeHotelMapping" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CategoryCodeHotelMappingTo_SEG" Association="Self.FK_CategoryCodeHotelMappingTo_SEG">
-            <End Role="SEG" EntitySet="SEG" />
-            <End Role="CategoryCodeHotelMapping" EntitySet="CategoryCodeHotelMapping" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Fee_ToTable" Association="Self.FK_Fee_ToTable">
-            <End Role="Rate" EntitySet="Rate" />
-            <End Role="Fee" EntitySet="Fee" />
-          </AssociationSet>
-          <AssociationSet Name="FK_FeeTo_Rate" Association="Self.FK_FeeTo_Rate">
-            <End Role="Rate" EntitySet="Rate" />
-            <End Role="Fee" EntitySet="Fee" />
-          </AssociationSet>
-          <AssociationSet Name="FK_GuaranteePolicyTo_Rate" Association="Self.FK_GuaranteePolicyTo_Rate">
-            <End Role="Rate" EntitySet="Rate" />
-            <End Role="GuaranteePolicy" EntitySet="GuaranteePolicy" />
-          </AssociationSet>
-          <AssociationSet Name="FK_GuestRoomTo_Hotel" Association="Self.FK_GuestRoomTo_Hotel">
-            <End Role="Hotel" EntitySet="Hotel" />
-            <End Role="GuestRoom" EntitySet="GuestRoom" />
-          </AssociationSet>
-          <AssociationSet Name="FK_HACHATMappingTo_HAC" Association="Self.FK_HACHATMappingTo_HAC">
-            <End Role="HAC" EntitySet="HAC" />
-            <End Role="HACHATMapping" EntitySet="HACHATMapping" />
-          </AssociationSet>
-          <AssociationSet Name="FK_HACHATMappingTo_HAT" Association="Self.FK_HACHATMappingTo_HAT">
-            <End Role="HAT" EntitySet="HAT" />
-            <End Role="HACHATMapping" EntitySet="HACHATMapping" />
-          </AssociationSet>
-          <AssociationSet Name="FK_HACHATMappingTo_Hotel" Association="Self.FK_HACHATMappingTo_Hotel">
-            <End Role="Hotel" EntitySet="Hotel" />
-            <End Role="HACHATMapping" EntitySet="HACHATMapping" />
-          </AssociationSet>
-          <AssociationSet Name="FK_HotelAwardMappingTo_Hotel" Association="Self.FK_HotelAwardMappingTo_Hotel">
-            <End Role="Hotel" EntitySet="Hotel" />
-            <End Role="HotelAwardMapping" EntitySet="HotelAwardMapping" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ImageItemTo_Hotel" Association="Self.FK_ImageItemTo_Hotel">
-            <End Role="Hotel" EntitySet="Hotel" />
-            <End Role="ImageItem" EntitySet="ImageItem" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PolicyInfoTo_Hotel" Association="Self.FK_PolicyInfoTo_Hotel">
-            <End Role="Hotel" EntitySet="Hotel" />
-            <End Role="PolicyInfo" EntitySet="PolicyInfo" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PolicyTo_Hotel" Association="Self.FK_PolicyTo_Hotel">
-            <End Role="Hotel" EntitySet="Hotel" />
-            <End Role="Policy" EntitySet="Policy" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PositionTo_Hotel" Association="Self.FK_PositionTo_Hotel">
-            <End Role="Hotel" EntitySet="Hotel" />
-            <End Role="Position" EntitySet="Position" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RateExtensionsTo_Rate" Association="Self.FK_RateExtensionsTo_Rate">
-            <End Role="Rate" EntitySet="Rate" />
-            <End Role="RateExtensions" EntitySet="RateExtensions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RateTo_RatePlan" Association="Self.FK_RateTo_RatePlan">
-            <End Role="RatePlan" EntitySet="RatePlan" />
-            <End Role="Rate" EntitySet="Rate" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RefPointTo_Hotel" Association="Self.FK_RefPointTo_Hotel">
-            <End Role="Hotel" EntitySet="Hotel" />
-            <End Role="RefPoint" EntitySet="RefPoint" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RefPointTo_UOM" Association="Self.FK_RefPointTo_UOM">
-            <End Role="UOM" EntitySet="UOM" />
-            <End Role="RefPoint" EntitySet="RefPoint" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RMARoomMappingTo_GuestRoom" Association="Self.FK_RMARoomMappingTo_GuestRoom">
-            <End Role="GuestRoom" EntitySet="GuestRoom" />
-            <End Role="RMARoomMapping" EntitySet="RMARoomMapping" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RMARoomMappingTo_RMA" Association="Self.FK_RMARoomMappingTo_RMA">
-            <End Role="RMA" EntitySet="RMA" />
-            <End Role="RMARoomMapping" EntitySet="RMARoomMapping" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RoomExtensionTo_GuestRoom" Association="Self.FK_RoomExtensionTo_GuestRoom">
-            <End Role="GuestRoom" EntitySet="GuestRoom" />
-            <End Role="RoomExtension" EntitySet="RoomExtension" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RoomPlanBookRuleMappingTo_BookRule" Association="Self.FK_RoomPlanBookRuleMappingTo_BookRule">
-            <End Role="BookRule" EntitySet="BookRule" />
-            <End Role="RoomPlanBookRuleMapping" EntitySet="RoomPlanBookRuleMapping" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RoomPlanBookRuleMappingTo_RatePlan" Association="Self.FK_RoomPlanBookRuleMappingTo_RatePlan">
-            <End Role="RatePlan" EntitySet="RatePlan" />
-            <End Role="RoomPlanBookRuleMapping" EntitySet="RoomPlanBookRuleMapping" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TextItemTo_Hotel" Association="Self.FK_TextItemTo_Hotel">
-            <End Role="Hotel" EntitySet="Hotel" />
-            <End Role="TextItem" EntitySet="TextItem" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ZoneHotelMappingTo_Hotel" Association="Self.FK_ZoneHotelMappingTo_Hotel">
-            <End Role="Hotel" EntitySet="Hotel" />
-            <End Role="ZoneHotelMapping" EntitySet="ZoneHotelMapping" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ZoneHotelMappingTo_Zone" Association="Self.FK_ZoneHotelMappingTo_Zone">
-            <End Role="Zone" EntitySet="Zone" />
-            <End Role="ZoneHotelMapping" EntitySet="ZoneHotelMapping" />
-          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TravelDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1418,7 +907,7 @@
           <Property Name="ListPrice" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="OtherCurrency" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="OtherCurrencyCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="LastModifyTime" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="LastModifyTime" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Rate" Relationship="Self.FK_BaseByGuestAmtTo_Rate" FromRole="BaseByGuestAmt" ToRole="Rate" />
         </EntityType>
         <EntityType Name="BED">
@@ -1943,6 +1432,7 @@
           <Property Name="LastModifyTime" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Rates" Relationship="Self.FK_RateTo_RatePlan" FromRole="RatePlan" ToRole="Rate" />
           <NavigationProperty Name="RoomPlanBookRuleMappings" Relationship="Self.FK_RoomPlanBookRuleMappingTo_RatePlan" FromRole="RatePlan" ToRole="RoomPlanBookRuleMapping" />
+          <Property Name="HoteID" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
         </EntityType>
         <EntityType Name="RBP">
           <Key>
@@ -2707,7 +2197,34 @@
             <End Role="Zone" EntitySet="Zones" />
             <End Role="ZoneHotelMapping" EntitySet="ZoneHotelMappings" />
           </AssociationSet>
+          <EntitySet Name="Offers" EntityType="TravelDBModel.Offer" />
+          <EntitySet Name="OfferRules" EntityType="TravelDBModel.OfferRule" />
         </EntityContainer>
+        <EntityType Name="Offer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ratePlanId" Type="Int32" />
+          <Property Name="OfferCode" Type="Int32" />
+          <Property Name="OfferDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="NightsRequired" Type="Int32" />
+          <Property Name="NightsDiscounted" Type="Int32" />
+          <Property Name="DiscountPattern" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LastModifyTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="OfferRule">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OfferId" Type="Int32" />
+          <Property Name="StartTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EndTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RestrictionType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="RestrictionDateCode" Type="Int32" />
+          <Property Name="LastModifyTime" Type="DateTime" Precision="3" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3335,6 +2852,7 @@
           <EntitySetMapping Name="RatePlans">
             <EntityTypeMapping TypeName="TravelDBModel.RatePlan">
               <MappingFragment StoreEntitySet="RatePlan">
+                <ScalarProperty Name="HoteID" ColumnName="HoteID" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="RatePlanCode" ColumnName="RatePlanCode" />
                 <ScalarProperty Name="RatePlanCategory" ColumnName="RatePlanCategory" />
@@ -3490,6 +3008,33 @@
                 <ScalarProperty Name="ZoneID" ColumnName="ZoneID" />
                 <ScalarProperty Name="HotelID" ColumnName="HotelID" />
                 <ScalarProperty Name="LastMofifyTime" ColumnName="LastMofifyTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Offers">
+            <EntityTypeMapping TypeName="TravelDBModel.Offer">
+              <MappingFragment StoreEntitySet="Offer">
+                <ScalarProperty Name="LastModifyTime" ColumnName="LastModifyTime" />
+                <ScalarProperty Name="DiscountPattern" ColumnName="DiscountPattern" />
+                <ScalarProperty Name="NightsDiscounted" ColumnName="NightsDiscounted" />
+                <ScalarProperty Name="NightsRequired" ColumnName="NightsRequired" />
+                <ScalarProperty Name="OfferDescription" ColumnName="OfferDescription" />
+                <ScalarProperty Name="OfferCode" ColumnName="OfferCode" />
+                <ScalarProperty Name="ratePlanId" ColumnName="ratePlanId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OfferRules">
+            <EntityTypeMapping TypeName="TravelDBModel.OfferRule">
+              <MappingFragment StoreEntitySet="OfferRules">
+                <ScalarProperty Name="LastModifyTime" ColumnName="LastModifyTime" />
+                <ScalarProperty Name="RestrictionDateCode" ColumnName="RestrictionDateCode" />
+                <ScalarProperty Name="RestrictionType" ColumnName="RestrictionType" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="OfferId" ColumnName="OfferId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

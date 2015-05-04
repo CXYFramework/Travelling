@@ -12,18 +12,15 @@ namespace Model
     using System;
     using System.Collections.Generic;
     
-    public partial class BaseByGuestAmt
+    public partial class Offer
     {
         public int Id { get; set; }
-        public Nullable<int> RateId { get; set; }
-        public Nullable<decimal> AmountBeforeTax { get; set; }
-        public string CurrencyCode { get; set; }
-        public Nullable<int> NumberOfGuests { get; set; }
-        public Nullable<decimal> ListPrice { get; set; }
-        public Nullable<decimal> OtherCurrency { get; set; }
-        public string OtherCurrencyCode { get; set; }
+        public Nullable<int> ratePlanId { get; set; }
+        public Nullable<int> OfferCode { get; set; }
+        public string OfferDescription { get; set; }
+        public Nullable<int> NightsRequired { get; set; }
+        public Nullable<int> NightsDiscounted { get; set; }
+        public string DiscountPattern { get; set; }
         public Nullable<System.DateTime> LastModifyTime { get; set; }
-    
-        public virtual Rate Rate { get; set; }
     }
 }

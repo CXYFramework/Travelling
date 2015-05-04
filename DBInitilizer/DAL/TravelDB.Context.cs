@@ -103,5 +103,7 @@ namespace DAL
         public virtual DbSet<UOM> UOMs { get; set; }
         public virtual DbSet<Zone> Zones { get; set; }
         public virtual DbSet<ZoneHotelMapping> ZoneHotelMappings { get; set; }
+        public virtual DbSet<Offer> Offers { get; set; }
+        public virtual DbSet<OfferRule> OfferRules { get; set; }
     }
 }

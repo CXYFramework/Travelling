@@ -144,5 +144,7 @@
     <Build Include="RoomPlanBookRuleMapping.sql" />
     <Build Include="PolicyInfo.sql" />
     <Build Include="TextItem.sql" />
+    <Build Include="Offer.sql" />
+    <Build Include="OfferRules.sql" />
   </ItemGroup>
 </Project>

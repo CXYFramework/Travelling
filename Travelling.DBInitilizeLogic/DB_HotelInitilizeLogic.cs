@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using www.opentravel.org.OTA.Item2003.Item05;
+using HotelXSDEntity.www.opentravel.org.OTA.Item2003.Item05;
 using Model;
 using DAL;
 using System.Transactions;
 using Travelling.Unitity;
 using System.Data.SqlClient;
+using HotelXSDEntity;
 
 namespace Travelling.DBInitilizeLogic
 {
@@ -43,36 +44,36 @@ namespace Travelling.DBInitilizeLogic
                     var hotelCode = item.HotelCode;
                     var hotelId = InsertHotel(item);
 
-                    var SEG = hotelinfo.CategoryCodes;
-                    InsertSEG(hotelId, hotelCode, SEG);
+                    //var SEG = hotelinfo.CategoryCodes;
+                    //InsertSEG(hotelId, hotelCode, SEG);
 
-                    var Position = hotelinfo.Position;
-                    InsertPosition(hotelId, hotelCode, Position);
+                    //var Position = hotelinfo.Position;
+                    //InsertPosition(hotelId, hotelCode, Position);
 
-                    var Address = hotelinfo.Address;
-                    InsertAddress(hotelId, hotelCode, Address);
+                    //var Address = hotelinfo.Address;
+                    //InsertAddress(hotelId, hotelCode, Address);
 
-                    var Services = hotelinfo.Services;
-                    InsertServices(hotelId, Services);
+                    //var Services = hotelinfo.Services;
+                    //InsertServices(hotelId, Services);
 
-                    var facility = item.FacilityInfo[0];
+                    //var facility = item.FacilityInfo[0];
 
-                    var GuestRooms = facility.GuestRooms;
-                    InsertGuestRoom(hotelId, GuestRooms);
+                    //var GuestRooms = facility.GuestRooms;
+                    //InsertGuestRoom(hotelId, GuestRooms);
 
-                    var policies = item.Policies;
-                    InsertPolicies(hotelId, policies);
+                    //var policies = item.Policies;
+                    //InsertPolicies(hotelId, policies);
 
-                    var areas = item.AreaInfo;
-                    InsertAreaInfo(hotelId, areas);
+                    //var areas = item.AreaInfo;
+                    //InsertAreaInfo(hotelId, areas);
 
-                    var affiliation = item.AffiliationInfo;
-                    InsertAffiliation(hotelId, affiliation);
+                    //var affiliation = item.AffiliationInfo;
+                    //InsertAffiliation(hotelId, affiliation);
 
-                    var multimediadescriptions = item.MultimediaDescriptions;
-                    InsertMultimediaDescription(hotelId, multimediadescriptions);
+                    //var multimediadescriptions = item.MultimediaDescriptions;
+                    //InsertMultimediaDescription(hotelId, multimediadescriptions);
 
-
+                    DB_PriceInitilizeLogic.ProcessPrice(hotelId);
                     // InsertHotelTapExtension(hotelCode, item);
 
                     tran.Complete();

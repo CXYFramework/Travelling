@@ -9,6 +9,6 @@
    
 	OtherCurrency decimal(18,4),
 	OtherCurrencyCode NVARCHAR(10) NULL, 
-	 [LastModifyTime] NCHAR(10) NULL
+	 [LastModifyTime] DATETIME NULL
    
 )

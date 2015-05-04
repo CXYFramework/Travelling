@@ -52,6 +52,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DB_HotelInitilizeLogic.cs" />
+    <Compile Include="DB_PriceInitilizeLogic.cs" />
+    <Compile Include="xmlEntity_Price.cs" />
     <Compile Include="xmlEntity_HotelDescription.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
