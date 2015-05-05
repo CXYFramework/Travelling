@@ -11,9 +11,10 @@ using Lucene.Net.Search;
 using Lucene.Net.Store;
 using Version = Lucene.Net.Util.Version;
 using System.IO;
+using Travelling.Model.DTO;
 namespace Travelling.LuceneSearch
 {
-    public static class LuceneSearch
+    public static class Lucene
     {
 
         private static string _luceneDir =
@@ -37,49 +38,50 @@ namespace Travelling.LuceneSearch
             }
         }
 
-        private static void _addToLuceneIndex(SampleData sampleData, IndexWriter writer)
+        private static void _addToLuceneIndex(HotelDescriptionDTO hotelDescriptionDTO, IndexWriter writer)
         {
             // remove older index entry
-            var searchQuery = new TermQuery(new Term("Id", sampleData.Id.ToString()));
+            var searchQuery = new TermQuery(new Term("Id", hotelDescriptionDTO.Id.ToString()));
             writer.DeleteDocuments(searchQuery);
 
             // add new index entry
             var doc = new Document();
 
             // add lucene fields mapped to db fields
-            doc.Add(new Field("Id", sampleData.Id.ToString(), Field.Store.YES, Field.Index.NOT_ANALYZED));
-            doc.Add(new Field("Name", sampleData.Name, Field.Store.YES, Field.Index.ANALYZED));
-            doc.Add(new Field("Description", sampleData.Description, Field.Store.YES, Field.Index.ANALYZED));
+            doc.Add(new Field("Id", hotelDescriptionDTO.Id.ToString(), Field.Store.YES, Field.Index.NOT_ANALYZED));
+            doc.Add(new Field("HotelName", hotelDescriptionDTO.HotelName, Field.Store.YES, Field.Index.ANALYZED));
+           
+            doc.Add(new Field("HotelCityCode", hotelDescriptionDTO.HotelCityCode.ToString(), Field.Store.YES, Field.Index.NOT_ANALYZED));
+            doc.Add(new Field("AreaID", hotelDescriptionDTO.AreaID.ToString(), Field.Store.YES, Field.Index.NOT_ANALYZED));
 
+            doc.Add(new Field("AddressLine", hotelDescriptionDTO.AddressLine, Field.Store.YES, Field.Index.ANALYZED));
+            doc.Add(new Field("Description", hotelDescriptionDTO.Description, Field.Store.YES, Field.Index.ANALYZED));
+            doc.Add(new Field("DescriptionText", hotelDescriptionDTO.DescriptionText, Field.Store.YES, Field.Index.ANALYZED));
+            doc.Add(new Field("Url", hotelDescriptionDTO.Url, Field.Store.YES, Field.Index.ANALYZED));
+            doc.Add(new Field("MinPrice", hotelDescriptionDTO.MinPrice.ToString(), Field.Store.YES, Field.Index.NOT_ANALYZED));
             // add entry to index
             writer.AddDocument(doc);
         }
 
-        public static void AddUpdateLuceneIndex(IEnumerable<SampleData> sampleDatas)
+        public static void AddUpdateLuceneIndex(IEnumerable<HotelDescriptionDTO> hotelDescriptionDTOs)
         {
             // init lucene
             var analyzer = new StandardAnalyzer(Version.LUCENE_30);
             using (var writer = new IndexWriter(_directory, analyzer, IndexWriter.MaxFieldLength.UNLIMITED))
             {
                 // add data to lucene search index (replaces older entry if any)
-                foreach (var sampleData in sampleDatas)
-                    _addToLuceneIndex(sampleData, writer);
+                foreach (var hotelDescriptionDTO in hotelDescriptionDTOs)
+                    _addToLuceneIndex(hotelDescriptionDTO, writer);
 
                 // close handles
                 analyzer.Close();
                 writer.Dispose();
             }
         }
-        public class SampleData
-        {
-            public int Id { get; set; }
-            public string Name { get; set; }
-            public string Description { get; set; }
-        }
 
-        public static void AddUpdateLuceneIndex(SampleData sampleData)
+        public static void AddUpdateLuceneIndex(HotelDescriptionDTO hotelDescriptionDTO)
         {
-             AddUpdateLuceneIndex(new List<SampleData> { sampleData });
+             AddUpdateLuceneIndex(new List<HotelDescriptionDTO> { hotelDescriptionDTO });
         }
 
         public static void ClearLuceneIndexRecord(int record_id)
@@ -132,22 +134,29 @@ namespace Travelling.LuceneSearch
             }
         }
 
-        private static SampleData _mapLuceneDocumentToData(Document doc)
+        private static HotelDescriptionDTO _mapLuceneDocumentToData(Document doc)
         {
-            return new SampleData
+            return new HotelDescriptionDTO
             {
-                Id = Convert.ToInt32(doc.Get("Id")),
-                Name = doc.Get("Name"),
+                Id = doc.Get("Id"),
+                HotelName = doc.Get("HotelName"),
+                HotelCityCode = Convert.ToInt32(doc.Get("HotelCityCode")),
+                AreaID = Convert.ToInt32(doc.Get("AreaID")),
+                AddressLine = doc.Get("AddressLine"),
+                DescriptionText = doc.Get("DescriptionText"),
+                Url = doc.Get("Url"),
+                MinPrice = Convert.ToDecimal(doc.Get("MinPrice")),
                 Description = doc.Get("Description")
+
             };
         }
 
-        private static IEnumerable<SampleData> _mapLuceneToDataList(IEnumerable<Document> hits)
+        private static IEnumerable<HotelDescriptionDTO> _mapLuceneToDataList(IEnumerable<Document> hits)
         {
             return hits.Select(_mapLuceneDocumentToData).ToList();
         }
 
-        private static IEnumerable<SampleData> _mapLuceneToDataList(IEnumerable<ScoreDoc> hits,
+        private static IEnumerable<HotelDescriptionDTO> _mapLuceneToDataList(IEnumerable<ScoreDoc> hits,
             IndexSearcher searcher)
         {
             return hits.Select(hit => _mapLuceneDocumentToData(searcher.Doc(hit.Doc))).ToList();
@@ -167,11 +176,11 @@ namespace Travelling.LuceneSearch
             return query;
         }
 
-        private static IEnumerable<SampleData> _search(string searchQuery, string searchField = "")
+        private static IEnumerable<HotelDescriptionDTO> _search(string searchQuery, string searchField = "")
         {
             // validation
             if (string.IsNullOrEmpty(searchQuery.Replace("*", "").Replace("?", "")))
-                return new List<SampleData>();
+                return new List<HotelDescriptionDTO>();
 
             // set up lucene searcher
             using (var searcher = new IndexSearcher(_directory, false))
@@ -212,9 +221,9 @@ namespace Travelling.LuceneSearch
             }
         }
 
-        public static IEnumerable<SampleData> Search(string input, string fieldName = "")
+        public static IEnumerable<HotelDescriptionDTO> Search(string input, string fieldName = "")
         {
-            if (string.IsNullOrEmpty(input)) return new List<SampleData>();
+            if (string.IsNullOrEmpty(input)) return new List<HotelDescriptionDTO>();
 
             //var terms = input.Trim().Replace("-", " ").Split(' ')
             //    .Where(x => !string.IsNullOrEmpty(x)).Select(x => x.Trim() + "*");
@@ -223,16 +232,16 @@ namespace Travelling.LuceneSearch
             return _search(input, fieldName);
         }
 
-        public static IEnumerable<SampleData> SearchDefault(string input, string fieldName = "")
+        public static IEnumerable<HotelDescriptionDTO> SearchDefault(string input, string fieldName = "")
         {
-            return string.IsNullOrEmpty(input) ? new List<SampleData>() : _search(input, fieldName);
+            return string.IsNullOrEmpty(input) ? new List<HotelDescriptionDTO>() : _search(input, fieldName);
         }
 
-        public static IEnumerable<SampleData> GetAllIndexRecords()
+        public static IEnumerable<HotelDescriptionDTO> GetAllIndexRecords()
         {
             // validate search index
             if (!System.IO.Directory.EnumerateFiles(_luceneDir).Any())
-                return new List<SampleData>();
+                return new List<HotelDescriptionDTO>();
 
             // set up lucene searcher
             var searcher = new IndexSearcher(_directory, false);

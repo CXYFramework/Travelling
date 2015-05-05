@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{91029442-2E5A-4C60-B994-242D9003EC1F}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Travelling.SearchIndexBuilder</RootNamespace>
     <AssemblyName>Travelling.SearchIndexBuilder</AssemblyName>
@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\BuildOutput\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -29,6 +29,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -40,7 +43,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HotelDescriptionBuilder.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Travelling.Data\Travelling.Data.csproj">
+      <Project>{108129c6-f629-48ec-8540-ed00f28bd2a8}</Project>
+      <Name>Travelling.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Travelling.LuceneSearch\Travelling.LuceneSearch.csproj">
+      <Project>{e6293d95-8153-4276-8678-5de2d04eb74b}</Project>
+      <Name>Travelling.LuceneSearch</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Travelling.Model\Travelling.Model.csproj">
+      <Project>{b9dcb7c9-2a69-48ad-b98a-67eea6568c3b}</Project>
+      <Name>Travelling.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
