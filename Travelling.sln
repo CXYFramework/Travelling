@@ -37,6 +37,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Travelling.EFRepository", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForeignKeyAndIndexBuilder", "ForeignKeyAndIndexBuilder\ForeignKeyAndIndexBuilder.csproj", "{77B305CF-0541-4128-9F2E-247548021BC5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Travelling.UI", "Travelling.UI\Travelling.UI.csproj", "{3FD0C3B0-3913-4A11-B0BE-628964DC7D05}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Travelling.UI.Tests", "Travelling.UI.Tests\Travelling.UI.Tests.csproj", "{413456B9-9EE6-4E6A-BFEB-ED8ECB380FF9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -109,6 +113,14 @@ Global
 		{77B305CF-0541-4128-9F2E-247548021BC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77B305CF-0541-4128-9F2E-247548021BC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77B305CF-0541-4128-9F2E-247548021BC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FD0C3B0-3913-4A11-B0BE-628964DC7D05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FD0C3B0-3913-4A11-B0BE-628964DC7D05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FD0C3B0-3913-4A11-B0BE-628964DC7D05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FD0C3B0-3913-4A11-B0BE-628964DC7D05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{413456B9-9EE6-4E6A-BFEB-ED8ECB380FF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{413456B9-9EE6-4E6A-BFEB-ED8ECB380FF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{413456B9-9EE6-4E6A-BFEB-ED8ECB380FF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{413456B9-9EE6-4E6A-BFEB-ED8ECB380FF9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
