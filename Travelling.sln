@@ -45,6 +45,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Travelling.Services", "Trav
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Travelling.RatePlanCacheUpdater", "Travelling.RatePlanCacheUpdater.bak\Travelling.RatePlanCacheUpdater.csproj", "{60337DE2-FD20-4FC9-92F0-9F278199E1E1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "template", "template", "{F9688163-E048-47F3-95EC-46DD3E02CE6F}"
+	ProjectSection(SolutionItems) = preProject
+		traveler.zip = traveler.zip
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
