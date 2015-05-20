@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Response>
+  <Header ShouldRecordPerformanceTime="False" Timestamp="2013-06-26 18:36:22:29218" ReferenceID="383f6e0e-9537-4c04-b9e6-4ff223f43ebc" RecentlyTime="2013-06-26 18:35:23" AccessCount="30000" CurrentCount="787" ResetTime="2013-06-26 18:36:23" ResultCode="Success" />
+  <HotelResponse>
+    <OTA_HotelCacheChangeRS TimeStamp="2013-06-26T18:36:22.247234+08:00" Version="1.0" PrimaryLangID="zh" xmlns="http://www.opentravel.org/OTA/2003/05">
+      <!--缓存刷新信息-->
+      <!-- HotelCode属性：酒店代码-->
+      <CacheChangeInfo HotelCode="16100">
+        <!--更新开始结束时间-->
+        <!-- Start属性：开始时间；End属性：结束时间-->
+        <TimeSpan Start="2013-10-24" End="2013-10-24" />
+        <!--其他相关信息-->
+        <!-- RatePlanCode属性：发生变化的价格计划代码-->
+        <OtherInfo RatePlanCode="571648" />
+      </CacheChangeInfo>
+      <CacheChangeInfo HotelCode="16100">
+        <TimeSpan Start="2013-10-24" End="2013-10-24" />
+        <OtherInfo RatePlanCode="227314" />
+      </CacheChangeInfo>
+      <CacheChangeInfo HotelCode="16100">
+        <TimeSpan Start="2013-10-24" End="2013-10-24" />
+        <OtherInfo RatePlanCode="137387" />
+      </CacheChangeInfo>
+      <Success />
+    </OTA_HotelCacheChangeRS>
+  </HotelResponse>
+</Response>

@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HotelDTO\HotelRateRlanCacheDTO.cs" />
     <Compile Include="OTAHotelServiceLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="OTATicketServiceLogic.cs" />
@@ -74,6 +75,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="RatePlanCacheReponseDoc.xml" />
+    <Content Include="RatePlanDoc.xml" />
     <Content Include="ticketSearchDOc.xml" />
   </ItemGroup>
   <ItemGroup>

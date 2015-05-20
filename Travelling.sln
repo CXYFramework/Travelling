@@ -41,6 +41,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Travelling.UI", "Travelling
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Travelling.UI.Tests", "Travelling.UI.Tests\Travelling.UI.Tests.csproj", "{413456B9-9EE6-4E6A-BFEB-ED8ECB380FF9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Travelling.Services", "Travelling.Services\Travelling.Services.csproj", "{2D9FB460-2FFD-4A5E-B765-B728642C1144}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Travelling.RatePlanCacheUpdater", "Travelling.RatePlanCacheUpdater.bak\Travelling.RatePlanCacheUpdater.csproj", "{60337DE2-FD20-4FC9-92F0-9F278199E1E1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -121,6 +125,14 @@ Global
 		{413456B9-9EE6-4E6A-BFEB-ED8ECB380FF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{413456B9-9EE6-4E6A-BFEB-ED8ECB380FF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{413456B9-9EE6-4E6A-BFEB-ED8ECB380FF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D9FB460-2FFD-4A5E-B765-B728642C1144}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D9FB460-2FFD-4A5E-B765-B728642C1144}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D9FB460-2FFD-4A5E-B765-B728642C1144}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D9FB460-2FFD-4A5E-B765-B728642C1144}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60337DE2-FD20-4FC9-92F0-9F278199E1E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60337DE2-FD20-4FC9-92F0-9F278199E1E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60337DE2-FD20-4FC9-92F0-9F278199E1E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60337DE2-FD20-4FC9-92F0-9F278199E1E1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -137,5 +149,6 @@ Global
 		{64AA2263-1FD2-49E2-9709-66084A9E267A} = {209309E1-B539-4463-942A-CE12BC46E728}
 		{60FA2FE4-BF88-417E-A8A7-CD87C7C40944} = {209309E1-B539-4463-942A-CE12BC46E728}
 		{77B305CF-0541-4128-9F2E-247548021BC5} = {209309E1-B539-4463-942A-CE12BC46E728}
+		{60337DE2-FD20-4FC9-92F0-9F278199E1E1} = {209309E1-B539-4463-942A-CE12BC46E728}
 	EndGlobalSection
 EndGlobal

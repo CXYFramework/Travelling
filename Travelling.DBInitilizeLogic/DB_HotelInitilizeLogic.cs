@@ -17,11 +17,13 @@ namespace Travelling.DBInitilizeLogic
     {
         public static void ProcessHotel()
         {
-
+            //read data api
             //OTAHotelServiceLogic hotelService = new OTAHotelServiceLogic();
             //string hotelXml = hotelService.GetHotelByAreaId(1);
 
             //File.AppendAllText("D:\\ttt.xml", hotelXml);
+
+            //sample xml
             string hotelXml = System.IO.File.ReadAllText("real.xml");
 
             var root = XRoot.Parse(hotelXml);
@@ -34,7 +36,7 @@ namespace Travelling.DBInitilizeLogic
             foreach (var item in hotels)
             {
                 TransactionOptions transactionOption = new TransactionOptions();
-                transactionOption.Timeout = new TimeSpan(0, 0, 600000);
+                transactionOption.Timeout = new TimeSpan(0, 0, 600000); //no time out 
 
                 using (TransactionScope tran = new TransactionScope(TransactionScopeOption.Required, transactionOption))
                 {
@@ -44,38 +46,39 @@ namespace Travelling.DBInitilizeLogic
                     var hotelCode = item.HotelCode;
                     var hotelId = InsertHotel(item);
 
-                    //var SEG = hotelinfo.CategoryCodes;
-                    //InsertSEG(hotelId, hotelCode, SEG);
+                    var SEG = hotelinfo.CategoryCodes;
+                    InsertSEG(hotelId, hotelCode, SEG);
 
-                    //var Position = hotelinfo.Position;
-                    //InsertPosition(hotelId, hotelCode, Position);
+                    var Position = hotelinfo.Position;
+                    InsertPosition(hotelId, hotelCode, Position);
 
-                    //var Address = hotelinfo.Address;
-                    //InsertAddress(hotelId, hotelCode, Address);
+                    var Address = hotelinfo.Address;
+                    InsertAddress(hotelId, hotelCode, Address);
 
-                    //var Services = hotelinfo.Services;
-                    //InsertServices(hotelId, Services);
+                    var Services = hotelinfo.Services;
+                    InsertServices(hotelId, Services);
 
-                    //var facility = item.FacilityInfo[0];
+                    var facility = item.FacilityInfo[0];
 
-                    //var GuestRooms = facility.GuestRooms;
-                    //InsertGuestRoom(hotelId, GuestRooms);
+                    var GuestRooms = facility.GuestRooms;
+                    InsertGuestRoom(hotelId, GuestRooms);
 
-                    //var policies = item.Policies;
-                    //InsertPolicies(hotelId, policies);
+                    var policies = item.Policies;
+                    InsertPolicies(hotelId, policies);
 
-                    //var areas = item.AreaInfo;
-                    //InsertAreaInfo(hotelId, areas);
+                    var areas = item.AreaInfo;
+                    InsertAreaInfo(hotelId, areas);
 
-                    //var affiliation = item.AffiliationInfo;
-                    //InsertAffiliation(hotelId, affiliation);
+                    var affiliation = item.AffiliationInfo;
+                    InsertAffiliation(hotelId, affiliation);
 
-                    //var multimediadescriptions = item.MultimediaDescriptions;
-                    //InsertMultimediaDescription(hotelId, multimediadescriptions);
+                    var multimediadescriptions = item.MultimediaDescriptions;
+                    InsertMultimediaDescription(hotelId, multimediadescriptions);
+
+                 
+                   // InsertHotelTapExtension(hotelCode, item);
 
                     DB_PriceInitilizeLogic.ProcessPrice(hotelId);
-                    // InsertHotelTapExtension(hotelCode, item);
-
                     tran.Complete();
                 }
 

@@ -1,0 +1,41 @@
+﻿<!--版本信息:2013年8月-->
+<!--价格计划查询 OTA_HotelRatePlan -->
+<?xml version="1.0" encoding="utf-8"?>
+<!--接口提供方：携程；调用方：合作方-->
+<Request>
+  <!--AllianceID:分销商ID;SID:站点ID;TimeStamp:响应时间戳（从1970年到现在的秒数）;RequestType:请求接口的类型;Signature:MD5加密串-->
+  <Header  AllianceID="x" SID="xx" TimeStamp="xxxxxx"  RequestType=" OTA_HotelRatePlan" Signature="xxxxxxx" />
+  <HotelRequest>
+    <RequestBody xmlns:ns="http://www.opentravel.org/OTA/2003/05" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <ns:OTA_HotelRatePlanRQ TimeStamp="2013-06-01T00:00:00.000+08:00" Version="1.0">
+        <!--价格计划查询列表（价格计划对应Ctrip子房型）,可获取多个酒店多个日期进行查询-->
+        <ns:RatePlans>
+          <!--酒店价格计划查询，对于获取不同酒店不同日期的价格计划，可以多个<ns:RatePlan>-->
+          <ns:RatePlan>
+            <!--入住离店日期，必填-->
+            <!-- Start属性：价格调整入住日期；datetime类型；必填 -->
+            <!-- End属性：价格调整离店日期；datetime类型；必填 -->
+            <ns:DateRange Start="2013-06-28" End="2013-06-29"/>
+            <!--价格计划查询条件列表，可空，对于多个酒店同一个日期可以多个<ns:RatePlanCandidate >-->
+      <ns:RatePlanCandidates>
+<!--价格计划查询条件-->
+            <!-- AvailRatesOnlyInd属性：只读取可用价格计划；bool类型，如果为true，表示只读取能预订的酒店价格计划，如果为false，表示显示所有的已激活的酒店的价格计划，可能此酒店的价格计划不能预订；可空 -->
+            <!-- 海外酒店特有属性IsCNYCurrency：为ture情况下转换为人民币格式，默认false不转换，可空；RatePlanCode 价格计划码，对应于房型代码，可空，对于获取全部房型信息时为空，对于增量更新时可以填上这个参数-->
+            <ns:RatePlanCandidate AvailRatesOnlyInd="true"  IsCNYCurrency="true"  RatePlanCode="278550" >
+              <!--酒店索引列表-->
+              <ns:HotelRefs>
+                <!--酒店索引-->
+                <!-- HotelCode属性：酒店代码；string类型；必填 -->
+                <ns:HotelRef HotelCode="16100"/>
+              </ns:HotelRefs>
+            </ns:RatePlanCandidate>
+            </ns:RatePlanCandidates>
+            <!--附加参数，一般不需要可以不用此节点，可空--->
+            <!-- RestrictedDisplayIndicator属性：限制类型是否查询预付计划；bool类型，有些价格计划（子房型）仅用来对某些渠道开放预订。如果本限制节点为真，意味着这条价格计划（子房型）对普通终端用户不可用；可空-->
+            <ns:TPA_Extensions RestrictedDisplayIndicator="false" />
+          </ns:RatePlan>
+        </ns:RatePlans>
+      </ns:OTA_HotelRatePlanRQ>
+    </RequestBody>
+  </HotelRequest>
+</Request>
