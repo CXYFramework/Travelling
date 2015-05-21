@@ -12,6 +12,7 @@ using System.Data.SqlClient;
 using HotelXSDEntity;
 using Travelling.OpenApiLogic;
 using System.IO;
+using System.Xml;
 
 namespace Travelling.DBInitilizeLogic
 {
@@ -20,75 +21,115 @@ namespace Travelling.DBInitilizeLogic
         public static void ProcessHotel()
         {
             ////read data api
-            //OTAHotelServiceLogic hotelService = new OTAHotelServiceLogic();
+            OTAHotelServiceLogic hotelService = new OTAHotelServiceLogic();
             //string hotelXml = hotelService.GetHotelByAreaId(1);
 
+
             //File.AppendAllText("D:\\ttuut.xml", hotelXml);
-            
+
             //sample xml
-            string hotelXml = System.IO.File.ReadAllText("real.xml");
-
-            var root = XRoot.Parse(hotelXml);
-
-            hotelXml = null;
+            // string hotelXml = System.IO.File.ReadAllText("real.xml");
 
 
-            var hotels = root.Response.HotelResponse[0].OTA_HotelDescriptiveInfoRS.HotelDescriptiveContents[0].HotelDescriptiveContent;
 
-            foreach (var item in hotels)
+            IList<string> hotelCodeList = new List<string>();
+
+
+            XmlDocument doc = new XmlDocument();
+            doc.Load(@"D:\\ttuut.xml");
+
+            XmlNamespaceManager nsmgr = new XmlNamespaceManager(doc.NameTable);
+
+            nsmgr.AddNamespace("c", "http://www.opentravel.org/OTA/2003/05");
+
+            var nodes = doc.SelectNodes("c:Property", nsmgr);
+            var rsNode = doc.SelectSingleNode("Response/HotelResponse/c:OTA_HotelSearchRS/c:Properties", nsmgr);
+
+
+            foreach (XmlNode item in rsNode.ChildNodes)
             {
-                TransactionOptions transactionOption = new TransactionOptions();
-                transactionOption.Timeout = new TimeSpan(0, 0, 600000); //no time out 
-
-                using (TransactionScope tran = new TransactionScope(TransactionScopeOption.Required, transactionOption))
-                {
-                    var hotelinfo = item.HotelInfo[0];
-
-
-                    var hotelCode = item.HotelCode;
-                    var hotelId = InsertHotel(item);
-
-                    var SEG = hotelinfo.CategoryCodes;
-                    InsertSEG(hotelId, hotelCode, SEG);
-
-                    var Position = hotelinfo.Position;
-                    InsertPosition(hotelId, hotelCode, Position);
-
-                    var Address = hotelinfo.Address;
-                    InsertAddress(hotelId, hotelCode, Address);
-
-                    var Services = hotelinfo.Services;
-                    InsertServices(hotelId, Services);
-
-                    var facility = item.FacilityInfo[0];
-
-                    var GuestRooms = facility.GuestRooms;
-                    InsertGuestRoom(hotelId, GuestRooms);
-
-                    var policies = item.Policies;
-                    InsertPolicies(hotelId, policies);
-
-                    var areas = item.AreaInfo;
-                    InsertAreaInfo(hotelId, areas);
-
-                    var affiliation = item.AffiliationInfo;
-                    InsertAffiliation(hotelId, affiliation);
-
-                    var multimediadescriptions = item.MultimediaDescriptions;
-                    InsertMultimediaDescription(hotelId, multimediadescriptions);
-
-                 
-                   // InsertHotelTapExtension(hotelCode, item);
-
-                    DB_PriceInitilizeLogic.Process(hotelId, hotelCode, isInitilize: true);
-                    tran.Complete();
-                }
-
+                hotelCodeList.Add(item.Attributes["HotelCode"].Value);
             }
+
+            doc = null;
+
+            for (int i = 0; i < hotelCodeList.Count; i++)
+            {
+
+
+                var hotelXml = hotelService.GetHotelDetailsByID(hotelCodeList[i]);
+                var root = XRoot.Parse(hotelXml);
+
+                hotelXml = null;
+
+
+                var hotels = root.Response.HotelResponse[0].OTA_HotelDescriptiveInfoRS.HotelDescriptiveContents[0].HotelDescriptiveContent;
+
+                foreach (var item in hotels)
+                {
+                    TransactionOptions transactionOption = new TransactionOptions();
+                    transactionOption.Timeout = new TimeSpan(0, 0, 600000); //no time out 
+
+                    using (TransactionScope tran = new TransactionScope(TransactionScopeOption.Required, transactionOption))
+                    {
+
+                        var hotelCode = item.HotelCode;
+                        var hotelId = InsertHotel(item);
+                        
+                        var hotelinfo = item.HotelInfo[0];
+
+                        if (hotelinfo != null)
+                        {
+                            
+                           
+
+                            var SEG = hotelinfo.CategoryCodes;
+                            InsertSEG(hotelId, hotelCode, SEG);
+
+                            var Position = hotelinfo.Position;
+                            InsertPosition(hotelId, hotelCode, Position);
+
+                            var Address = hotelinfo.Address;
+                            InsertAddress(hotelId, hotelCode, Address);
+
+                            var Services = hotelinfo.Services;
+                            InsertServices(hotelId, Services);
+                        }
+                        var facility = item.FacilityInfo[0];
+                        if (facility != null)
+                        {
+                            var GuestRooms = facility.GuestRooms;
+                            InsertGuestRoom(hotelId, GuestRooms);
+                        }
+                        var policies = item.Policies;
+                        InsertPolicies(hotelId, policies);
+
+                        var areas = item.AreaInfo;
+                        InsertAreaInfo(hotelId, areas);
+
+                        var affiliation = item.AffiliationInfo;
+                        InsertAffiliation(hotelId, affiliation);
+
+                        var multimediadescriptions = item.MultimediaDescriptions;
+                        InsertMultimediaDescription(hotelId, multimediadescriptions);
+
+
+                        // InsertHotelTapExtension(hotelCode, item);
+
+                        DB_PriceInitilizeLogic.Process(hotelId, hotelCode, isInitilize: true);
+                        tran.Complete();
+
+                        Console.WriteLine(item.HotelName + "Finished");
+                    }
+
+                }
+               
+            }
+
             Console.WriteLine("Done");
             Console.Read();
-        }
 
+        }
         public  static string GetHotelIdByCode (int hotelCode)
         {
             using (var context = new TravelDBContext())

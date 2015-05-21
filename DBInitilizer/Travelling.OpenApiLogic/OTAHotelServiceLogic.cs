@@ -46,20 +46,20 @@ namespace Travelling.OpenApiLogic
 
         public string GetHotelDetailsByID(string hotelCode)
         {
-            //StringBuilder reqXml = new StringBuilder();
-            //reqXml.AppendFormat("<OTA_HotelDescriptiveInfoRQ Version=\"1.0\" xsi:schemaLocation=\"http://www.opentravel.org/OTA/2003/05 OTA_HotelDescriptiveInfoRQ.xsd\" xmlns=\"http://www.opentravel.org/OTA/2003/05\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">");
-            //reqXml.Append("<HotelDescriptiveInfos>");
-            //reqXml.AppendFormat("<HotelDescriptiveInfo HotelCode=\"{0}\" PositionTypeCode=\"502\">", hotelCode);
-            //reqXml.Append("</HotelDescriptiveInfo>");
-            //reqXml.Append("</HotelDescriptiveInfos>");
-            //reqXml.Append("</OTA_HotelDescriptiveInfoRQ>");
+            StringBuilder reqXml = new StringBuilder();
+            reqXml.AppendFormat("<OTA_HotelDescriptiveInfoRQ Version=\"1.0\" xsi:schemaLocation=\"http://www.opentravel.org/OTA/2003/05 OTA_HotelDescriptiveInfoRQ.xsd\" xmlns=\"http://www.opentravel.org/OTA/2003/05\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">");
+            reqXml.Append("<HotelDescriptiveInfos>");
+            reqXml.AppendFormat("<HotelDescriptiveInfo HotelCode=\"{0}\" PositionTypeCode=\"502\">", hotelCode);
+            reqXml.Append("</HotelDescriptiveInfo>");
+            reqXml.Append("</HotelDescriptiveInfos>");
+            reqXml.Append("</OTA_HotelDescriptiveInfoRQ>");
 
-            //string strRequestType = "OTA_ HotelDescriptiveInfo";
-            //string strInputXML = reqXml.ToString();
-         
-            //return CommonProcess(strRequestType, strInputXML);
+            string strRequestType = "OTA_HotelDescriptiveInfo";
+            string strInputXML = reqXml.ToString();
 
-            return System.IO.File.ReadAllText(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "real.xml"));
+            return CommonProcess(strRequestType, strInputXML);
+
+          //  return System.IO.File.ReadAllText(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "real.xml"));
 
         }
         public string GetHotelRatePlan(string hotelCode, DateTime startDate, DateTime endDate, string ratePlanCode = "")
