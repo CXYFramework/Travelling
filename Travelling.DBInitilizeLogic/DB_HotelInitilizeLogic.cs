@@ -10,6 +10,8 @@ using System.Transactions;
 using Travelling.Unitity;
 using System.Data.SqlClient;
 using HotelXSDEntity;
+using Travelling.OpenApiLogic;
+using System.IO;
 
 namespace Travelling.DBInitilizeLogic
 {
@@ -17,18 +19,18 @@ namespace Travelling.DBInitilizeLogic
     {
         public static void ProcessHotel()
         {
-            //read data api
+            ////read data api
             //OTAHotelServiceLogic hotelService = new OTAHotelServiceLogic();
             //string hotelXml = hotelService.GetHotelByAreaId(1);
 
-            //File.AppendAllText("D:\\ttt.xml", hotelXml);
-
+            //File.AppendAllText("D:\\ttuut.xml", hotelXml);
+            
             //sample xml
             string hotelXml = System.IO.File.ReadAllText("real.xml");
 
             var root = XRoot.Parse(hotelXml);
 
-
+            hotelXml = null;
 
 
             var hotels = root.Response.HotelResponse[0].OTA_HotelDescriptiveInfoRS.HotelDescriptiveContents[0].HotelDescriptiveContent;
@@ -78,7 +80,7 @@ namespace Travelling.DBInitilizeLogic
                  
                    // InsertHotelTapExtension(hotelCode, item);
 
-                    DB_PriceInitilizeLogic.ProcessPrice(hotelId);
+                    DB_PriceInitilizeLogic.Process(hotelId, hotelCode, isInitilize: true);
                     tran.Complete();
                 }
 
@@ -86,7 +88,30 @@ namespace Travelling.DBInitilizeLogic
             Console.WriteLine("Done");
             Console.Read();
         }
+
+        public  static string GetHotelIdByCode (int hotelCode)
+        {
+            using (var context = new TravelDBContext())
+            {
+
+                using (var tran = context.Database.BeginTransaction(System.Data.IsolationLevel.ReadUncommitted))
+                {
+
+                    var isHas = (from e in context.Hotels where e.HotelCode == hotelCode select e).ToList(); 
+                    tran.Commit();
+                    
+                    if (isHas.Count > 0)
+                        return isHas.First().Id;
+                    else
+                        return string.Empty;
+
+                   
+                }
+            }
+
+          
         
+        }
         private static string InsertHotel(OTA_HotelDescriptiveInfoRS.HotelDescriptiveContentsLocalType.HotelDescriptiveContentLocalType hotel)
         {
             string returnVal = string.Empty;

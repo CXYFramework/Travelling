@@ -62,22 +62,22 @@ namespace Travelling.OpenApiLogic
             return System.IO.File.ReadAllText(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "real.xml"));
 
         }
-        public string GetHotelRatePlan(string hotelCode, string ratePlanCode = "")
+        public string GetHotelRatePlan(string hotelCode, DateTime startDate, DateTime endDate, string ratePlanCode = "")
         {
-            StringBuilder reqXml = new StringBuilder("<ns:OTA_HotelRatePlanRQ TimeStamp=\"2013-06-01T00:00:00.000+08:00\" Version=\"1.0\">");
+            StringBuilder reqXml = new StringBuilder("<ns:OTA_HotelRatePlanRQ TimeStamp=\"2013-06-01T00:00:00.000+08:00\" Version=\"1.0\" >");
             reqXml.Append("<ns:RatePlans>");
 
             reqXml.Append("<ns:RatePlan>");
-            reqXml.AppendFormat("<ns:DateRange Start=\"{0}\" End=\"{1}\"/>", DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.AddDays(25).ToString("yyyy-MM-dd"));
+            reqXml.AppendFormat("<ns:DateRange Start=\"{0}\" End=\"{1}\"/>", startDate.ToString("yyyy-MM-dd"), endDate.ToString("yyyy-MM-dd"));
             reqXml.Append("<ns:RatePlanCandidates>");
 
             if (!string.IsNullOrWhiteSpace(ratePlanCode))
             {
-                reqXml.AppendFormat("<ns:RatePlanCandidate AvailRatesOnlyInd=\"{0}\" RatePlanCode=\"{1}\" >", "false", ratePlanCode);
+                reqXml.AppendFormat("<ns:RatePlanCandidate AvailRatesOnlyInd=\"{0}\" RatePlanCode=\"{1}\" >", "true", ratePlanCode);
             }
             else
             {
-                reqXml.AppendFormat("<ns:RatePlanCandidate AvailRatesOnlyInd=\"false\" />");
+                reqXml.AppendFormat("<ns:RatePlanCandidate AvailRatesOnlyInd=\"true\" >");
             }
             reqXml.Append("<ns:HotelRefs>");
             reqXml.AppendFormat("<ns:HotelRef HotelCode=\"{0}\"/>", hotelCode);
@@ -90,6 +90,7 @@ namespace Travelling.OpenApiLogic
             reqXml.Append("</ns:RatePlans>");
             reqXml.Append("</ns:OTA_HotelRatePlanRQ>");
             string strRquestType = "OTA_HotelRatePlan";
+            Console.WriteLine("Start read data from api....");
 
             return CommonProcess(strRquestType, reqXml.ToString());
         }
@@ -113,6 +114,7 @@ namespace Travelling.OpenApiLogic
             System.IO.File.AppendAllText("D:\\tttt.xml", responseXml);
 
             var changeItems = new List<HotelRateRlanCacheDTO>();
+
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.LoadXml(responseXml);
             XmlNamespaceManager nsmgr = new XmlNamespaceManager(xmlDoc.NameTable);
@@ -132,12 +134,15 @@ namespace Travelling.OpenApiLogic
                 if (item.Name.ToLower() == "CacheChangeInfo".ToLower())
                 {
 
-                    HotelRateRlanCacheDTO changeItem = null;
-
-                    changeItem = new HotelRateRlanCacheDTO();
+                    HotelRateRlanCacheDTO changeItem = new HotelRateRlanCacheDTO();
+                    changeItem.CityCode = cityCode;
                     changeItem.HotelCode = ((XmlElement)item).GetAttribute("HotelCode").Trim();
 
                     var otherInfoNode = (XmlElement)item.SelectSingleNode("c:OtherInfo", nsmgr);
+
+                    var timeRange = (XmlElement)item.SelectSingleNode("c:TimeSpan", nsmgr);
+                    changeItem.Start = Convert.ToDateTime(timeRange.GetAttribute("Start"));
+                    changeItem.End = Convert.ToDateTime(timeRange.GetAttribute("End"));
                     changeItem.RatePlanCode = otherInfoNode.GetAttribute("RatePlanCode");
                     changeItems.Add(changeItem);
 

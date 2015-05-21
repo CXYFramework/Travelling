@@ -7,8 +7,10 @@ namespace Travelling.OpenApiLogic.HotelDTO
 {
     public class HotelRateRlanCacheDTO
     {
-        public string AreaID { get; set; }
+        public string CityCode { get; set; }
         public string HotelCode { get; set; }
+        public DateTime Start { get; set; }
+        public DateTime End { get; set; }
         public string RatePlanCode { get; set; }
 
     }

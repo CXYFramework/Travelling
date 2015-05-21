@@ -74,11 +74,13 @@ public class WebSvcCaller
         request.Method = "POST";
         request.ContentType = "text/xml; charset=utf-8";
         request.Headers.Add("SOAPAction", "\"" + XmlNs + (XmlNs.EndsWith("/") ? "" : "/") + MethodName + "\"");
+     
         SetWebRequest(request);
         byte[] data = EncodeParsToSoap(Pars, XmlNs, MethodName);
         WriteRequestData(request, data);
         XmlDocument doc = new XmlDocument(), doc2 = new XmlDocument();
         request.Timeout = 120000;
+
         //request.ReadWriteTimeout = 120000;
         doc = ReadXmlResponse(request.GetResponse());
 
@@ -91,7 +93,8 @@ public class WebSvcCaller
     }
     private static string GetNamespace(String URL)
     {
-        HttpWebRequest request = (HttpWebRequest)WebRequest.Create(URL + "?WSDL");
+        HttpWebRequest request = (HttpWebRequest)WebRequest.Create(URL + "?WSDL");  
+        
         SetWebRequest(request);
 
         WebResponse response = request.GetResponse();

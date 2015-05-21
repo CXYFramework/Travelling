@@ -7,23 +7,71 @@ using System.Threading.Tasks;
 using Price.www.opentravel.org.OTA.Item2003.Item05;
 using Model;
 using DAL;
+using Travelling.OpenApiLogic;
 namespace Travelling.DBInitilizeLogic
 {
     public class DB_PriceInitilizeLogic
     {
-        public static void ProcessPrice(string hotelId)
+        public static void Process(string hotelId, string hotelCode,string ratePlanCode="", DateTime? startDate=null, DateTime? endDate=null, bool isInitilize = true)
         {
-            XRoot root = XRoot.Load(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "realprice.xml"));
+          
+            OTAHotelServiceLogic hotelService = new OTAHotelServiceLogic();
+            bool ifNeedUpdateRatePlan = true;
+
+            //全量获取数据
+            if (isInitilize)
+            {
+                startDate = DateTime.Now;
+                endDate = DateTime.Now.AddDays(28);
+
+                //获取90天数据，分四次获取
+                for (int i = 0; i < 4; i++)
+                {
+
+                    string xml = hotelService.GetHotelRatePlan(hotelCode, startDate.Value, endDate.Value);
+                    ProcessPrice(hotelId, hotelCode, xml, ifNeedUpdateRatePlan,isInitilize);
+
+                    ifNeedUpdateRatePlan = false;
+
+                    startDate = endDate.Value.AddDays(1);
+                    endDate = startDate.Value.AddDays(28);
+                }
+            }
+            else
+            {
+                ifNeedUpdateRatePlan = false;
+                //Update Rate plan Cache 
+                string xml = hotelService.GetHotelRatePlan(hotelCode, startDate.Value, endDate.Value, ratePlanCode);
+                ProcessPrice(hotelId, hotelCode, xml, ifNeedUpdateRatePlan,isInitilize);
+            }
+        }
+
+     
+
+        public static void ProcessPrice(string hotelId, string hotelCode, string xml, bool ifNeedUpdateRatePlan,bool isInitilize)
+        {
+
+
+            //XRoot root = XRoot.Load(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "realprice.xml"));
+            XRoot root = XRoot.Parse(xml);
 
             var RatePlans = root.Response.HotelResponse[0].OTA_HotelRatePlanRS.RatePlans;
-           
-
 
             foreach (var item in RatePlans)
             {
+                if (ifNeedUpdateRatePlan)
+                {
+                    using (var context = new TravelDBContext())
+                    {
+                        EfRepository<RatePlan> ratePlanContext = new EfRepository<RatePlan>(context);
 
-                var hotelCode = item.HotelCode;
-                ProcessHotePlan(hotelId, item.RatePlan);
+                        var rpCheck = (from r in ratePlanContext.Table where r.HoteID == hotelId select r).ToList();
+                        if (rpCheck.Count > 0)
+                            ratePlanContext.Delete(rpCheck);
+                    }
+                }
+                // var hotelCode = item.HotelCode;
+                ProcessRatePlan(hotelId, item.RatePlan, ifNeedUpdateRatePlan, isInitilize);
             }
 
 
@@ -31,39 +79,44 @@ namespace Travelling.DBInitilizeLogic
             //Console.Read();
         }
 
-        private static void ProcessHotePlan(string hoteId, IList<OTA_HotelRatePlanRS.RatePlansLocalType.RatePlanLocalType> ratePlans)
+        private static void ProcessRatePlan(string hoteId, IList<OTA_HotelRatePlanRS.RatePlansLocalType.RatePlanLocalType> ratePlans, bool ifNeedUpdateRatePlan, bool isInitilize)
         {
             if (Check(ratePlans))
             {
+
                 foreach (var item in ratePlans)
                 {
                     int RatePlanId = -1;
-                    using (var context = new TravelDBContext ())
+                    using (var context = new TravelDBContext())
                     {
                         int ratePlanCode = Convert.ToInt32(item.RatePlanCode);
+
                         EfRepository<RatePlan> ratePlanContext = new EfRepository<RatePlan>(context);
 
-                        var rpCheck = (from r in ratePlanContext.Table where r.HoteID == hoteId && r.RatePlanCode == ratePlanCode select r).ToList();
+                        var rpCheck = (from r in ratePlanContext.Table where r.HoteID == hoteId && r.RatePlanCode==ratePlanCode select r).ToList();
                         if (rpCheck.Count > 0)
-                            ratePlanContext.Delete(rpCheck);
+                        {
+                            RatePlanId = rpCheck.First().Id;
+                        }
+                        else
+                        {
+                            RatePlan rp = new RatePlan();
+                            rp.RatePlanCategory = item.RatePlanCategory;
+                            rp.IsCommissionable = Convert.ToBoolean(item.IsCommissionable);
+                            rp.LastModifyTime = DateTime.Now;
+                            rp.MarketCode = item.MarketCode;
+                            rp.RatePlanCode = ratePlanCode;
+                            rp.RateReturn = Convert.ToBoolean(item.RateReturn);
+                            rp.HoteID = hoteId;
 
 
-                        RatePlan rp = new RatePlan();
-                        rp.RatePlanCategory = item.RatePlanCategory;
-                        rp.IsCommissionable = Convert.ToBoolean(item.IsCommissionable);
-                        rp.LastModifyTime = DateTime.Now;
-                        rp.MarketCode = item.MarketCode;
-                        rp.RatePlanCode = ratePlanCode;
-                        rp.RateReturn = Convert.ToBoolean(item.RateReturn);
-                        rp.HoteID = hoteId;
-
-
-                        ratePlanContext.Insert(rp);
-                        RatePlanId = rp.Id;
+                            ratePlanContext.Insert(rp);
+                            RatePlanId = rp.Id;
+                        }
 
                     }
 
-                    InsertRate(RatePlanId, item.Rates);
+                    InsertRate(RatePlanId, item.Rates, !isInitilize);
                     InsertOffers(RatePlanId, item.Offers);
                     InsertBookingRules(Convert.ToInt32(RatePlanId), item.BookingRules);
                 }
@@ -239,8 +292,10 @@ namespace Travelling.DBInitilizeLogic
                 }
             }
         }
+        
 
-        private static void InsertRate(int ratePlanId, IList<OTA_HotelRatePlanRS.RatePlansLocalType.RatePlanLocalType.RatesLocalType> rates)
+        //增量获取不删除rateplan，直接更新此处
+        public static void InsertRate(int ratePlanId, IList<OTA_HotelRatePlanRS.RatePlansLocalType.RatePlanLocalType.RatesLocalType> rates,bool ifNeedCheck = false)
         {
             if (Check(rates))
             {
@@ -251,11 +306,23 @@ namespace Travelling.DBInitilizeLogic
                         int RateInserted = -1;
                         EfRepository<Rate> rateContext = new EfRepository<Rate>(context);
                         EfRepository<BaseByGuestAmt> baseByGuestContext = new EfRepository<BaseByGuestAmt>(context);
+                        DateTime startDate = Convert.ToDateTime(item.Start);
+                        DateTime endDate = Convert.ToDateTime(item.End);
+
+                        if (ifNeedCheck)
+                        {
+                            var checkDataExists = (from r in rateContext.Table where r.RatePlanId == ratePlanId && r.Start.Value >= startDate && r.End.Value <= endDate select r).ToList();
+
+                            if (checkDataExists.Count > 0)
+                            {
+                                rateContext.Delete(checkDataExists);
+                            }
+                        }
 
                         Rate rate = new Rate();
                         rate.RatePlanId = ratePlanId;
-                        rate.Start = Convert.ToDateTime(item.Start);
-                        rate.End = Convert.ToDateTime(item.End);
+                        rate.Start =startDate;
+                        rate.End =endDate;
                         rate.IsInstantConfirm = Convert.ToBoolean(item.IsInstantConfirm);
                         rate.Status = item.Status;
                         rate.NumberOfUnits = Convert.ToInt32(item.NumberOfUnits);
