@@ -59,6 +59,8 @@ namespace ForeignKeyBuilder
                         {
                             try
                             {
+                                if (tableName == "Room")
+                                    tableName = "GuestRoom";
                                 string foreigkeyName = "FK_" + tableName + "To_" + parentTableName;
                                 string indexName = "IX_" + tableName + "_" + columnName;
                                 if (IsAdd == 1)
