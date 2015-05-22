@@ -186,9 +186,9 @@ namespace Travelling.OpenApiLogic
                     {
                         if (CheckCounts[requestType].Count > 28)
                         {
-                            logger.Info("Current Count :" + CheckCounts[requestType].Count + " Waiting ............");
+                            logger.Info("Current "+requestType+", Count :" + CheckCounts[requestType].Count + " Waiting ............");
                             Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("Current Count :" + CheckCounts[requestType].Count + " Waiting ............");
+                            Console.WriteLine("Current " + requestType + ", Count :" + CheckCounts[requestType].Count + " Waiting ............");
                             Console.ResetColor();
                             return false;
                         }
