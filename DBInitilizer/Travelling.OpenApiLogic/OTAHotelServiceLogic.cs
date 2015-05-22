@@ -167,39 +167,77 @@ namespace Travelling.OpenApiLogic
             return changeItems;
 
         }
-
+        public class CheckDTO
+        {
+            public DateTime dtLast;
+            public int Count;
+        }
         static DateTime dtLast;
         static int Count = 1;
         public static object o = new object();
-        public static bool CheckCount()
+        public static IDictionary<string, CheckDTO> CheckCounts = new Dictionary<string, CheckDTO>();
+        public static bool CheckCount(string requestType)
         {
             lock (o)
             {
-                if (DateTime.Now.AddMinutes(-1) < dtLast)
+                if (CheckCounts.ContainsKey(requestType))
                 {
-                    if (Count > 28)
+                    if (DateTime.Now.AddMinutes(-1) < CheckCounts[requestType].dtLast)
                     {
-                        logger.Info("Current Count :" + Count + " Waiting ............");
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Current Count :" + Count + " Waiting ............");
-                        Console.ResetColor();
-                        return false;
+                        if (CheckCounts[requestType].Count > 28)
+                        {
+                            logger.Info("Current Count :" + CheckCounts[requestType].Count + " Waiting ............");
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("Current Count :" + CheckCounts[requestType].Count + " Waiting ............");
+                            Console.ResetColor();
+                            return false;
+                        }
+
+
+                    }
+                    else
+                    {
+                        CheckCounts[requestType].dtLast = DateTime.Now;
+                        CheckCounts[requestType].Count = 1;
                     }
 
 
                 }
                 else
                 {
-                    dtLast = DateTime.Now;
-                    Count = 1;
+                    CheckCounts.Add(requestType, new CheckDTO() { dtLast = DateTime.Now, Count = 0 });
                 }
-                Count++;
+
+                CheckCounts[requestType].Count++;
                 return true;
+
+
+
+                //if (DateTime.Now.AddMinutes(-1) < dtLast)
+                //{
+                //    if (Count > 28)
+                //    {
+                //        logger.Info("Current Count :" + Count + " Waiting ............");
+                //        Console.ForegroundColor = ConsoleColor.Red;
+                //        Console.WriteLine("Current Count :" + Count + " Waiting ............");
+                //        Console.ResetColor();
+                //        return false;
+                //    }
+
+
+                //}
+                //else
+                //{
+                //    dtLast = DateTime.Now;
+                //    Count = 1;
+                //}
+                //Count++;
+                //return true;
             }
         }
         private string CommonProcess(string strRequestType, string strInputXML)
         {
-            while (!CheckCount())
+            while (!CheckCount(strRequestType))
             {
                 System.Threading.Thread.Sleep(1000);
             }
