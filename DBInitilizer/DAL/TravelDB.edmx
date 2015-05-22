@@ -326,6 +326,7 @@
           <Property Name="HACID" Type="int" />
           <Property Name="HATID" Type="int" />
           <Property Name="HotelID" Type="varchar" MaxLength="100" />
+          <Property Name="DescriptionText" Type="nvarchar" MaxLength="500" />
           <Property Name="LastModifyTine" Type="datetime" />
         </EntityType>
         <EntityType Name="HAT">
@@ -1158,6 +1159,7 @@
           <NavigationProperty Name="HAC" Relationship="Self.FK_HACHATMappingTo_HAC" FromRole="HACHATMapping" ToRole="HAC" />
           <NavigationProperty Name="HAT" Relationship="Self.FK_HACHATMappingTo_HAT" FromRole="HACHATMapping" ToRole="HAT" />
           <NavigationProperty Name="Hotel" Relationship="Self.FK_HACHATMappingTo_Hotel" FromRole="HACHATMapping" ToRole="Hotel" />
+          <Property Name="DescriptionText" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="HAT">
           <Key>
@@ -2582,6 +2584,7 @@
           <EntitySetMapping Name="HACHATMappings">
             <EntityTypeMapping TypeName="TravelDBModel.HACHATMapping">
               <MappingFragment StoreEntitySet="HACHATMapping">
+                <ScalarProperty Name="DescriptionText" ColumnName="DescriptionText" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="HACID" ColumnName="HACID" />
                 <ScalarProperty Name="HATID" ColumnName="HATID" />

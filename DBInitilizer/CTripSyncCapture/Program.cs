@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Common.Logging;
 using System.IO;
 using Travelling.DBInitilizeLogic;
+using Common.Logging;
+
 namespace CTripSyncCapture
 {
     //    class Program
@@ -809,8 +811,10 @@ namespace CTripSyncCapture
 
     public class Program
     {
+        static ILog logger = LogManager.Adapter.GetLogger(typeof(Program));
         static void Main(string[] args)
         {
+            logger.Info("Program Started");
             DB_HotelInitilizeLogic.ProcessHotel();
         }
     }

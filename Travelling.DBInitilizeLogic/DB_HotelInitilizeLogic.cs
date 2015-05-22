@@ -13,11 +13,13 @@ using HotelXSDEntity;
 using Travelling.OpenApiLogic;
 using System.IO;
 using System.Xml;
-
+using Common.Logging;
 namespace Travelling.DBInitilizeLogic
 {
     public class DB_HotelInitilizeLogic
     {
+      static  ILog logger = LogManager.Adapter.GetLogger(typeof(DB_HotelInitilizeLogic));
+
         public static void ProcessHotel()
         {
             ////read data api
@@ -56,8 +58,10 @@ namespace Travelling.DBInitilizeLogic
             for (int i = 0; i < hotelCodeList.Count; i++)
             {
 
-
+                logger.Info("Start to Read Data From API ,HotelCode :" + hotelCodeList[i]);
                 var hotelXml = hotelService.GetHotelDetailsByID(hotelCodeList[i]);
+                logger.Info(" Read Data From API ,HotelCode :" + hotelCodeList[i] + ", Finished");
+                //var hotelXml = hotelService.GetHotelDetailsByID("625");
                 var root = XRoot.Parse(hotelXml);
 
                 hotelXml = null;
@@ -72,7 +76,7 @@ namespace Travelling.DBInitilizeLogic
 
                     using (TransactionScope tran = new TransactionScope(TransactionScopeOption.Required, transactionOption))
                     {
-
+                        LoggerHelper(item.HotelCode, "Start to Process");
                         var hotelCode = item.HotelCode;
                         var hotelId = InsertHotel(item);
                         
@@ -80,9 +84,6 @@ namespace Travelling.DBInitilizeLogic
 
                         if (hotelinfo != null)
                         {
-                            
-                           
-
                             var SEG = hotelinfo.CategoryCodes;
                             InsertSEG(hotelId, hotelCode, SEG);
 
@@ -93,25 +94,27 @@ namespace Travelling.DBInitilizeLogic
                             InsertAddress(hotelId, hotelCode, Address);
 
                             var Services = hotelinfo.Services;
-                            InsertServices(hotelId, Services);
+                            InsertServices(hotelId,hotelCode, Services);
                         }
+
                         var facility = item.FacilityInfo[0];
                         if (facility != null)
                         {
                             var GuestRooms = facility.GuestRooms;
-                            InsertGuestRoom(hotelId, GuestRooms);
+                            InsertGuestRoom(hotelId,hotelCode, GuestRooms);
                         }
+
                         var policies = item.Policies;
-                        InsertPolicies(hotelId, policies);
+                        InsertPolicies(hotelId,hotelCode, policies);
 
                         var areas = item.AreaInfo;
-                        InsertAreaInfo(hotelId, areas);
+                        InsertAreaInfo(hotelId, hotelCode,areas);
 
                         var affiliation = item.AffiliationInfo;
-                        InsertAffiliation(hotelId, affiliation);
+                        InsertAffiliation(hotelId,hotelCode, affiliation);
 
                         var multimediadescriptions = item.MultimediaDescriptions;
-                        InsertMultimediaDescription(hotelId, multimediadescriptions);
+                        InsertMultimediaDescription(hotelId,hotelCode, multimediadescriptions);
 
 
                         // InsertHotelTapExtension(hotelCode, item);
@@ -119,15 +122,15 @@ namespace Travelling.DBInitilizeLogic
                         DB_PriceInitilizeLogic.Process(hotelId, hotelCode, isInitilize: true);
                         tran.Complete();
 
-                        Console.WriteLine(item.HotelName + "Finished");
+                        LoggerHelper(hotelCode, item.HotelName + "Finished");
                     }
 
                 }
                
             }
 
-            Console.WriteLine("Done");
-            Console.Read();
+            LoggerHelper(null, "ALL Hotel Competed");
+           // Console.Read();
 
         }
         public  static string GetHotelIdByCode (int hotelCode)
@@ -182,8 +185,15 @@ namespace Travelling.DBInitilizeLogic
                 var hoteinfo = hotel.HotelInfo;
                 if (Check(hoteinfo))
                 {
-                    h.LastUpdated = Convert.ToDateTime(hoteinfo[0].LastUpdated);
-                    h.WhenBuilt = Convert.ToDateTime(hoteinfo[0].WhenBuilt);
+                    if (hoteinfo[0].LastUpdated != null)
+                        h.LastUpdated = Convert.ToDateTime(hoteinfo[0].LastUpdated);
+                    else
+                        h.LastUpdated = null;
+
+                    if (hoteinfo[0].WhenBuilt != null)
+                        h.WhenBuilt = Convert.ToDateTime(hoteinfo[0].WhenBuilt);
+                    else
+                        h.WhenBuilt = null;
                 }
 
                 if (isHas.Count == 0)
@@ -192,6 +202,7 @@ namespace Travelling.DBInitilizeLogic
                 }
 
                  context.SaveChanges();
+                 LoggerHelper(hotelCode.ToString(), "HotelName : " + h.HotelName + ",Updated/Inserted");
 
                  return returnVal;
             }
@@ -216,24 +227,31 @@ namespace Travelling.DBInitilizeLogic
                         CategoryCodeHotelMapping s = new CategoryCodeHotelMapping();
                         int segID = Convert.ToInt32(item.SegmentCategory[0].Code);
 
-
+                        
 
                         s.HotelId = hotelId;
                         s.SEGID = segID;
                         s.LastMofifyTime = DateTime.Now;
                         segs.Add(s);
+
+                        LoggerHelper(hotelCode, "Seg ID:" + segID + " Inserted");
                         
                     }
 
                     EfContext.Insert(segs);
-                    Console.WriteLine("EDG Inserted");
 
+                    LoggerHelper(hotelCode, "Seg Inserte Finished");
                    
                 }
             }
         }
 
-        private static void InsertPosition(string hotelId, string hoteCode, IList<OTA_HotelDescriptiveInfoRS.HotelDescriptiveContentsLocalType.HotelDescriptiveContentLocalType.HotelInfoLocalType.PositionLocalType> Position)
+        private static void LoggerHelper(string hotelCode, string message)
+        {
+            Console.WriteLine("Hotel Code :" + hotelCode + "Message :" + message);
+            logger.Info("Hotel Code :" + hotelCode + "Message :" + message);
+        }
+        private static void InsertPosition(string hotelId, string hotelCode, IList<OTA_HotelDescriptiveInfoRS.HotelDescriptiveContentsLocalType.HotelDescriptiveContentLocalType.HotelInfoLocalType.PositionLocalType> Position)
         {
             if (Position != null)
             {
@@ -255,18 +273,18 @@ namespace Travelling.DBInitilizeLogic
                         p.Longitude = Convert.ToDecimal(item.Longitude);
                         p.PositionTypeCode = Convert.ToInt32(item.PositionTypeCode);
                         p.LastMofifyTime = DateTime.Now;
-
+                        LoggerHelper(hotelCode, "Position " + p.Latitude + "," + p.Longitude + "," + "Inserted");
                         ps.Add(p);
                        
                     }
 
                     EfContext.Insert(ps);
-                    Console.WriteLine("Position Updated");
+                    LoggerHelper(hotelCode, "Position Inserted Finished");
                 }
             }
         }
 
-        private static void InsertAddress(string hotelId,string hoteCode, IList<OTA_HotelDescriptiveInfoRS.HotelDescriptiveContentsLocalType.HotelDescriptiveContentLocalType.HotelInfoLocalType.AddressLocalType> Address)
+        private static void InsertAddress(string hotelId,string hotelCode, IList<OTA_HotelDescriptiveInfoRS.HotelDescriptiveContentsLocalType.HotelDescriptiveContentLocalType.HotelInfoLocalType.AddressLocalType> Address)
         {
             if (Address != null)
             {
@@ -293,16 +311,20 @@ namespace Travelling.DBInitilizeLogic
                                     if (addressExtension.Count > 0)
                                     {
                                         addressExtensionContext.Delete(addressExtension);
-                                        
+                                        LoggerHelper(hotelCode, "Hotel AddressExtensions Deleted");
                                     }
 
                                     var zoonhoteMapping = zonehoteMappingContext.Table.Where(z => z.HotelID == hotelId).ToList();
                                     if (zoonhoteMapping.Count > 0)
+                                    {
                                         zonehoteMappingContext.Delete(zoonhoteMapping);
+                                        LoggerHelper(hotelCode, "Hotel Zoon Deleted");
+                                    }
                                 }
                               
 
                                 addressContext.Delete(addressList);
+                                LoggerHelper(hotelCode, "Hotel Address Deleted");
                             }
 
 
@@ -323,10 +345,12 @@ namespace Travelling.DBInitilizeLogic
 
                                 addressContext.Insert(address);
 
+                                LoggerHelper(hotelCode, addressLine);
+
                                 int addressPK = address.Id;
 
 
-                                Console.WriteLine("insert Address " + addressLine);
+                              
 
                                 var zone = item.Zone;
                                 if (zone != null)
@@ -342,6 +366,8 @@ namespace Travelling.DBInitilizeLogic
                                             zm.Name = z.ZoneName;
                                             zm.LastMofifyTime = DateTime.Now;
                                             zoonContext.Insert(zm);
+
+                                            LoggerHelper(hotelCode, "zoon:" + z.ZoneName +"deleted");
                                         }
 
                                         ZoneHotelMapping zhm = new ZoneHotelMapping();
@@ -351,7 +377,7 @@ namespace Travelling.DBInitilizeLogic
 
                                         zonehoteMappingContext.Insert(zhm);
 
-                                        Console.WriteLine("insert zone " + z.ZoneCode + "," + z.ZoneName);
+                                        LoggerHelper(hotelCode, "zoon:" + z.ZoneName);
                                     }
                                 }
 
@@ -366,8 +392,9 @@ namespace Travelling.DBInitilizeLogic
                                         ae.AddressID = addressPK;
                                         ae.Description = e.RoadCross[0].DescriptionText;
                                         ae.LastModifyTime = DateTime.Now;
-
+                                      
                                         addressExtensionContext.Insert(ae);
+                                        LoggerHelper(hotelCode, "addressExtension:" + ae.Description + "Inserted");
                                     }
                                 }
 
@@ -383,7 +410,7 @@ namespace Travelling.DBInitilizeLogic
      
       
 
-        private static void InsertServices(string hotelId, IList<OTA_HotelDescriptiveInfoRS.HotelDescriptiveContentsLocalType.HotelDescriptiveContentLocalType.HotelInfoLocalType.ServicesLocalType> Services)
+        private static void InsertServices(string hotelId, string hotelCode, IList<OTA_HotelDescriptiveInfoRS.HotelDescriptiveContentsLocalType.HotelDescriptiveContentLocalType.HotelInfoLocalType.ServicesLocalType> Services)
         {
             if (Check(Services))
             {
@@ -401,13 +428,22 @@ namespace Travelling.DBInitilizeLogic
                         if (hachatlist.Count > 0)
                         {
                             hachatContext.Delete(hachatlist);
+                            LoggerHelper(hotelCode, "Service Deleted");
                         }
 
 
                         foreach (var item in Services[0].Service)
                         {
+                            if (string.IsNullOrEmpty(item.Code)) //may be empty
+                                item.Code = "-1";
+
+                            if (string.IsNullOrEmpty(item.ID)) //may be empty
+                            {
+                                item.ID = "-1"; 
+                            }
+
                             int HACID = Convert.ToInt32(item.Code);
-                            int HATID = Convert.ToInt32(item.ID);
+                            
                             string descriptiveText = item.DescriptiveText;
 
 
@@ -424,7 +460,7 @@ namespace Travelling.DBInitilizeLogic
                                 hacContext.Insert(hac);
                             }
 
-
+                            int HATID = Convert.ToInt32(item.ID);
 
                             var hatList = (from h in hatContext.Table where h.Id == HATID select h).ToList();
 
@@ -446,11 +482,14 @@ namespace Travelling.DBInitilizeLogic
                             hachatmapping.HATID = Convert.ToInt32(HATID);
                             hachatmapping.HotelID = hotelId;
                             hachatmapping.LastModifyTine = DateTime.Now;
+                            hachatmapping.DescriptionText = descriptiveText; //use this value to  display
+
+                            LoggerHelper(hotelCode, "Service,HacID/HATID" + HACID + "/" + HATID + "Inserted");
                             hachatContext.Insert(hachatmapping);
 
-                            //logger.Info("HotelID" + hotelId + " Service Inserted");
+                       
 
-                            Console.WriteLine("Insert into Service" + HACID + "," + HATID);
+                          
                         }
 
                         //tran.Complete();
@@ -459,7 +498,7 @@ namespace Travelling.DBInitilizeLogic
             }
         }
 
-        private static void InsertGuestRoom(string hotelId, IList<OTA_HotelDescriptiveInfoRS.HotelDescriptiveContentsLocalType.HotelDescriptiveContentLocalType.FacilityInfoLocalType.GuestRoomsLocalType> GuestRooms)
+        private static void InsertGuestRoom(string hotelId,string hotelCode, IList<OTA_HotelDescriptiveInfoRS.HotelDescriptiveContentsLocalType.HotelDescriptiveContentLocalType.FacilityInfoLocalType.GuestRoomsLocalType> GuestRooms)
         {
             if (GuestRooms != null && GuestRooms.Count > 0)
             {
@@ -485,14 +524,19 @@ namespace Travelling.DBInitilizeLogic
                             {
                                 var roomExtensions = (from e in roomExtensionsContext.Table where e.RoomID == item.Id select e).ToList();
                                 if (roomExtensions.Count > 0)
+                                {
                                     roomExtensionsContext.Delete(roomExtensions);
-
+                                    LoggerHelper(hotelCode, "roomExtension  " + item.Name + " deleted");
+                                }
                                 var rmaRoomMapping =(from r in rmaRoomMappingContext.Table where r.RoomID==item.Id select r).ToList();
-                                if(rmaRoomMapping.Count>0)
+                                if (rmaRoomMapping.Count > 0)
+                                {
                                     rmaRoomMappingContext.Delete(rmaRoomMapping);
+                                    LoggerHelper(hotelCode, "roomMapping  " + item.Name + "  deleted");
+                                }
 
                                 guestRoomContext.Delete(item);
-                                Console.WriteLine(item.Name + "deleted");
+                                LoggerHelper(hotelCode, "GuestRoom " + item.Name + "  deleted");
 
                             }
                         }
@@ -542,8 +586,8 @@ namespace Travelling.DBInitilizeLogic
                                 guestRoomContext.Insert(gr);
 
                                 Inserted = gr.Id;
-
-                                Console.WriteLine("Guest Room" + Name);
+                                LoggerHelper(hotelCode, "GuestRoom " + Name + "  Inserted");
+                            
                             }
 
                             var Amenities = item.Amenities;
@@ -571,8 +615,8 @@ namespace Travelling.DBInitilizeLogic
                                     rmaRoomMapping.LastMofifyTime = DateTime.Now;
 
                                     rmaRoomMappingContext.Insert(rmaRoomMapping);
-
-                                    Console.WriteLine("Guest Amentity" + RoomAmenityCode + "," + DescriptiveText);
+                                    LoggerHelper(hotelCode, "Guest Amentity " + RoomAmenityCode + "," + DescriptiveText + "  Inserted");
+                          
                                 }
                             }
 
@@ -593,8 +637,8 @@ namespace Travelling.DBInitilizeLogic
                                     re.RoomID = Inserted;
 
                                     roomExtensionsContext.Insert(re);
-
-                                    Console.WriteLine("Room Extensions Inserted" + FacilityName);
+                                    LoggerHelper(hotelCode, "Room Extensions Inserted " + FacilityName + "  Inserted");
+                                   
                                 }
                             }
                         }
@@ -615,16 +659,16 @@ namespace Travelling.DBInitilizeLogic
             return false;
         }
 
-        private static void InsertPolicies(string hotelId, IList<OTA_HotelDescriptiveInfoRS.HotelDescriptiveContentsLocalType.HotelDescriptiveContentLocalType.PoliciesLocalType> policies)
+        private static void InsertPolicies(string hotelId,string HotelCode, IList<OTA_HotelDescriptiveInfoRS.HotelDescriptiveContentsLocalType.HotelDescriptiveContentLocalType.PoliciesLocalType> policies)
         {
             if (Check(policies))
             {
                 var policy = policies[0].Policy;
-                InsertPolicy(hotelId, policy);
+                InsertPolicy(hotelId, HotelCode, policy);
             }
         }
 
-        private static void InsertPolicy(string hotelId, IList<OTA_HotelDescriptiveInfoRS.HotelDescriptiveContentsLocalType.HotelDescriptiveContentLocalType.PoliciesLocalType.PolicyLocalType> policy)
+        private static void InsertPolicy(string hotelId, string hotelCode, IList<OTA_HotelDescriptiveInfoRS.HotelDescriptiveContentsLocalType.HotelDescriptiveContentLocalType.PoliciesLocalType.PolicyLocalType> policy)
         {
             if (Check(policy))
             {
@@ -635,11 +679,17 @@ namespace Travelling.DBInitilizeLogic
 
                     var policyCheck = (from p in policyContext.Table where p.HotelID == hotelId select p).ToList();
                     if (policyCheck.Count > 0)
+                    {
+                        LoggerHelper(hotelCode, "Policy Deleted");
                         policyContext.Delete(policyCheck);
+                    }
 
                     var policyinfoCheck = (from p in policyinfoContext.Table where p.HotelId == hotelId select p).ToList();
                     if (policyinfoCheck.Count > 0)
+                    {
+                        LoggerHelper(hotelCode, "policyinfo Deleted");
                         policyinfoContext.Delete(policyinfoCheck);
+                    }
 
 
 
@@ -663,23 +713,25 @@ namespace Travelling.DBInitilizeLogic
                     }
 
                     var policyinfo = policy[0].PolicyInfo;
-                    var CheckinTime = policyinfo[0].CheckInTime;
-                    var checkOutTime = policyinfo[0].CheckOutTime;
+                    if (policyinfo != null)
+                    {
+                        var CheckinTime = policyinfo[0].CheckInTime;
+                        var checkOutTime = policyinfo[0].CheckOutTime;
 
-                    PolicyInfo pi = new PolicyInfo();
-                    pi.HotelId = hotelId;
-                    pi.CheckIn = CheckinTime;
-                    pi.CheckOut = checkOutTime;
-                    pi.LastModifyTime = DateTime.Now;
+                        PolicyInfo pi = new PolicyInfo();
+                        pi.HotelId = hotelId;
+                        pi.CheckIn = CheckinTime;
+                        pi.CheckOut = checkOutTime;
+                        pi.LastModifyTime = DateTime.Now;
 
-                    policyinfoContext.Insert(pi);
-
+                        policyinfoContext.Insert(pi);
+                    }
 
                 }
             }
         }
 
-        private static void InsertAreaInfo(string hotelId, IList<OTA_HotelDescriptiveInfoRS.HotelDescriptiveContentsLocalType.HotelDescriptiveContentLocalType.AreaInfoLocalType> areas)
+        private static void InsertAreaInfo(string hotelId, string hotelCode,IList<OTA_HotelDescriptiveInfoRS.HotelDescriptiveContentsLocalType.HotelDescriptiveContentLocalType.AreaInfoLocalType> areas)
         {
             if (Check(areas))
             {
@@ -725,14 +777,14 @@ namespace Travelling.DBInitilizeLogic
 
                         refPointContext.Insert(rp);
 
-
-                        Console.WriteLine(Name + "," + DescriptiveText);
+                        LoggerHelper(hotelCode, "RefPoing Name: " + Name + " Inserted");
+                        Console.WriteLine();
                     }
                 }
             }
         }
 
-        private static void InsertAffiliation(string hotelId, IList<OTA_HotelDescriptiveInfoRS.HotelDescriptiveContentsLocalType.HotelDescriptiveContentLocalType.AffiliationInfoLocalType> affiliation)
+        private static void InsertAffiliation(string hotelId, string hotelCode,IList<OTA_HotelDescriptiveInfoRS.HotelDescriptiveContentsLocalType.HotelDescriptiveContentLocalType.AffiliationInfoLocalType> affiliation)
         {
             if (Check(affiliation))
             {
@@ -768,10 +820,11 @@ namespace Travelling.DBInitilizeLogic
                         ham.HotelID = hotelId;
                         ham.LastMofifyTime = DateTime.Now;
                         ham.Rating = Convert.ToDecimal(item.Rating);
-
+                      
                         awardMapping.Insert(ham);
 
-                        Console.WriteLine(item.Provider + "," + item.Rating);
+                        LoggerHelper(hotelCode, "Award Name: " + item.Provider + "," + item.Rating + " Inserted");
+                      
 
 
                     }
@@ -779,7 +832,7 @@ namespace Travelling.DBInitilizeLogic
             }
         }
 
-        private static void InsertMultimediaDescription(string hotelId, IList<OTA_HotelDescriptiveInfoRS.HotelDescriptiveContentsLocalType.HotelDescriptiveContentLocalType.MultimediaDescriptionsLocalType> multimediadescriptions)
+        private static void InsertMultimediaDescription(string hotelId,string hotelCode, IList<OTA_HotelDescriptiveInfoRS.HotelDescriptiveContentsLocalType.HotelDescriptiveContentLocalType.MultimediaDescriptionsLocalType> multimediadescriptions)
         {
             if (Check(multimediadescriptions))
             {
@@ -820,7 +873,8 @@ namespace Travelling.DBInitilizeLogic
 
                                 imageItemContext.Insert(imageItem);
 
-                                Console.WriteLine(url + "," + caption);
+                                LoggerHelper(hotelCode, "Image:" + url + "," + caption + " Inserted");
+                     
                             }
                         }
                     }
@@ -846,7 +900,7 @@ namespace Travelling.DBInitilizeLogic
                                 ti.Category = Convert.ToInt32(category);
                                 ti.DescriptionText = Description != null ? Description : text.URL;
                                 ti.LastModityTime = DateTime.Now;
-                               
+                                LoggerHelper(hotelCode, "TextItem:" + category + "," + Description + " Inserted");
                                 textItemContext.Insert(ti);
 
                                 Console.WriteLine(category + "," + Description);
@@ -871,7 +925,7 @@ namespace Travelling.DBInitilizeLogic
 
                     var Roomquantity = item.Roomquantity;
 
-                    Console.WriteLine(Roomquantity + "," + MessageContent);
+                    LoggerHelper(hotelCode, Roomquantity + "," + MessageContent);
 
                 }
             }

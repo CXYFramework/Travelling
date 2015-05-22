@@ -19,6 +19,7 @@ namespace Model
         public Nullable<int> HATID { get; set; }
         public string HotelID { get; set; }
         public Nullable<System.DateTime> LastModifyTine { get; set; }
+        public string DescriptionText { get; set; }
     
         public virtual HAC HAC { get; set; }
         public virtual HAT HAT { get; set; }

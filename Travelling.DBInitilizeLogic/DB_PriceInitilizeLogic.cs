@@ -8,10 +8,12 @@ using Price.www.opentravel.org.OTA.Item2003.Item05;
 using Model;
 using DAL;
 using Travelling.OpenApiLogic;
+using Common.Logging;
 namespace Travelling.DBInitilizeLogic
 {
     public class DB_PriceInitilizeLogic
     {
+        static ILog logger = LogManager.Adapter.GetLogger(typeof(DB_HotelInitilizeLogic));
         public static void Process(string hotelId, string hotelCode,string ratePlanCode="", DateTime? startDate=null, DateTime? endDate=null, bool isInitilize = true)
         {
           
@@ -46,7 +48,11 @@ namespace Travelling.DBInitilizeLogic
             }
         }
 
-     
+        private static void LoggerHelper(object ratePlan, string message)
+        {
+            Console.WriteLine("RatePlan Code :" + ratePlan + "Message :" + message);
+            logger.Info("RatePlan Code :" + ratePlan + "Message :" + message);
+        }
 
         public static void ProcessPrice(string hotelId, string hotelCode, string xml, bool ifNeedUpdateRatePlan,bool isInitilize)
         {
@@ -75,7 +81,6 @@ namespace Travelling.DBInitilizeLogic
             }
 
 
-            Console.WriteLine("Done!!!!!!!!!!!!!!!!!!!!");
             //Console.Read();
         }
 
@@ -158,7 +163,7 @@ namespace Travelling.DBInitilizeLogic
                         offerModel.ratePlanId = ratePlanId;
 
                         offerContext.Insert(offerModel);
-                        Console.WriteLine("Offer Inserted");
+                        LoggerHelper(ratePlanId, " Offer" + description + "Inserted");
 
                         offerInserted = offerModel.Id;
 
@@ -176,7 +181,7 @@ namespace Travelling.DBInitilizeLogic
                                 or.RestrictionType = item.RestrictionType;
 
                                 offerRuleContext.Insert(or);
-                                Console.WriteLine("Offer Rules inserted");
+                                LoggerHelper(ratePlanId, " Offer Rule" + or.RestrictionDateCode + "Inserted");
 
                             }
 
@@ -315,6 +320,7 @@ namespace Travelling.DBInitilizeLogic
 
                             if (checkDataExists.Count > 0)
                             {
+                                LoggerHelper(ratePlanId.ToString(), "Rate" + startDate + "," + endDate + " Deleted");
                                 rateContext.Delete(checkDataExists);
                             }
                         }
@@ -337,7 +343,7 @@ namespace Travelling.DBInitilizeLogic
 
                         rateContext.Insert(rate);
 
-                        Console.WriteLine("rate Inserted");
+                        LoggerHelper(ratePlanId.ToString() , "RAte" + rate.Start + "," + rate.End + "Inserted");
 
                         RateInserted = rate.Id;
 
@@ -370,8 +376,8 @@ namespace Travelling.DBInitilizeLogic
                             }
                             bga.LastModifyTime = DateTime.Now;
                             baseByGuestContext.Insert(bga);
-
-                            Console.WriteLine("BaseByGuestAmts Inserted");
+                            LoggerHelper(ratePlanId.ToString() , "BaseByGuestAmts" + bga.AmountBeforeTax + "," + bga.CurrencyCode + "Inserted");
+                          
                         }
 
 
@@ -405,14 +411,14 @@ namespace Travelling.DBInitilizeLogic
                                     var feeAmount = AmountPercentType.Amount;
                                     var Currency = AmountPercentType.CurrencyCode;
 
+                                    LoggerHelper(ratePlanId.ToString(), "Fee Other Currency :" + Currency + "," + feeAmount);
 
 
-                                    Console.WriteLine("Fee Other Currency :" + Currency + "," + feeAmount);
                                 }
 
                                 feeContext.Insert(f);
 
-                                Console.WriteLine("Fee Inserted");
+                                LoggerHelper(ratePlanId, "Fee Other Currency Finished");
 
                             }
                         }
@@ -458,7 +464,7 @@ namespace Travelling.DBInitilizeLogic
 
                                 cancleContext.Insert(cp);
 
-                                Console.WriteLine("Cancle Pennalty Inserted");
+                                LoggerHelper(ratePlanId, "Cancle Pennalty  " + cp.OtherCurrencyAmount + "Inserted");
                             }
 
                         }

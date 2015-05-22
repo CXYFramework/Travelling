@@ -9,22 +9,26 @@ using System.Xml;
 using Travelling.OpenApiLogic.HotelDTO;
 using System.Xml.Linq;
 using System.Xml.XPath;
-
+using Common.Logging;
 namespace Travelling.OpenApiLogic
 {
+  
     public class OTAHotelServiceLogic
     {
-        public string GetHotelByAreaId(int? areaId)
+        static ILog logger = Common.Logging.LogManager.Adapter.GetLogger(typeof(OTAHotelServiceLogic));
+        static string logFormat = "Reading Data from {0} API,Parameters {1}";
+        public string GetHotelByAreaId(int? cityCode)
         {
+           
             StringBuilder reqXml = new StringBuilder();
             reqXml.AppendFormat("<ns:OTA_HotelSearchRQ Version=\"1.0\" PrimaryLangID=\"zh\" xsi:schemaLocation=\"http://www.opentravel.org/OTA/2003/05 OTA_HotelSearchRQ.xsd\" xmlns=\"http://www.opentravel.org/OTA/2003/05\">");
             reqXml.Append("<ns:Criteria>");
             reqXml.AppendFormat("<ns:Criterion>");
             reqXml.Append("<ns:HotelRef ");
 
-            if (areaId != null)
+            if (cityCode != null)
             {
-                reqXml.AppendFormat(" HotelCityCode=\"{0}\"", areaId);
+                reqXml.AppendFormat(" HotelCityCode=\"{0}\"", cityCode);
             }
 
             reqXml.Append(" />");
@@ -46,10 +50,18 @@ namespace Travelling.OpenApiLogic
 
         public string GetHotelDetailsByID(string hotelCode)
         {
+
+            
             StringBuilder reqXml = new StringBuilder();
             reqXml.AppendFormat("<OTA_HotelDescriptiveInfoRQ Version=\"1.0\" xsi:schemaLocation=\"http://www.opentravel.org/OTA/2003/05 OTA_HotelDescriptiveInfoRQ.xsd\" xmlns=\"http://www.opentravel.org/OTA/2003/05\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">");
             reqXml.Append("<HotelDescriptiveInfos>");
             reqXml.AppendFormat("<HotelDescriptiveInfo HotelCode=\"{0}\" PositionTypeCode=\"502\">", hotelCode);
+            reqXml.Append("<HotelInfo SendData=\"true\"/>");
+            reqXml.Append("<FacilityInfo SendGuestRooms=\"true\"/>");
+            reqXml.Append("<AreaInfo SendAttractions=\"true\" SendRecreations=\"true\"/>");
+            reqXml.Append("<ContactInfo SendData=\"true\"/>");
+            reqXml.Append("<MultimediaObjects SendData=\"true\"/>");
+
             reqXml.Append("</HotelDescriptiveInfo>");
             reqXml.Append("</HotelDescriptiveInfos>");
             reqXml.Append("</OTA_HotelDescriptiveInfoRQ>");
@@ -73,11 +85,11 @@ namespace Travelling.OpenApiLogic
 
             if (!string.IsNullOrWhiteSpace(ratePlanCode))
             {
-                reqXml.AppendFormat("<ns:RatePlanCandidate AvailRatesOnlyInd=\"{0}\" RatePlanCode=\"{1}\" >", "true", ratePlanCode);
+                reqXml.AppendFormat("<ns:RatePlanCandidate AvailRatesOnlyInd=\"{0}\" RatePlanCode=\"{1}\" >", "false", ratePlanCode);
             }
             else
             {
-                reqXml.AppendFormat("<ns:RatePlanCandidate AvailRatesOnlyInd=\"true\" >");
+                reqXml.AppendFormat("<ns:RatePlanCandidate AvailRatesOnlyInd=\"false\" >");
             }
             reqXml.Append("<ns:HotelRefs>");
             reqXml.AppendFormat("<ns:HotelRef HotelCode=\"{0}\"/>", hotelCode);
@@ -90,7 +102,6 @@ namespace Travelling.OpenApiLogic
             reqXml.Append("</ns:RatePlans>");
             reqXml.Append("</ns:OTA_HotelRatePlanRQ>");
             string strRquestType = "OTA_HotelRatePlan";
-            Console.WriteLine("Start read data from api....");
 
             return CommonProcess(strRquestType, reqXml.ToString());
         }
@@ -110,8 +121,12 @@ namespace Travelling.OpenApiLogic
             reqXml.Append("</ns:OTA_HotelCacheChangeRQ>");
 
             string strRequestType = "OTA_HotelCacheChange";
+
+
+           
+
             string responseXml = CommonProcess(strRequestType, reqXml.ToString());
-            System.IO.File.AppendAllText("D:\\tttt.xml", responseXml);
+
 
             var changeItems = new List<HotelRateRlanCacheDTO>();
 
@@ -165,6 +180,9 @@ namespace Travelling.OpenApiLogic
             WebSvcCaller process = new WebSvcCaller();
             Hashtable ht = new Hashtable();
             ht.Add("requestXML", requestXML);
+
+            logger.Info(string.Format(logFormat, strRequestType, strInputXML));
+
             XmlDocument xd = WebSvcCaller.QuerySoapWebService(url, "Request", ht);
 
             return xd.InnerText;
