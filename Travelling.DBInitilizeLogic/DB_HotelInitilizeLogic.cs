@@ -18,9 +18,9 @@ namespace Travelling.DBInitilizeLogic
 {
     public class DB_HotelInitilizeLogic
     {
-      static  ILog logger = LogManager.Adapter.GetLogger(typeof(DB_HotelInitilizeLogic));
+        ILog logger = LogManager.Adapter.GetLogger(typeof(DB_HotelInitilizeLogic));
 
-        public static void ProcessHotel()
+        public  void ProcessHotel(string hotelCode)
         {
             ////read data api
             OTAHotelServiceLogic hotelService = new OTAHotelServiceLogic();
@@ -34,50 +34,53 @@ namespace Travelling.DBInitilizeLogic
 
 
 
-            IList<string> hotelCodeList = new List<string>();
+            //IList<string> hotelCodeList = new List<string>();
 
 
-            XmlDocument doc = new XmlDocument();
-            doc.Load(@"D:\\ttuut.xml");
+            //XmlDocument doc = new XmlDocument();
+            //doc.Load(@"D:\\ttuut.xml");
 
-            XmlNamespaceManager nsmgr = new XmlNamespaceManager(doc.NameTable);
+            //XmlNamespaceManager nsmgr = new XmlNamespaceManager(doc.NameTable);
 
-            nsmgr.AddNamespace("c", "http://www.opentravel.org/OTA/2003/05");
+            //nsmgr.AddNamespace("c", "http://www.opentravel.org/OTA/2003/05");
 
-            var nodes = doc.SelectNodes("c:Property", nsmgr);
-            var rsNode = doc.SelectSingleNode("Response/HotelResponse/c:OTA_HotelSearchRS/c:Properties", nsmgr);
+            //var nodes = doc.SelectNodes("c:Property", nsmgr);
+            //var rsNode = doc.SelectSingleNode("Response/HotelResponse/c:OTA_HotelSearchRS/c:Properties", nsmgr);
 
 
-            foreach (XmlNode item in rsNode.ChildNodes)
-            {
-                hotelCodeList.Add(item.Attributes["HotelCode"].Value);
-            }
+            //foreach (XmlNode item in rsNode.ChildNodes)
+            //{
+            //    hotelCodeList.Add(item.Attributes["HotelCode"].Value);
+            //}
 
-            doc = null;
+            //doc = null;
 
-            for (int i = 0; i < hotelCodeList.Count; i++)
-            {
 
-                logger.Info("Start to Read Data From API ,HotelCode :" + hotelCodeList[i]);
-                var hotelXml = hotelService.GetHotelDetailsByID(hotelCodeList[i]);
-                logger.Info(" Read Data From API ,HotelCode :" + hotelCodeList[i] + ", Finished");
+           // Parallel.ForEach(hotelCodeList, obj => { 
+
+
+            logger.Info("Start to Read Data From API ,HotelCode :" + hotelCode);
+            var hotelXml = hotelService.GetHotelDetailsByID(hotelCode);
+            logger.Info(" Read Data From API ,HotelCode :" + hotelCode + ", Finished");
                 //var hotelXml = hotelService.GetHotelDetailsByID("625");
                 var root = XRoot.Parse(hotelXml);
 
-                hotelXml = null;
+                if (hotelXml == null)
+                    throw new Exception("timeout");
 
 
                 var hotels = root.Response.HotelResponse[0].OTA_HotelDescriptiveInfoRS.HotelDescriptiveContents[0].HotelDescriptiveContent;
-
+               
+                
                 foreach (var item in hotels)
                 {
                     TransactionOptions transactionOption = new TransactionOptions();
                     transactionOption.Timeout = new TimeSpan(0, 0, 600000); //no time out 
-
-                    using (TransactionScope tran = new TransactionScope(TransactionScopeOption.Required, transactionOption))
+                    transactionOption.IsolationLevel = IsolationLevel.ReadUncommitted;
+                    using (TransactionScope tran = new TransactionScope(TransactionScopeOption.RequiresNew, transactionOption))
                     {
                         LoggerHelper(item.HotelCode, "Start to Process");
-                        var hotelCode = item.HotelCode;
+                        //var hotelCode = item.HotelCode;
                         var hotelId = InsertHotel(item);
                         
                         var hotelinfo = item.HotelInfo[0];
@@ -118,22 +121,22 @@ namespace Travelling.DBInitilizeLogic
 
 
                         // InsertHotelTapExtension(hotelCode, item);
-
-                        DB_PriceInitilizeLogic.Process(hotelId, hotelCode, isInitilize: true);
+                        DB_PriceInitilizeLogic priceLogic = new DB_PriceInitilizeLogic();
+                        priceLogic.Process(hotelId, hotelCode, isInitilize: true);
                         tran.Complete();
 
                         LoggerHelper(hotelCode, item.HotelName + "Finished");
-                    }
+                   }
 
                 }
-               
-            }
+
+            //});
 
             LoggerHelper(null, "ALL Hotel Competed");
            // Console.Read();
 
         }
-        public  static string GetHotelIdByCode (int hotelCode)
+        public   string GetHotelIdByCode (int hotelCode)
         {
             using (var context = new TravelDBContext())
             {
@@ -156,7 +159,7 @@ namespace Travelling.DBInitilizeLogic
           
         
         }
-        private static string InsertHotel(OTA_HotelDescriptiveInfoRS.HotelDescriptiveContentsLocalType.HotelDescriptiveContentLocalType hotel)
+        private  string InsertHotel(OTA_HotelDescriptiveInfoRS.HotelDescriptiveContentsLocalType.HotelDescriptiveContentLocalType hotel)
         {
             string returnVal = string.Empty;
             using (var context = new TravelDBContext())
@@ -207,7 +210,7 @@ namespace Travelling.DBInitilizeLogic
                  return returnVal;
             }
         }
-        private static void InsertSEG(string hotelId ,string hotelCode, IList<OTA_HotelDescriptiveInfoRS.HotelDescriptiveContentsLocalType.HotelDescriptiveContentLocalType.HotelInfoLocalType.CategoryCodesLocalType> SEG)
+        private  void InsertSEG(string hotelId ,string hotelCode, IList<OTA_HotelDescriptiveInfoRS.HotelDescriptiveContentsLocalType.HotelDescriptiveContentLocalType.HotelInfoLocalType.CategoryCodesLocalType> SEG)
         {
             if (SEG != null)
             {
@@ -218,7 +221,7 @@ namespace Travelling.DBInitilizeLogic
                     var seg = (from s in EfContext.Table where s.HotelId == hotelId select s).ToList();
 
                     if (seg != null)
-                        EfContext.Delete(seg, false);
+                        EfContext.Delete(seg);
 
                     IList<CategoryCodeHotelMapping> segs = new List<CategoryCodeHotelMapping>();
 
@@ -246,12 +249,12 @@ namespace Travelling.DBInitilizeLogic
             }
         }
 
-        private static void LoggerHelper(string hotelCode, string message)
+        private  void LoggerHelper(string hotelCode, string message)
         {
             Console.WriteLine("Hotel Code :" + hotelCode + "Message :" + message);
             logger.Info("Hotel Code :" + hotelCode + "Message :" + message);
         }
-        private static void InsertPosition(string hotelId, string hotelCode, IList<OTA_HotelDescriptiveInfoRS.HotelDescriptiveContentsLocalType.HotelDescriptiveContentLocalType.HotelInfoLocalType.PositionLocalType> Position)
+        private  void InsertPosition(string hotelId, string hotelCode, IList<OTA_HotelDescriptiveInfoRS.HotelDescriptiveContentsLocalType.HotelDescriptiveContentLocalType.HotelInfoLocalType.PositionLocalType> Position)
         {
             if (Position != null)
             {
@@ -259,9 +262,9 @@ namespace Travelling.DBInitilizeLogic
                 {
                     EfRepository<Position> EfContext = new EfRepository<Position>(context);
 
-                    var positions = (from p in EfContext.Table select p).ToList();
+                    var positions = (from p in EfContext.Table where p.HotelID == hotelId select p).ToList();
                     if (positions != null)
-                        EfContext.Delete(positions, false);
+                        EfContext.Delete(positions);
 
                     IList<Position> ps = new List<Position>();
 
@@ -284,7 +287,7 @@ namespace Travelling.DBInitilizeLogic
             }
         }
 
-        private static void InsertAddress(string hotelId,string hotelCode, IList<OTA_HotelDescriptiveInfoRS.HotelDescriptiveContentsLocalType.HotelDescriptiveContentLocalType.HotelInfoLocalType.AddressLocalType> Address)
+        private  void InsertAddress(string hotelId,string hotelCode, IList<OTA_HotelDescriptiveInfoRS.HotelDescriptiveContentsLocalType.HotelDescriptiveContentLocalType.HotelInfoLocalType.AddressLocalType> Address)
         {
             if (Address != null)
             {
@@ -410,7 +413,7 @@ namespace Travelling.DBInitilizeLogic
      
       
 
-        private static void InsertServices(string hotelId, string hotelCode, IList<OTA_HotelDescriptiveInfoRS.HotelDescriptiveContentsLocalType.HotelDescriptiveContentLocalType.HotelInfoLocalType.ServicesLocalType> Services)
+        private  void InsertServices(string hotelId, string hotelCode, IList<OTA_HotelDescriptiveInfoRS.HotelDescriptiveContentsLocalType.HotelDescriptiveContentLocalType.HotelInfoLocalType.ServicesLocalType> Services)
         {
             if (Check(Services))
             {
@@ -498,7 +501,7 @@ namespace Travelling.DBInitilizeLogic
             }
         }
 
-        private static void InsertGuestRoom(string hotelId,string hotelCode, IList<OTA_HotelDescriptiveInfoRS.HotelDescriptiveContentsLocalType.HotelDescriptiveContentLocalType.FacilityInfoLocalType.GuestRoomsLocalType> GuestRooms)
+        private  void InsertGuestRoom(string hotelId,string hotelCode, IList<OTA_HotelDescriptiveInfoRS.HotelDescriptiveContentsLocalType.HotelDescriptiveContentLocalType.FacilityInfoLocalType.GuestRoomsLocalType> GuestRooms)
         {
             if (GuestRooms != null && GuestRooms.Count > 0)
             {
@@ -649,7 +652,7 @@ namespace Travelling.DBInitilizeLogic
             }
         }
 
-        private static bool Check(IEnumerable<object> o)
+        private  bool Check(IEnumerable<object> o)
         {
             if (o != null && o.Count() > 0)
             {
@@ -659,7 +662,7 @@ namespace Travelling.DBInitilizeLogic
             return false;
         }
 
-        private static void InsertPolicies(string hotelId,string HotelCode, IList<OTA_HotelDescriptiveInfoRS.HotelDescriptiveContentsLocalType.HotelDescriptiveContentLocalType.PoliciesLocalType> policies)
+        private  void InsertPolicies(string hotelId,string HotelCode, IList<OTA_HotelDescriptiveInfoRS.HotelDescriptiveContentsLocalType.HotelDescriptiveContentLocalType.PoliciesLocalType> policies)
         {
             if (Check(policies))
             {
@@ -668,7 +671,7 @@ namespace Travelling.DBInitilizeLogic
             }
         }
 
-        private static void InsertPolicy(string hotelId, string hotelCode, IList<OTA_HotelDescriptiveInfoRS.HotelDescriptiveContentsLocalType.HotelDescriptiveContentLocalType.PoliciesLocalType.PolicyLocalType> policy)
+        private  void InsertPolicy(string hotelId, string hotelCode, IList<OTA_HotelDescriptiveInfoRS.HotelDescriptiveContentsLocalType.HotelDescriptiveContentLocalType.PoliciesLocalType.PolicyLocalType> policy)
         {
             if (Check(policy))
             {
@@ -731,7 +734,7 @@ namespace Travelling.DBInitilizeLogic
             }
         }
 
-        private static void InsertAreaInfo(string hotelId, string hotelCode,IList<OTA_HotelDescriptiveInfoRS.HotelDescriptiveContentsLocalType.HotelDescriptiveContentLocalType.AreaInfoLocalType> areas)
+        private  void InsertAreaInfo(string hotelId, string hotelCode,IList<OTA_HotelDescriptiveInfoRS.HotelDescriptiveContentsLocalType.HotelDescriptiveContentLocalType.AreaInfoLocalType> areas)
         {
             if (Check(areas))
             {
@@ -784,7 +787,7 @@ namespace Travelling.DBInitilizeLogic
             }
         }
 
-        private static void InsertAffiliation(string hotelId, string hotelCode,IList<OTA_HotelDescriptiveInfoRS.HotelDescriptiveContentsLocalType.HotelDescriptiveContentLocalType.AffiliationInfoLocalType> affiliation)
+        private  void InsertAffiliation(string hotelId, string hotelCode,IList<OTA_HotelDescriptiveInfoRS.HotelDescriptiveContentsLocalType.HotelDescriptiveContentLocalType.AffiliationInfoLocalType> affiliation)
         {
             if (Check(affiliation))
             {
@@ -832,7 +835,7 @@ namespace Travelling.DBInitilizeLogic
             }
         }
 
-        private static void InsertMultimediaDescription(string hotelId,string hotelCode, IList<OTA_HotelDescriptiveInfoRS.HotelDescriptiveContentsLocalType.HotelDescriptiveContentLocalType.MultimediaDescriptionsLocalType> multimediadescriptions)
+        private  void InsertMultimediaDescription(string hotelId,string hotelCode, IList<OTA_HotelDescriptiveInfoRS.HotelDescriptiveContentsLocalType.HotelDescriptiveContentLocalType.MultimediaDescriptionsLocalType> multimediadescriptions)
         {
             if (Check(multimediadescriptions))
             {
@@ -911,7 +914,7 @@ namespace Travelling.DBInitilizeLogic
             }
         }
 
-        private static void InsertHotelTapExtension(string hotelCode, OTA_HotelDescriptiveInfoRS.HotelDescriptiveContentsLocalType.HotelDescriptiveContentLocalType content)
+        private  void InsertHotelTapExtension(string hotelCode, OTA_HotelDescriptiveInfoRS.HotelDescriptiveContentsLocalType.HotelDescriptiveContentLocalType content)
         {
             if (Check(content.TPA_Extensions))
             {

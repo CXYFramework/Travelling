@@ -27,6 +27,7 @@ using System.Linq;
         public EfRepository(DbContext context)
         {
             this._context = context;
+            this._context.Database.CommandTimeout = 300000;
         }
         
         #endregion
@@ -73,6 +74,7 @@ using System.Linq;
             }
         }
 
+        public static object o = new object();
         /// <summary>
         /// Insert entities
         /// </summary>
@@ -81,14 +83,24 @@ using System.Linq;
         {
             try
             {
-                if (entities == null)
-                    throw new ArgumentNullException("entities");
+                
+                    if (entities == null)
+                        throw new ArgumentNullException("entities");
 
-                foreach (var entity in entities)
-                    this.Entities.Add(entity);
+                    foreach (T entity in entities)
+                    {
 
-                this._context.SaveChanges();
+                        this.Entities.Add(entity);
+
+
+
+
+                    
+                    }
+                    this._context.SaveChanges();
+                
             }
+
             catch (DbEntityValidationException dbEx)
             {
                 var msg = string.Empty;
@@ -191,14 +203,20 @@ using System.Linq;
         {
             try
             {
-                if (entities == null)
-                    throw new ArgumentNullException("entities");
+              
+                    if (entities == null)
+                        throw new ArgumentNullException("entities");
 
-                foreach (var entity in entities)
-                    this.Entities.Remove(entity);
+                    foreach (var entity in entities)
+                    {
+                        this.Entities.Remove(entity);
 
-                if (isSave)
-                    this._context.SaveChanges();
+
+
+                      
+                    }
+                     this._context.SaveChanges();
+                
             }
             catch (DbEntityValidationException dbEx)
             {

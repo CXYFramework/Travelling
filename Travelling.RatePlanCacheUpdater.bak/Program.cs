@@ -27,15 +27,16 @@ namespace Travelling.RatePlanCacheUpdater
                 }
                 else
                 {
-                    hotelId = DB_HotelInitilizeLogic.GetHotelIdByCode(Convert.ToInt32(item.HotelCode));
+                    DB_HotelInitilizeLogic logic = new DB_HotelInitilizeLogic();
+                    hotelId = logic.GetHotelIdByCode(Convert.ToInt32(item.HotelCode));
                     CheckExists.Add(item.HotelCode, hotelId);
 
                 }
                 if (!string.IsNullOrEmpty(hotelId))
                 {
-                    
+                    DB_PriceInitilizeLogic priceLogic = new DB_PriceInitilizeLogic();
                     // string responseXml = hotelServiceLogic.GetHotelRatePlan(item.HotelCode, item.RatePlanCode);
-                    DB_PriceInitilizeLogic.Process(hotelId, item.HotelCode,item.RatePlanCode, item.Start, item.End, false);
+                    priceLogic.Process(hotelId, item.HotelCode, item.RatePlanCode, item.Start, item.End, false);
                     Console.WriteLine(item.HotelCode + "," + item.RatePlanCode);
                 }
             }

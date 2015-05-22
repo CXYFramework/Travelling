@@ -13,8 +13,8 @@ namespace Travelling.DBInitilizeLogic
 {
     public class DB_PriceInitilizeLogic
     {
-        static ILog logger = LogManager.Adapter.GetLogger(typeof(DB_HotelInitilizeLogic));
-        public static void Process(string hotelId, string hotelCode,string ratePlanCode="", DateTime? startDate=null, DateTime? endDate=null, bool isInitilize = true)
+         ILog logger = LogManager.Adapter.GetLogger(typeof(DB_HotelInitilizeLogic));
+        public  void Process(string hotelId, string hotelCode,string ratePlanCode="", DateTime? startDate=null, DateTime? endDate=null, bool isInitilize = true)
         {
           
             OTAHotelServiceLogic hotelService = new OTAHotelServiceLogic();
@@ -48,13 +48,13 @@ namespace Travelling.DBInitilizeLogic
             }
         }
 
-        private static void LoggerHelper(object ratePlan, string message)
+        private  void LoggerHelper(object ratePlan, string message)
         {
             Console.WriteLine("RatePlan Code :" + ratePlan + "Message :" + message);
             logger.Info("RatePlan Code :" + ratePlan + "Message :" + message);
         }
 
-        public static void ProcessPrice(string hotelId, string hotelCode, string xml, bool ifNeedUpdateRatePlan,bool isInitilize)
+        public  void ProcessPrice(string hotelId, string hotelCode, string xml, bool ifNeedUpdateRatePlan,bool isInitilize)
         {
 
 
@@ -84,7 +84,7 @@ namespace Travelling.DBInitilizeLogic
             //Console.Read();
         }
 
-        private static void ProcessRatePlan(string hoteId, IList<OTA_HotelRatePlanRS.RatePlansLocalType.RatePlanLocalType> ratePlans, bool ifNeedUpdateRatePlan, bool isInitilize)
+        private  void ProcessRatePlan(string hoteId, IList<OTA_HotelRatePlanRS.RatePlansLocalType.RatePlanLocalType> ratePlans, bool ifNeedUpdateRatePlan, bool isInitilize)
         {
             if (Check(ratePlans))
             {
@@ -129,7 +129,7 @@ namespace Travelling.DBInitilizeLogic
 
         }
 
-        private static void InsertOffers(int ratePlanId, IList<OTA_HotelRatePlanRS.RatePlansLocalType.RatePlanLocalType.OffersLocalType> offers)
+        private  void InsertOffers(int ratePlanId, IList<OTA_HotelRatePlanRS.RatePlansLocalType.RatePlanLocalType.OffersLocalType> offers)
         {
             if (Check(offers))
             {
@@ -192,7 +192,7 @@ namespace Travelling.DBInitilizeLogic
             }
         }
 
-        private static bool Check(IEnumerable<object> o)
+        private  bool Check(IEnumerable<object> o)
         {
             if (o != null && o.Count() > 0)
                 return true;
@@ -201,7 +201,7 @@ namespace Travelling.DBInitilizeLogic
         }
 
 
-        private static int CheckRuleInserted(string key, EfRepository<BookRule> bookruleContext)
+        private  int CheckRuleInserted(string key, EfRepository<BookRule> bookruleContext)
         {
 
             int inserted = -1;
@@ -221,7 +221,7 @@ namespace Travelling.DBInitilizeLogic
             return inserted;
         }
 
-        private static void InsertBookRuleMapping(int ratePlanId, string key, string parameter, EfRepository<RoomPlanBookRuleMapping> roomPlanBookMappingContext, EfRepository<BookRule> bookruleContext)
+        private  void InsertBookRuleMapping(int ratePlanId, string key, string parameter, EfRepository<RoomPlanBookRuleMapping> roomPlanBookMappingContext, EfRepository<BookRule> bookruleContext)
         {
             RoomPlanBookRuleMapping rbrm = new RoomPlanBookRuleMapping();
             rbrm.RatePlanId = ratePlanId;
@@ -233,7 +233,7 @@ namespace Travelling.DBInitilizeLogic
 
         }
 
-        private static void InsertBookingRules(int ratePlanId, IList<BookingRules> BooKRules)
+        private  void InsertBookingRules(int ratePlanId, IList<BookingRules> BooKRules)
         {
             if (Check(BooKRules))
             {
@@ -300,7 +300,7 @@ namespace Travelling.DBInitilizeLogic
         
 
         //增量获取不删除rateplan，直接更新此处
-        public static void InsertRate(int ratePlanId, IList<OTA_HotelRatePlanRS.RatePlansLocalType.RatePlanLocalType.RatesLocalType> rates,bool ifNeedCheck = false)
+        public  void InsertRate(int ratePlanId, IList<OTA_HotelRatePlanRS.RatePlansLocalType.RatePlanLocalType.RatesLocalType> rates,bool ifNeedCheck = false)
         {
             if (Check(rates))
             {

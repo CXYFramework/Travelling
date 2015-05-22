@@ -74,6 +74,10 @@
       <Project>{64aa2263-1fd2-49e2-9709-66084a9e267a}</Project>
       <Name>Travelling.DBInitilizeLogic</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Travelling.OpenApiLogic\Travelling.OpenApiLogic.csproj">
+      <Project>{99106f2a-3f60-49f1-b994-b7116a56cfa1}</Project>
+      <Name>Travelling.OpenApiLogic</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

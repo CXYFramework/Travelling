@@ -7,6 +7,8 @@ using Common.Logging;
 using System.IO;
 using Travelling.DBInitilizeLogic;
 using Common.Logging;
+using System.Xml;
+using Travelling.OpenApiLogic;
 
 namespace CTripSyncCapture
 {
@@ -815,7 +817,56 @@ namespace CTripSyncCapture
         static void Main(string[] args)
         {
             logger.Info("Program Started");
-            DB_HotelInitilizeLogic.ProcessHotel();
+
+            IList<string> hotelCodeList = new List<string>();
+
+            OTAHotelServiceLogic hotelService = new OTAHotelServiceLogic();
+            //string hotelXml = hotelService.GetHotelByAreaId(1);
+
+
+            XmlDocument doc = new XmlDocument();
+            doc.Load(@"D:\\ttuut.xml");
+
+            XmlNamespaceManager nsmgr = new XmlNamespaceManager(doc.NameTable);
+
+            nsmgr.AddNamespace("c", "http://www.opentravel.org/OTA/2003/05");
+
+            var nodes = doc.SelectNodes("c:Property", nsmgr);
+            var rsNode = doc.SelectSingleNode("Response/HotelResponse/c:OTA_HotelSearchRS/c:Properties", nsmgr);
+
+
+            foreach (XmlNode item in rsNode.ChildNodes)
+            {
+                hotelCodeList.Add(item.Attributes["HotelCode"].Value);
+            }
+
+            doc = null;
+
+            Parallel.ForEach(hotelCodeList, obj =>
+            {
+           
+                Rego:
+                try
+                {
+                   
+                    DB_HotelInitilizeLogic hotelLogic = new DB_HotelInitilizeLogic();
+                    hotelLogic.ProcessHotel(obj);
+                }
+                catch (Exception e)
+                {
+
+                    logger.Fatal(e.ToString());
+                    if (e.Message.ToLower().Contains("timeout"))
+                        goto Rego;
+
+                }
+            });
+
+            //for (int i = 0; i < hotelCodeList.Count; i++)
+            //{
+            //    DB_HotelInitilizeLogic hotelLogic = new DB_HotelInitilizeLogic();
+            //       hotelLogic.ProcessHotel(hotelCodeList[i]);
+            //}
         }
     }
 }

@@ -68,7 +68,7 @@ namespace Travelling.OpenApiLogic
 
             string strRequestType = "OTA_HotelDescriptiveInfo";
             string strInputXML = reqXml.ToString();
-
+            
             return CommonProcess(strRequestType, strInputXML);
 
           //  return System.IO.File.ReadAllText(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "real.xml"));
@@ -167,8 +167,44 @@ namespace Travelling.OpenApiLogic
             return changeItems;
 
         }
+
+        static DateTime dtLast;
+        static int Count = 1;
+        public static object o = new object();
+        public static bool CheckCount()
+        {
+            lock (o)
+            {
+                if (DateTime.Now.AddMinutes(-1) < dtLast)
+                {
+                    if (Count > 28)
+                    {
+                        logger.Info("Current Count :" + Count + " Waiting ............");
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Current Count :" + Count + " Waiting ............");
+                        Console.ResetColor();
+                        return false;
+                    }
+
+
+                }
+                else
+                {
+                    dtLast = DateTime.Now;
+                    Count = 1;
+                }
+                Count++;
+                return true;
+            }
+        }
         private string CommonProcess(string strRequestType, string strInputXML)
         {
+            while (!CheckCount())
+            {
+                System.Threading.Thread.Sleep(1000);
+            }
+
+            
             APICommon apicommon = new APICommon();
 
             string requestHeader = apicommon.GetHeadXML(strRequestType, "");
