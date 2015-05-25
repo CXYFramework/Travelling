@@ -8,7 +8,7 @@ namespace Travelling.OpenApiLogic
 {
     public class OTATicketServiceLogic
     {
-       
+
         public string GetTicketBySearch(int areaId, string keywords)
         {
 
@@ -26,7 +26,7 @@ namespace Travelling.OpenApiLogic
 </ScenicSpotSearchRequest>";
 
             APICommon apicommon = new APICommon();
-          return  WebSvcCaller.TicketCaller(apicommon.GetTicketJson(0, reqXml, "TicketSenicSpotSearch", "TicketSenicSpotSearch"));
+            return WebSvcCaller.TicketCaller(apicommon.GetTicketJson(0, reqXml, "TicketSenicSpotSearch", "TicketSenicSpotSearch"));
 
         }
     }

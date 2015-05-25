@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace Travelling.UI
+namespace Travelling.Web
 {
     public class BundleConfig
     {

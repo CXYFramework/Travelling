@@ -821,7 +821,7 @@ namespace CTripSyncCapture
             IList<string> hotelCodeList = new List<string>();
 
             OTAHotelServiceLogic hotelService = new OTAHotelServiceLogic();
-            //string hotelXml = hotelService.GetHotelByAreaId(1);
+            string hotelXml = hotelService.GetHotelByAreaId(1);
 
 
             XmlDocument doc = new XmlDocument();
