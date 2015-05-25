@@ -41,8 +41,13 @@
   <ItemGroup>
     <Compile Include="HotelService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TicketService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DBInitilizer\Travelling.OpenApiLogic\Travelling.OpenApiLogic.csproj">
+      <Project>{99106f2a-3f60-49f1-b994-b7116a56cfa1}</Project>
+      <Name>Travelling.OpenApiLogic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Travelling.LuceneSearch\Travelling.LuceneSearch.csproj">
       <Project>{e6293d95-8153-4276-8678-5de2d04eb74b}</Project>
       <Name>Travelling.LuceneSearch</Name>

@@ -48,6 +48,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "template", "template", "{F9
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Travelling.Web", "Travelling.Web\Travelling.Web.csproj", "{986E79D3-A490-4183-9218-6934E294FC45}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Travelling.Service.Test", "Travelling.Service.Test\Travelling.Service.Test.csproj", "{3F8EED33-B00C-4912-A0F7-DAF9F57FBFA9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -132,6 +134,10 @@ Global
 		{986E79D3-A490-4183-9218-6934E294FC45}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{986E79D3-A490-4183-9218-6934E294FC45}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{986E79D3-A490-4183-9218-6934E294FC45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F8EED33-B00C-4912-A0F7-DAF9F57FBFA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F8EED33-B00C-4912-A0F7-DAF9F57FBFA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F8EED33-B00C-4912-A0F7-DAF9F57FBFA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F8EED33-B00C-4912-A0F7-DAF9F57FBFA9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
