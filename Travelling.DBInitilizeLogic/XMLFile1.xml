@@ -1,0 +1,23 @@
+﻿<?xml version="1.0"?>
+<Request>
+  <Header  AllianceID="23155" SID="457699" TimeStamp="1432188541"  RequestType="OTA_HotelRatePlan" Signature="1D0330BCBB7F259D7EE97E47669C1824" Culture="" />
+  <HotelRequest>
+    <RequestBody xmlns:ns="http://www.opentravel.org/OTA/2003/05" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <ns:OTA_HotelRatePlanRQ TimeStamp="2013-06-01T00:00:00.000+08:00" Version="1.0" >
+      <ns:RatePlans>
+        <ns:RatePlan>
+          <ns:DateRange Start="2015-05-21" End="2015-06-18"/>
+          <ns:RatePlanCandidates>
+            <ns:RatePlanCandidate AvailRatesOnlyInd="true" >
+              <ns:HotelRefs>
+                <ns:HotelRef HotelCode="625"/>
+              </ns:HotelRefs>
+            </ns:RatePlanCandidate>
+          </ns:RatePlanCandidates>
+          <ns:TPA_Extensions RestrictedDisplayIndicator="false"/>
+        </ns:RatePlan>
+      </ns:RatePlans>
+      </ns:OTA_HotelRatePlanRQ>
+    </RequestBody>
+  </HotelRequest>
+</Request>
