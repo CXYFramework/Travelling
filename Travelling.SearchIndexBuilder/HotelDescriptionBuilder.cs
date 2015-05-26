@@ -18,7 +18,7 @@ namespace Travelling.SearchIndexBuilder
 
             Lucene.AddUpdateLuceneIndex(hoteDescriptions);
 
-            var h = Lucene.GetAllIndexRecords();
+            //var h = Lucene.GetAllIndexRecords();
         }
     }
 }
