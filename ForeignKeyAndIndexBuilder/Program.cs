@@ -102,10 +102,10 @@ namespace ForeignKeyBuilder
             Console.Read();
         }
         //public static readonly string connectionString = "Data Source=.;Initial Catalog=test2;Integrated Security=True";
-        public static readonly string connectionString = "data source=MSTV-SHGUAN-04;initial catalog=TravelDB;uid=sa;pwd=sa";
+        //public static readonly string connectionString = "data source=MSTV-SHGUAN-04;initial catalog=TravelDB;uid=sa;pwd=sa";
         public static SqlConnection GetOpenConnection(bool mars = false)
         {
-            var cs = connectionString;
+            var cs = ConfigurationManager.ConnectionStrings["TravelDBContext"].ConnectionString;
             if (mars)
             {
                 SqlConnectionStringBuilder scsb = new SqlConnectionStringBuilder(cs);
@@ -118,7 +118,7 @@ namespace ForeignKeyBuilder
         }
         public static SqlConnection GetClosedConnection()
         {
-            return new SqlConnection(connectionString);
+            return new SqlConnection(ConfigurationManager.ConnectionStrings["TravelDBContext"].ConnectionString);
         }
 
     }

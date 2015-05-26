@@ -825,7 +825,7 @@ namespace CTripSyncCapture
 
 
             XmlDocument doc = new XmlDocument();
-            doc.Load(@"D:\\ttuut.xml");
+            doc.LoadXml(hotelXml);
 
             XmlNamespaceManager nsmgr = new XmlNamespaceManager(doc.NameTable);
 
