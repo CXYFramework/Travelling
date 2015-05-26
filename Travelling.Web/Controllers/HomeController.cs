@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Travelling.Data;
+using Travelling.Model.DTO;
 
 namespace Travelling.Web.Controllers
 {
@@ -10,7 +12,10 @@ namespace Travelling.Web.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            DB_HotelHelper helper = new DB_HotelHelper();
+            var HotelList = helper.GetHotelDescription().ToList<HotelDescriptionDTO>().Take(10);
+
+            return View(HotelList);
         }
 
         public ActionResult About()
