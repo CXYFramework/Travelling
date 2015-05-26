@@ -1755,7 +1755,16 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Travelling.Model\Travelling.Model.csproj">
+      <Project>{b9dcb7c9-2a69-48ad-b98a-67eea6568c3b}</Project>
+      <Name>Travelling.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Travelling.Services\Travelling.Services.csproj">
+      <Project>{2d9fb460-2ffd-4a5e-b765-b728642c1144}</Project>
+      <Name>Travelling.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
