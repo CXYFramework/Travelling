@@ -16,7 +16,7 @@ namespace Travelling.SearchIndexBuilder
 
             var hoteDescriptions = hotel.GetHotelDescription();
 
-            //Lucene.AddUpdateLuceneIndex(hoteDescriptions);
+            Lucene.AddUpdateLuceneIndex(hoteDescriptions);
 
             var h = Lucene.GetAllIndexRecords();
         }
