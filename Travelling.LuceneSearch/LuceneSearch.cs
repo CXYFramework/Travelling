@@ -16,7 +16,7 @@ namespace Travelling.LuceneSearch
 {
     public static class Lucene
     {
-
+      
         private static string _luceneDir =
                     Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "lucene_index");
         private static FSDirectory _directoryTemp;
@@ -46,6 +46,11 @@ namespace Travelling.LuceneSearch
 
             // add new index entry
             var doc = new Document();
+            if (hotelDescriptionDTO.MinPrice ==0)
+            {
+                return;
+            }
+            doc.Add(new Field("MinPrice", hotelDescriptionDTO.MinPrice.ToString(), Field.Store.YES, Field.Index.NOT_ANALYZED));
 
             // add lucene fields mapped to db fields
             doc.Add(new Field("Id", hotelDescriptionDTO.Id.ToString(), Field.Store.YES, Field.Index.NOT_ANALYZED));
@@ -57,8 +62,10 @@ namespace Travelling.LuceneSearch
             doc.Add(new Field("AddressLine", hotelDescriptionDTO.AddressLine, Field.Store.YES, Field.Index.ANALYZED));
             doc.Add(new Field("Description", hotelDescriptionDTO.Description, Field.Store.YES, Field.Index.ANALYZED));
             doc.Add(new Field("DescriptionText", hotelDescriptionDTO.DescriptionText, Field.Store.YES, Field.Index.ANALYZED));
+            if (hotelDescriptionDTO.Url == null)
+                hotelDescriptionDTO.Url = string.Empty;
             doc.Add(new Field("Url", hotelDescriptionDTO.Url, Field.Store.YES, Field.Index.ANALYZED));
-            doc.Add(new Field("MinPrice", hotelDescriptionDTO.MinPrice.ToString(), Field.Store.YES, Field.Index.NOT_ANALYZED));
+          
             // add entry to index
             writer.AddDocument(doc);
         }
@@ -239,6 +246,7 @@ namespace Travelling.LuceneSearch
 
         public static IEnumerable<HotelDescriptionDTO> GetAllIndexRecords()
         {
+          string p = System.IO.Directory.GetCurrentDirectory();
             // validate search index
             if (!System.IO.Directory.EnumerateFiles(_luceneDir).Any())
                 return new List<HotelDescriptionDTO>();

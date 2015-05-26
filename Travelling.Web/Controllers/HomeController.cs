@@ -12,7 +12,8 @@ namespace Travelling.Web.Controllers
         HotelService hotelService = new HotelService();
         public ActionResult Index()
         {
-
+            //has some issues , can not locate the index file correctly , will fix later , you can 
+            // get the data by calling Travelling.Data layer .
             var HotelList = hotelService.GetHotelDescriptions().Take(10);
 
             return View(HotelList);
